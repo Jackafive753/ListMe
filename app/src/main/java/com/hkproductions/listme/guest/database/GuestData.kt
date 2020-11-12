@@ -40,5 +40,13 @@ data class GuestData(
     var city: String = "",
 
     @ColumnInfo(name = "phone_number")
-    var phoneNumber: String = ""
+    var phoneNumber: String = "",
+
+    /**
+     * phone owner is the main data. There can only be one
+     * true -> my data
+     * false -> this person is a house_member
+     */
+    @ColumnInfo(name = "phone_owner")
+    var phoneOwner: Boolean = false
 )
