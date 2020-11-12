@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">ListMe</string>
+
     <string name="manual">Kurzanleitung</string>
     <string name="guest">Gast</string>
     <string name="host">Gastgeber</string>
+    <string name="about">About</string>
+    <string name="data_protection">Datenschutz</string>
+    <string name="imprint">Impressum</string>
 </resources>
