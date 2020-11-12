@@ -4,13 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.hkproductions.listme.guest.database.GuestDataDao
-import com.hkproductions.listme.guest.database.GuestDatabase
 
 @Database(entities = [HostData::class], version = 1, exportSchema = false)
 abstract class HostDatabase : RoomDatabase() {
 
-    abstract val guestDataDao: GuestDataDao
+    abstract val hostDataDao: HostDataDao
 
     companion object {
 
@@ -24,7 +22,7 @@ abstract class HostDatabase : RoomDatabase() {
          * This is important for consistent data holding
          */
         @Volatile
-        private var INSTANCE: GuestDatabase? = null
+        private var INSTANCE: HostDatabase? = null
 
         /**
          * Helper function to get the database
@@ -36,7 +34,7 @@ abstract class HostDatabase : RoomDatabase() {
          *
          * @param context The application context, used to get access to the filesystem
          */
-        fun getInstance(context: Context): GuestDatabase {
+        fun getInstance(context: Context): HostDatabase {
             /*
             * If multiple threads ask for a database,
             * ensure that there is only one database initialize
@@ -50,8 +48,8 @@ abstract class HostDatabase : RoomDatabase() {
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        GuestDatabase::class.java,
-                        "guest_data_database"
+                        HostDatabase::class.java,
+                        "host_data_database"
                     ).fallbackToDestructiveMigration()
                         .build()
 

@@ -19,10 +19,10 @@ import androidx.room.PrimaryKey
  * -->End Time
  * -->Area Name (Placement)
  */
-@Entity(tableName = "host_data")
+@Entity(tableName = "host_data_table")
 data class HostData(
     @PrimaryKey(autoGenerate = true)
-    var dataId: Long = 0L,
+    var guestDataId: Long = 0L,
 
     @ColumnInfo(name = "first_name")
     var firstName: String = "",
