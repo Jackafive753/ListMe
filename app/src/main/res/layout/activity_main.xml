@@ -6,13 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/manual"
+        android:layout_width="207dp"
+        android:layout_height="42dp"
+        android:text="@string/manual"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="600dp" />
+
+    <Button
+        android:id="@+id/guest"
+        android:layout_width="207dp"
+        android:layout_height="42dp"
+        android:text="@string/guest"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="547dp" />
+
+    <ImageView
+        android:id="@+id/Logo"
+        android:layout_width="263dp"
+        android:layout_height="268dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logo_variante3"
+        tools:layout_editor_absoluteY="113dp" />
+
+    <Button
+        android:id="@+id/host"
+        android:layout_width="207dp"
+        android:layout_height="42dp"
+        android:text="@string/host"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="490dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
