@@ -16,10 +16,10 @@ import androidx.room.PrimaryKey
  * -->City
  * -->Phone Number
  */
-@Entity(tableName = "guest_data")
+@Entity(tableName = "guest_data_table")
 data class GuestData(
     @PrimaryKey(autoGenerate = true)
-    var dataId: Long = 0L,
+    var guestDataId: Long = 0L,
 
     @ColumnInfo(name = "first_name")
     var firstName: String = "",
