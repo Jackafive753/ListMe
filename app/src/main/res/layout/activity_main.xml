@@ -19,21 +19,8 @@
         app:srcCompat="@drawable/logo_variante3" />
 
     <Button
-        android:id="@+id/guest"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="270dp"
-        android:layout_height="46dp"
-        android:fontFamily="@font/roboto_mono"
-        android:text="@string/guest"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/manual"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/host" />
-
-    <Button
         android:id="@+id/host"
-        style="@style/Widget.MaterialComponents.Button"
+        style="@style/MainButton"
         android:layout_width="270dp"
         android:layout_height="46dp"
         android:fontFamily="@font/roboto_mono"
@@ -46,8 +33,21 @@
         app:layout_constraintVertical_chainStyle="spread" />
 
     <Button
+        android:id="@+id/guest"
+        style="@style/MainButton"
+        android:layout_width="270dp"
+        android:layout_height="46dp"
+        android:fontFamily="@font/roboto_mono"
+        android:text="@string/guest"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/manual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/host" />
+
+    <Button
         android:id="@+id/manual"
-        style="@style/Widget.MaterialComponents.Button"
+        style="@style/MainButton"
         android:layout_width="270dp"
         android:layout_height="46dp"
         android:fontFamily="@font/roboto_mono"
