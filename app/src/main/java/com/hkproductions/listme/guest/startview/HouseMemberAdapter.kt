@@ -47,6 +47,10 @@ class HouseMemberAdapter(val clickListener: HouseMemberListener) :
         }
     }
 
+    /**
+     * fill adapter with given house_member data and add the addButton at the end of the list
+     * @param list list with house_member
+     */
     fun submitListAndAddButton(list: List<GuestData>?) {
         adapterScope.launch {
             val items = when (list) {
@@ -59,16 +63,28 @@ class HouseMemberAdapter(val clickListener: HouseMemberListener) :
         }
     }
 
+    /**
+     * Holder for the add Button on the end of the house_member list
+     * in the startview of the GuestActivity
+     */
     class ButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         companion object {
             fun from(parent: ViewGroup): ButtonViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.add_button_house_member, parent, false)
+                val view = layoutInflater.inflate(
+                    R.layout.add_button_house_member,
+                    parent,
+                    false
+                )
                 return ButtonViewHolder(view)
             }
         }
     }
 
+    /**
+     * Holder for a house_member on startview of GuestActivity
+     * shows name and phone_number
+     */
     class HouseMemberViewHolder private constructor(val binding: HouseMemberGuestStartviewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -81,7 +97,11 @@ class HouseMemberAdapter(val clickListener: HouseMemberListener) :
             fun from(parent: ViewGroup): RecyclerView.ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding =
-                    HouseMemberGuestStartviewItemBinding.inflate(layoutInflater, parent, false)
+                    HouseMemberGuestStartviewItemBinding.inflate(
+                        layoutInflater,
+                        parent,
+                        false
+                    )
                 return HouseMemberViewHolder(binding)
             }
         }

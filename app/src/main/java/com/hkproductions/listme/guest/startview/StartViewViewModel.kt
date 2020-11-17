@@ -10,14 +10,18 @@ import kotlinx.coroutines.launch
 
 class StartViewViewModel(private val datasource: GuestDataDao) : ViewModel() {
 
+    //Connection to the database via GuestDataDao
     val database = datasource
 
+    //live data of the phone owner
     private var _phoneOwner = MutableLiveData<GuestData>()
     val phoneOwner: LiveData<GuestData>
         get() = _phoneOwner
 
+    //list of all house members
     val houseMembers = database.getHouseMembers()
 
+    //live data holds id of a house_member to be navigated to
     private val _navigateToDataDetail = MutableLiveData<Long>()
     val navigateToDataDetail: LiveData<Long>
         get() = _navigateToDataDetail
@@ -28,6 +32,10 @@ class StartViewViewModel(private val datasource: GuestDataDao) : ViewModel() {
         }
     }
 
+    /**
+     * Trigger if an house_member or the addButton on the startview is clicked
+     * @param id id of the house_member
+     */
     fun onDataClicked(id: Long) {
         _navigateToDataDetail.value = id
     }

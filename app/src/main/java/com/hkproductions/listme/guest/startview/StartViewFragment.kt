@@ -34,10 +34,13 @@ class StartViewFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
+        //initialize datasource
         datasource = GuestDatabase.getInstance(application).guestDataDao
 
+        //initialize viewModel
         viewModel = initViewModel()
 
+        //fill Recycler View
         fillRecyclerView()
 
         //Fill my Data Area with content
@@ -58,11 +61,18 @@ class StartViewFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Initialize the viewModel variable with an instance of StartViewViewModel
+     */
     private fun initViewModel(): StartViewViewModel {
         val viewModelFactory = StartViewViewModelFactory(datasource)
         return ViewModelProvider(this, viewModelFactory).get(StartViewViewModel::class.java)
     }
 
+    /**
+     * deliver the RecyclerView an adapter with all house_members plus add Button
+     * and give RecyclerView an GridLayoutManager
+     */
     private fun fillRecyclerView() {
         val adapter = HouseMemberAdapter(HouseMemberListener { guestId ->
             viewModel.onDataClicked(guestId)
