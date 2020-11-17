@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.ListMe" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/mint_green_original</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/mint_green_complementary</item>
         <item name="colorOnPrimary">@color/dark_blue</item>
         <!-- Secondary brand color. -->
