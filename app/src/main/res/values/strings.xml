@@ -10,7 +10,15 @@
     <string name="listmelogo">ListMeLogo</string>
     <string name="present_code">Code anzeigen</string>
     <string name="group_code">Code Gruppe</string>
-    <string name="my_data">Meine Daten:</string>
     <string name="house_member">Haushaltsangehörige:</string>
     <string name="simple_box_image_description">simpleBox</string>
+    <string name="add">hinzufügen</string>
+
+    <!--    for my data are in startview of the guest
+            (firstname, lastname, street, house_number, postal_code, city, phone_number)-->
+    <string name="my_data">Meine Daten:\n    %s %s\n    %s %s\n    %d, %s\n    %s</string>
+
+    <!--    this string stand on startview of the guest in house member cards
+            (firstname, lastname, phone_number-->
+    <string name="house_member_short_info">%s %s\n%s</string>
 </resources>
