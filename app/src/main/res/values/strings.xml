@@ -13,12 +13,24 @@
     <string name="house_member">Haushaltsangehörige:</string>
     <string name="simple_box_image_description">simpleBox</string>
     <string name="add">hinzufügen</string>
+    <string name="confirm">Bestätigen</string>
 
-    <!--    for my data are in startview of the guest
+    <!-- Strings GuestData and HostData attributes-->
+    <string name="first_name_text">Vorname</string>
+    <string name="last_name_text">Nachname</string>
+    <string name="postal_code_text_short">PLZ</string>
+    <string name="postal_code_text">Postleitzahl</string>
+    <string name="city_text">Ort</string>
+    <string name="street_text">Straße</string>
+    <string name="house_number_text_short">HausNr.</string>
+    <string name="house_number_text">Hausnummer</string>
+    <string name="phone_number_text">Telefonnummer</string>
+
+    <!-- for my data are in startview of the guest
             (firstname, lastname, street, house_number, postal_code, city, phone_number)-->
     <string name="my_data">Meine Daten:\n    %s %s\n    %s %s\n    %d, %s\n    %s</string>
 
-    <!--    this string stand on startview of the guest in house member cards
+    <!-- this string stand on startview of the guest in house member cards
             (firstname, lastname, phone_number-->
     <string name="house_member_short_info">%s %s\n%s</string>
 </resources>
