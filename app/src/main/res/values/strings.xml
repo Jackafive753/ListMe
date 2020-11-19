@@ -28,7 +28,7 @@
 
     <!-- for my data are in startview of the guest
             (firstname, lastname, street, house_number, postal_code, city, phone_number)-->
-    <string name="my_data">Meine Daten:\n    %s %s\n    %s %s\n    %d, %s\n    %s</string>
+    <string name="my_data">Meine Daten:\n    %s %s\n    %s %s\n    %s, %s\n    %s</string>
 
     <!-- this string stand on startview of the guest in house member cards
             (firstname, lastname, phone_number-->

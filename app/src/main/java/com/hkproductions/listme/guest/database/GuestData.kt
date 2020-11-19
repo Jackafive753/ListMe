@@ -34,7 +34,7 @@ data class GuestData(
     var houseNumber: String = "",
 
     @ColumnInfo(name = "postal_code")
-    var postalCode: Int = 0,
+    var postalCode: String = "",
 
     @ColumnInfo(name = "city")
     var city: String = "",
