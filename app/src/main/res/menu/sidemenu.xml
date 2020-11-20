@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/host" />
-    <item android:title="@string/guest" />
-    <item android:title="@string/manual" />
-    <item android:title="@string/about" />
-    <item android:title="@string/data_protection" />
-    <item android:title="@string/imprint" />
+    <item
+        android:id="@+id/navigate_host"
+        android:title="@string/host" />
+    <item
+        android:id="@+id/navigate_guest"
+        android:title="@string/guest" />
+    <item
+        android:id="@+id/navigate_instruction"
+        android:title="@string/manual" />
+    <item
+        android:id="@+id/navigate_about"
+        android:title="@string/about" />
+    <item
+        android:id="@+id/navigate_data_protection"
+        android:title="@string/data_protection" />
+    <item
+        android:id="@+id/navigate_impressum"
+        android:title="@string/imprint" />
 </menu>
