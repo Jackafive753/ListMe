@@ -10,10 +10,10 @@ import androidx.room.Update
 interface GuestDataDao {
 
     @Insert
-    suspend fun insert(guest: GuestData)
+    fun insert(guest: GuestData)
 
     @Update
-    suspend fun update(guest: GuestData)
+    fun update(guest: GuestData)
 
     @Query("SELECT * FROM guest_data_table WHERE guestDataId = :id")
     suspend fun getDataById(id: Long): List<GuestData>
@@ -25,5 +25,5 @@ interface GuestDataDao {
     suspend fun getPhoneOwner(): GuestData?
 
     @Query("SELECT * FROM guest_data_table WHERE phone_owner = 0")
-    fun getHouseMembers(): LiveData<List<GuestData>>
+    fun getContacts(): LiveData<List<GuestData>>
 }

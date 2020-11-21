@@ -19,7 +19,7 @@ class StartViewViewModel(private val datasource: GuestDataDao) : ViewModel() {
         get() = _phoneOwner
 
     //list of all house members
-    val houseMembers = database.getHouseMembers()
+    val houseMembers = database.getContacts()
 
     //live data holds id of a house_member to be navigated to
     private val _navigateToDataDetail = MutableLiveData<Long>()
