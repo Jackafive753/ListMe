@@ -18,13 +18,11 @@
             android:id="@+id/house_member_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="@dimen/content_line_spacing"
-            android:layout_marginEnd="@dimen/side_margin"
             android:layout_marginBottom="@dimen/side_margin"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/my_data_area_button"
+            app:layout_constraintStart_toStartOf="@+id/my_data_area_button"
             app:layout_constraintTop_toBottomOf="@+id/house_members_label" />
 
         <com.google.android.material.button.MaterialButton
@@ -50,31 +48,27 @@
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/side_margin"
             android:layout_marginTop="@dimen/line_spacing"
-            android:layout_marginEnd="@dimen/side_margin"
             android:fontFamily="@font/roboto_mono"
             android:text="@string/group_code"
             android:textColor="@color/black"
             app:icon="@drawable/ic_baseline_qr_code_2_24"
             app:iconGravity="textStart"
             app:iconTint="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/button"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/button"
             app:layout_constraintTop_toBottomOf="@+id/button" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/my_data_area_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="@dimen/line_spacing"
-            android:layout_marginEnd="16dp"
             android:text=""
             android:textAlignment="viewStart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="@+id/button2"
             app:layout_constraintTop_toBottomOf="@+id/button2"
             tools:text="here can stand your data" />
 
@@ -82,11 +76,10 @@
             android:id="@+id/house_members_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="@dimen/line_spacing"
             android:text="@string/contact"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/my_data_area_button"
             app:layout_constraintTop_toBottomOf="@+id/my_data_area_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
