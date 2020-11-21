@@ -48,6 +48,6 @@ class GuestActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
      * call navigationItemSelected from MainActivity companion object(equals to static)
      */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return MainActivity.navigationItemSelected(this, item, drawerLayout)
+        return MainActivity.navigationItemSelected(this, item, drawerLayout, R.id.navigate_guest)
     }
 }

@@ -31,9 +31,11 @@ class MainActivity : AppCompatActivity() {
         fun navigationItemSelected(
             context: Context,
             item: MenuItem,
-            drawerLayout: DrawerLayout
+            drawerLayout: DrawerLayout,
+            id: Int
         ): Boolean {
             when (item.itemId) {
+                id -> drawerLayout.close()
                 R.id.navigate_host -> {
                     Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show()
 //                context.startActivity(Intent(context, HostActivity::class.java))
