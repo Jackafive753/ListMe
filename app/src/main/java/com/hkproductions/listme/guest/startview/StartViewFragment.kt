@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentStartviewBinding
@@ -44,19 +44,43 @@ class StartViewFragment : Fragment() {
         fillRecyclerView()
 
         //Fill my Data Area with content
-        //TODO if phoneOwner is null then make the my_data_area_button to a create Button
-        viewModel.phoneOwner.value?.apply {
-            binding.myDataAreaButton.text = resources.getString(
-                R.string.my_data,
-                firstName,
-                lastName,
-                street,
-                houseNumber,
-                postalCode,
-                city,
-                phoneNumber
-            )
-        }
+        viewModel.phoneOwner.observe(viewLifecycleOwner, {
+            if (it == null) {
+                //TODO Discuss Styling
+                binding.houseMemberList.visibility = View.GONE
+                binding.houseMembersLabel.visibility = View.GONE
+//                binding.button.visibility = View.GONE
+//                binding.button2.visibility = View.GONE
+                binding.myDataAreaButton.text = resources.getString(R.string.create_phone_owner)
+                binding.myDataAreaButton.setOnClickListener {
+                    this.findNavController()
+                        .navigate(StartViewFragmentDirections.actionDataCreate(-1L))
+                }
+            } else {
+                it.apply {
+                    binding.myDataAreaButton.text = resources.getString(
+                        R.string.my_data,
+                        firstName,
+                        lastName,
+                        street,
+                        houseNumber,
+                        postalCode,
+                        city,
+                        phoneNumber
+                    )
+                }
+            }
+        })
+
+        viewModel.navigateToDataDetail.observe(viewLifecycleOwner, { member ->
+            member?.let {
+
+                viewModel.onMemberDetailClicked()
+            }
+        })
+
+        configureOnNavigateToCreateMember()
+
 
         return binding.root
     }
