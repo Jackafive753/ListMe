@@ -33,10 +33,6 @@ class StartViewViewModel(private val database: GuestDataDao) : ViewModel() {
         }
     }
 
-    fun onMemberDetailClicked() {
-        _navigateToDataDetail.value = null
-    }
-
     /**
      * Trigger if an house_member or the addButton on the startview is clicked
      * @param id id of the house_member
@@ -45,10 +41,24 @@ class StartViewViewModel(private val database: GuestDataDao) : ViewModel() {
         _navigateToDataDetail.value = id
     }
 
+    /**
+     * Called if Navigation is finished
+     */
+    fun onMemberDetailClicked() {
+        _navigateToDataDetail.value = null
+    }
+
+    /**
+     * Trigger if addMember Button is clicked
+     * switch LiveData to navigate to EditFragment as CreateFragment
+     */
     fun onCreateMemberClicked() {
         _navigateToCreateMember.value = true
     }
 
+    /**
+     * Called if Navigation is finished
+     */
     fun onMemberCreateNavigated() {
         _navigateToCreateMember.value = false
     }

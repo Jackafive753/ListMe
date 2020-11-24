@@ -20,8 +20,7 @@ private const val ITEM_VIEW_TYPE_ITEM = 1
 class HouseMemberAdapter(
     private val memberDetailListener: HouseMemberListener,
     private val memberAddListener: AddMemberListener
-) :
-    ListAdapter<DataItem, RecyclerView.ViewHolder>(HouseMemberDiffCallback()) {
+) : ListAdapter<DataItem, RecyclerView.ViewHolder>(HouseMemberDiffCallback()) {
 
     private val adapterScope = CoroutineScope(Dispatchers.Default)
 

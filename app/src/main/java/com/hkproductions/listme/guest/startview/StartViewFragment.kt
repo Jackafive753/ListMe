@@ -116,6 +116,11 @@ class StartViewFragment : Fragment() {
         binding.houseMemberList.layoutManager = manager
     }
 
+    /**
+     * Observer on navigateToCreateMember
+     * true -> createMember button is clicked and navigate to editFragment as create
+     * false -> nothing is happend
+     */
     private fun configureOnNavigateToCreateMember() {
         viewModel.navigateToCreateMember.observe(viewLifecycleOwner, {
             if (it) {
