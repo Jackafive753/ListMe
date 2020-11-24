@@ -26,6 +26,15 @@
     <string name="house_number_text">Hausnummer</string>
     <string name="phone_number_text">Telefonnummer</string>
 
+    <string name="create_phone_owner">Daten erstellen</string>
+
+    <!-- Error Text-->
+    <string name="blank_error_text">Darf nicht leer sein</string>
+    <string name="postal_error_text">Ungültige PLZ</string>
+
+    <!-- Message Text -->
+    <string name="data_safed">Daten wurden gespeichert</string>
+
     <!-- for my data are in startview of the guest
             (firstname, lastname, street, house_number, postal_code, city, phone_number)-->
     <string name="my_data">Meine Daten:\n    %s %s\n    %s %s\n    %s, %s\n    %s</string>
