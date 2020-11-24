@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.hkproductions.listme.guest.editview.EditViewViewModel" />
     </data>
 
     <ScrollView
@@ -31,7 +34,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/first_name_text" />
+                    android:hint="@string/first_name_text"
+                    android:singleLine="true"
+                    android:text="@={viewModel.liveData.firstName}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,9 +46,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
-                android:layout_marginTop="@dimen/double_line_spacing"
+                android:layout_marginTop="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/side_margin"
                 app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutFirstName">
@@ -51,7 +57,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/last_name_text" />
+                    android:hint="@string/last_name_text"
+                    android:singleLine="true"
+                    android:text="@={viewModel.liveData.lastName}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,16 +69,20 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
-                android:layout_marginTop="@dimen/double_line_spacing"
+                android:layout_marginTop="@dimen/line_spacing"
                 app:counterEnabled="true"
                 app:counterMaxLength="5"
+                app:errorEnabled="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutLastName">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/postal_code_text_short" />
+                    android:hint="@string/postal_code_text_short"
+                    android:nextFocusDown="@id/textInputEditTextCity"
+                    android:singleLine="true"
+                    android:text="@={viewModel.liveData.postalCode}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,14 +94,18 @@
                 android:layout_marginStart="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/side_margin"
                 app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textInputLayoutPostal"
                 app:layout_constraintTop_toTopOf="@+id/textInputLayoutPostal">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/city_text" />
+                    android:hint="@string/city_text"
+                    android:singleLine="true"
+                    android:text="@={viewModel.liveData.city}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,9 +115,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
-                android:layout_marginTop="@dimen/double_line_spacing"
+                android:layout_marginTop="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/line_spacing"
                 app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toStartOf="@+id/textInputLayoutHouseNumber"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPostal">
@@ -109,7 +126,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/street_text" />
+                    android:hint="@string/street_text"
+                    android:nextFocusDown="@id/textInputEditTextHouseNumber"
+                    android:singleLine="true"
+                    android:text="@={viewModel.liveData.street}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -118,13 +138,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/side_margin"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textInputLayoutStreet">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextHouseNumber"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/house_number_text_short" />
+                    android:hint="@string/house_number_text_short"
+                    android:singleLine="true"
+                    android:text="@={viewModel.liveData.houseNumber}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -133,9 +157,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
-                android:layout_marginTop="@dimen/double_line_spacing"
+                android:layout_marginTop="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/side_margin"
                 app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutStreet">
@@ -143,11 +168,13 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/phone_number_text" />
+                    android:hint="@string/phone_number_text"
+                    android:singleLine="true"
+                    android:text="@={viewModel.liveData.phoneNumber}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/editViewConfirmButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
