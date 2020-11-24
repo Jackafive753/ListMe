@@ -2,12 +2,11 @@ package com.hkproductions.listme.guest.startview
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.hkproductions.listme.R
+import com.hkproductions.listme.databinding.AddButtonHouseMemberBinding
 import com.hkproductions.listme.databinding.HouseMemberGuestStartviewItemBinding
 import com.hkproductions.listme.guest.database.GuestData
 import kotlinx.coroutines.CoroutineScope
@@ -15,10 +14,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-private val ITEM_VIEW_TYPE_ADD = 0
-private val ITEM_VIEW_TYPE_ITEM = 1
+private const val ITEM_VIEW_TYPE_ADD = 0
+private const val ITEM_VIEW_TYPE_ITEM = 1
 
-class HouseMemberAdapter(val clickListener: HouseMemberListener) :
+class HouseMemberAdapter(
+    private val memberDetailListener: HouseMemberListener,
+    private val memberAddListener: AddMemberListener
+) :
     ListAdapter<DataItem, RecyclerView.ViewHolder>(HouseMemberDiffCallback()) {
 
     private val adapterScope = CoroutineScope(Dispatchers.Default)
@@ -27,7 +29,10 @@ class HouseMemberAdapter(val clickListener: HouseMemberListener) :
         when (holder) {
             is HouseMemberViewHolder -> {
                 val item = getItem(position) as DataItem.HouseMemberItem
-                holder.bind(item.member, clickListener)
+                holder.bind(item.member, memberDetailListener)
+            }
+            is ButtonViewHolder -> {
+                holder.bind(memberAddListener)
             }
         }
     }
@@ -36,7 +41,7 @@ class HouseMemberAdapter(val clickListener: HouseMemberListener) :
         return when (viewType) {
             ITEM_VIEW_TYPE_ADD -> ButtonViewHolder.from(parent)
             ITEM_VIEW_TYPE_ITEM -> HouseMemberViewHolder.from(parent)
-            else -> throw ClassCastException("Unknown viewType ${viewType}")
+            else -> throw ClassCastException("Unknown viewType $viewType")
         }
     }
 
@@ -67,16 +72,22 @@ class HouseMemberAdapter(val clickListener: HouseMemberListener) :
      * Holder for the add Button on the end of the house_member list
      * in the startview of the GuestActivity
      */
-    class ButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ButtonViewHolder private constructor(private val binding: AddButtonHouseMemberBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(clickListener: AddMemberListener) {
+            binding.clickListener = clickListener
+        }
+
         companion object {
             fun from(parent: ViewGroup): ButtonViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(
-                    R.layout.add_button_house_member,
+                val binding = AddButtonHouseMemberBinding.inflate(
+                    layoutInflater,
                     parent,
                     false
                 )
-                return ButtonViewHolder(view)
+                return ButtonViewHolder(binding)
             }
         }
     }
@@ -85,12 +96,13 @@ class HouseMemberAdapter(val clickListener: HouseMemberListener) :
      * Holder for a house_member on startview of GuestActivity
      * shows name and phone_number
      */
-    class HouseMemberViewHolder private constructor(val binding: HouseMemberGuestStartviewItemBinding) :
+    class HouseMemberViewHolder private constructor(private val binding: HouseMemberGuestStartviewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
         fun bind(item: GuestData, clickListener: HouseMemberListener) {
             binding.houseMember = item
+            binding.clickListener = clickListener
         }
 
         companion object {
@@ -122,6 +134,10 @@ class HouseMemberDiffCallback : DiffUtil.ItemCallback<DataItem>() {
 
 class HouseMemberListener(val clickListener: (guestId: Long) -> Unit) {
     fun onClick(member: GuestData) = clickListener(member.guestDataId)
+}
+
+class AddMemberListener(val clickListener: (Any?) -> Unit) {
+    fun onClick() = clickListener(null)
 }
 
 /**

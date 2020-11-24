@@ -74,12 +74,15 @@ class StartViewFragment : Fragment() {
      * and give RecyclerView an GridLayoutManager
      */
     private fun fillRecyclerView() {
-        val adapter = HouseMemberAdapter(HouseMemberListener { guestId ->
-            viewModel.onDataClicked(guestId)
-        })
+        val adapter = HouseMemberAdapter(
+            HouseMemberListener { guestId ->
+                viewModel.onMemberClicked(guestId)
+            }, AddMemberListener {
+                viewModel.onCreateMemberClicked()
+            })
         binding.houseMemberList.adapter = adapter
 
-        viewModel.houseMembers.observe(viewLifecycleOwner, Observer {
+        viewModel.houseMembers.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitListAndAddButton(it)
             }
@@ -87,5 +90,16 @@ class StartViewFragment : Fragment() {
 
         val manager = GridLayoutManager(activity, 2)
         binding.houseMemberList.layoutManager = manager
+    }
+
+    private fun configureOnNavigateToCreateMember() {
+        viewModel.navigateToCreateMember.observe(viewLifecycleOwner, {
+            if (it) {
+                this.findNavController().navigate(
+                    StartViewFragmentDirections.actionDataCreate(-1L)
+                )
+                viewModel.onMemberCreateNavigated()
+            }
+        })
     }
 }

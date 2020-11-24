@@ -6,9 +6,20 @@
     <fragment
         android:id="@+id/startViewFragment"
         android:name="com.hkproductions.listme.guest.startview.StartViewFragment"
-        android:label="StartViewFragment" />
+        android:label="StartViewFragment">
+        <action
+            android:id="@+id/action_data_create"
+            app:destination="@id/editViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editViewFragment"
         android:name="com.hkproductions.listme.guest.editview.EditViewFragment"
-        android:label="EditViewFragment" />
+        android:label="EditViewFragment">
+        <argument
+            android:name="dataId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_editViewFragment_to_startViewFragment"
+            app:destination="@id/startViewFragment" />
+    </fragment>
 </navigation>

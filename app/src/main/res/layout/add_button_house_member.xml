@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/button"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:text="@string/add"
-    app:icon="@drawable/ic_baseline_add_24" />
+<layout>
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="com.hkproductions.listme.guest.startview.AddMemberListener" />
+    </data>
+
+    <Button xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="@{() -> clickListener.onClick()}"
+        android:text="@string/add"
+        app:icon="@drawable/ic_baseline_add_24" />
+</layout>
