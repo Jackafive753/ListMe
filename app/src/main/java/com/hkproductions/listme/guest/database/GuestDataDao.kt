@@ -10,20 +10,23 @@ import androidx.room.Update
 interface GuestDataDao {
 
     @Insert
-    fun insert(guest: GuestData)
+    suspend fun insert(guest: GuestData)
 
     @Update
-    fun update(guest: GuestData)
+    suspend fun update(guest: GuestData)
 
-    @Query("SELECT * FROM guest_data_table WHERE guestDataId = :id")
-    suspend fun getDataById(id: Long): List<GuestData>
+    @Query("SELECT * FROM guest_data_table WHERE guestDataId = :id LIMIT 1")
+    suspend fun getDataById(id: Long): GuestData
 
     @Query("SELECT * FROM guest_data_table")
-    fun getAllGuestData(): LiveData<List<GuestData>>
+    suspend fun getAllGuestData(): List<GuestData>
 
     @Query("SELECT * FROM guest_data_table WHERE phone_owner = 1 LIMIT 1")
     suspend fun getPhoneOwner(): GuestData?
 
     @Query("SELECT * FROM guest_data_table WHERE phone_owner = 0")
     fun getContacts(): LiveData<List<GuestData>>
+
+    @Query("DELETE FROM guest_data_table")
+    suspend fun clear()
 }
