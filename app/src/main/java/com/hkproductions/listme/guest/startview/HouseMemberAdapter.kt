@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.AddButtonHouseMemberBinding
 import com.hkproductions.listme.databinding.HouseMemberGuestStartviewItemBinding
 import com.hkproductions.listme.guest.database.GuestData
@@ -100,6 +101,13 @@ class HouseMemberAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bind(item: GuestData, clickListener: HouseMemberListener) {
+            binding.contactButton.text =
+                binding.root.context.resources.getString(
+                    R.string.contact_short_info,
+                    item.firstName,
+                    item.lastName,
+                    item.phoneNumber
+                )
             binding.houseMember = item
             binding.clickListener = clickListener
         }
