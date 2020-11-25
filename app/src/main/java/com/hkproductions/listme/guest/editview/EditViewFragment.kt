@@ -22,8 +22,6 @@ class EditViewFragment : Fragment() {
 
     private lateinit var datasource: GuestDataDao
 
-    private lateinit var data: GuestData
-
     private var dataId: Long = -1
 
     override fun onCreateView(
@@ -42,11 +40,15 @@ class EditViewFragment : Fragment() {
         //init var
         val application = requireNotNull(this.activity).application
         datasource = GuestDatabase.getInstance(application).guestDataDao
-        viewModel = initViewModel()
         dataId = EditViewFragmentArgs.fromBundle(requireArguments()).dataId
+        viewModel = initViewModel()
+
 
         //give confirm Button a clickListener
         binding.editViewConfirmButton.setOnClickListener { confirmButtonClicked() }
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         return binding.root
     }
@@ -107,7 +109,7 @@ class EditViewFragment : Fragment() {
 
         //check postal have 5 numbers and only numbers
         val postal = binding.textInputLayoutPostal.editText?.text.toString()
-        if (postal.length != 5 && postal.matches("[0-9]+".toRegex())) {
+        if (postal.length != 5 || !postal.matches("[0-9]+".toRegex())) {
             binding.textInputLayoutPostal.error = resources.getString(R.string.postal_error_text)
             data = null
         } else {

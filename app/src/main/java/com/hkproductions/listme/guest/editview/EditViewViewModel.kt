@@ -17,11 +17,19 @@ class EditViewViewModel(private val database: GuestDataDao, dataId: Long) : View
 
     init {
         viewModelScope.launch {
-            var data = database.getDataById(dataId)
-            if (data == null) {
-                data = GuestData()
+            var contact = database.getDataById(dataId)
+            if (contact == null) {
+                contact = GuestData()
+                val phoneOwner = database.getPhoneOwner()
+                phoneOwner?.apply {
+                    contact.city = city
+                    contact.street = street
+                    contact.postalCode = postalCode
+                    contact.houseNumber = houseNumber
+                }
             }
-            _liveData.value = data
+            _liveData.value = contact
+            Log.i("Listme", liveData.value.toString())
         }
     }
 

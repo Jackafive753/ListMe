@@ -66,13 +66,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutPostal"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
                 android:layout_marginTop="@dimen/line_spacing"
-                app:counterEnabled="true"
-                app:counterMaxLength="5"
+                android:layout_marginEnd="@dimen/line_spacing"
                 app:errorEnabled="true"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutLastName">
 
@@ -91,12 +91,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/side_margin"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textInputLayoutPostal"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/textInputLayoutPostal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -119,7 +118,7 @@
                 android:layout_marginEnd="@dimen/line_spacing"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                app:layout_constraintEnd_toStartOf="@+id/textInputLayoutHouseNumber"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPostal">
 
@@ -186,6 +185,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPhoneNumber" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.3" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.7" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
