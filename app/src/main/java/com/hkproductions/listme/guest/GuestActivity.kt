@@ -12,6 +12,12 @@ import com.hkproductions.listme.MainActivity
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestActivityBinding
 
+/**
+ * true -> developer_mode is on, that means that there special features only for developer
+ * false -> normal use mode
+ */
+const val DEVELOPER_MODE: Boolean = true
+
 class GuestActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout

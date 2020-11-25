@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentStartviewBinding
+import com.hkproductions.listme.guest.DEVELOPER_MODE
 import com.hkproductions.listme.guest.database.GuestDataDao
 import com.hkproductions.listme.guest.database.GuestDatabase
 
@@ -81,6 +82,13 @@ class StartViewFragment : Fragment() {
 
         configureOnNavigateToCreateMember()
 
+        //DEVELOPER_MODE
+        //Clear button to clear database
+        if (DEVELOPER_MODE) {
+            binding.developerGuestClear.setOnClickListener { viewModel.onClear() }
+        } else {
+            binding.developerGuestClear.visibility = View.GONE
+        }
 
         return binding.root
     }

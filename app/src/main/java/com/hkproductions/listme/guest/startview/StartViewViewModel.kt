@@ -62,4 +62,14 @@ class StartViewViewModel(private val database: GuestDataDao) : ViewModel() {
     fun onMemberCreateNavigated() {
         _navigateToCreateMember.value = false
     }
+
+    /**
+     * DEVELOPER_MODE
+     * to clear all entries in the database
+     */
+    fun onClear() {
+        viewModelScope.launch {
+            database.clear()
+        }
+    }
 }

@@ -42,4 +42,7 @@
     <!-- this string stand on startview of the guest in house member cards
             (firstname, lastname, phone_number-->
     <string name="contact_short_info">%s %s\n%s</string>
+
+    <!-- Strings for developer_mode-->
+    <string name="clear_database">Clear all</string>
 </resources>
