@@ -58,6 +58,7 @@ class StartViewFragment : Fragment() {
                         .navigate(StartViewFragmentDirections.actionDataCreate(-1L))
                 }
             } else {
+                val navController = this.findNavController()
                 it.apply {
                     binding.myDataAreaButton.text = resources.getString(
                         R.string.my_data,
@@ -69,14 +70,22 @@ class StartViewFragment : Fragment() {
                         city,
                         phoneNumber
                     )
+                    binding.myDataAreaButton.setOnClickListener {
+                        navController.navigate(
+                            StartViewFragmentDirections.actionToDetail(
+                                guestDataId
+                            )
+                        )
+                    }
                 }
             }
         })
 
         viewModel.navigateToDataDetail.observe(viewLifecycleOwner, { member ->
             member?.let {
-
-                viewModel.onMemberDetailClicked()
+                this.findNavController()
+                    .navigate(StartViewFragmentDirections.actionToDetail(member))
+                viewModel.onMemberDetailNavigated()
             }
         })
 

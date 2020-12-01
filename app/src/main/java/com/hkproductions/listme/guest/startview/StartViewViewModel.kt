@@ -44,7 +44,7 @@ class StartViewViewModel(private val database: GuestDataDao) : ViewModel() {
     /**
      * Called if Navigation is finished
      */
-    fun onMemberDetailClicked() {
+    fun onMemberDetailNavigated() {
         _navigateToDataDetail.value = null
     }
 
