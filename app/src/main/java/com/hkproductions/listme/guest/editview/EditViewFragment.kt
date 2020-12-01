@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentEditViewBinding
 import com.hkproductions.listme.guest.database.GuestData
@@ -77,6 +78,8 @@ class EditViewFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+        this.findNavController()
+            .navigate(EditViewFragmentDirections.actionEditViewFragmentToStartViewFragment())
     }
 
     /**
