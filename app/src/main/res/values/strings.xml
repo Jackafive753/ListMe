@@ -14,6 +14,13 @@
     <string name="simple_box_image_description">simpleBox</string>
     <string name="add">hinzufügen</string>
     <string name="confirm">Bestätigen</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="delete">Löschen</string>
+
+    <!-- Strings Detail View Header-->
+    <string name="name_text">Name</string>
+    <string name="street_hnr_text">Straße, Hausnr.</string>
+    <string name="city_postal_text">Ort, PLZ</string>
 
     <!-- Strings GuestData and HostData attributes-->
     <string name="first_name_text">Vorname</string>
