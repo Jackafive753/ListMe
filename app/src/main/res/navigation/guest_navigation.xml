@@ -35,5 +35,8 @@
         <argument
             android:name="dataId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_after_delete"
+            app:destination="@id/startViewFragment" />
     </fragment>
 </navigation>

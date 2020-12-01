@@ -29,4 +29,7 @@ interface GuestDataDao {
 
     @Query("DELETE FROM guest_data_table")
     suspend fun clear()
+
+    @Query("DELETE FROM guest_data_table WHERE guestDataId = :id")
+    suspend fun clearDataById(id: Long)
 }

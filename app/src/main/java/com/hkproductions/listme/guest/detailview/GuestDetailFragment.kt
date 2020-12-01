@@ -47,6 +47,19 @@ class GuestDetailFragment : Fragment() {
             )
         }
 
+        viewModel.deleteButtonVisible.observe(viewLifecycleOwner, {
+            if (it) {
+                binding.deleteButton.visibility = View.GONE
+            } else {
+                binding.deleteButton.visibility = View.VISIBLE
+            }
+        })
+
+        binding.deleteButton.setOnClickListener {
+            viewModel.deleteData()
+            this.findNavController().navigate(GuestDetailFragmentDirections.actionAfterDelete())
+        }
+
         return binding.root
     }
 
