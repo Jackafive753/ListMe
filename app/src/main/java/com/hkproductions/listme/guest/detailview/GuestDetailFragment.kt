@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentDetailViewBinding
 import com.hkproductions.listme.guest.database.GuestDataDao
@@ -39,6 +40,12 @@ class GuestDetailFragment : Fragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        binding.editButton.setOnClickListener {
+            this.findNavController().navigate(
+                GuestDetailFragmentDirections.actionGuestDetailFragmentToEditViewFragment(dataId)
+            )
+        }
 
         return binding.root
     }
