@@ -77,9 +77,9 @@ class EditViewFragment : Fragment() {
                 resources.getString(R.string.data_safed),
                 Toast.LENGTH_SHORT
             ).show()
+            this.findNavController()
+                .navigate(EditViewFragmentDirections.actionEditViewFragmentToStartViewFragment())
         }
-        this.findNavController()
-            .navigate(EditViewFragmentDirections.actionEditViewFragmentToStartViewFragment())
     }
 
     /**

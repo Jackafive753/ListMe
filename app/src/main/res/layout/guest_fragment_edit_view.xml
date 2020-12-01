@@ -25,6 +25,7 @@
                 android:layout_marginStart="@dimen/side_margin"
                 android:layout_marginTop="@dimen/side_margin"
                 android:layout_marginEnd="@dimen/side_margin"
+                android:hint="@string/first_name_text"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +35,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/first_name_text"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.firstName}" />
 
@@ -48,6 +48,7 @@
                 android:layout_marginStart="@dimen/side_margin"
                 android:layout_marginTop="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/side_margin"
+                android:hint="@string/last_name_text"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +58,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/last_name_text"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.lastName}" />
 
@@ -71,6 +71,7 @@
                 android:layout_marginStart="@dimen/side_margin"
                 android:layout_marginTop="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/line_spacing"
+                android:hint="@string/postal_code_text_short"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +80,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/postal_code_text_short"
                     android:nextFocusDown="@id/textInputEditTextCity"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.postalCode}" />
@@ -92,6 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/side_margin"
+                android:hint="@string/city_text"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +103,6 @@
                     android:id="@+id/textInputEditTextCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/city_text"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.city}" />
 
@@ -116,6 +116,7 @@
                 android:layout_marginStart="@dimen/side_margin"
                 android:layout_marginTop="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/line_spacing"
+                android:hint="@string/street_text"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -125,7 +126,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/street_text"
                     android:nextFocusDown="@id/textInputEditTextHouseNumber"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.street}" />
@@ -137,6 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/side_margin"
+                android:hint="@string/house_number_text_short"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textInputLayoutStreet">
@@ -145,7 +146,6 @@
                     android:id="@+id/textInputEditTextHouseNumber"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/house_number_text_short"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.houseNumber}" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -158,6 +158,7 @@
                 android:layout_marginStart="@dimen/side_margin"
                 android:layout_marginTop="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/side_margin"
+                android:hint="@string/phone_number_text"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +168,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/phone_number_text"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.phoneNumber}" />
             </com.google.android.material.textfield.TextInputLayout>
