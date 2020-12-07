@@ -1,83 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/Logo"
-        android:layout_width="270dp"
-        android:layout_height="270dp"
-        android:contentDescription="@string/listmelogo"
-        app:layout_constraintBottom_toTopOf="@id/horizontalGuideline50"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/logo_variante3" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/host"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="270dp"
-        android:layout_height="46dp"
-        android:fontFamily="@font/roboto_mono"
-        android:text="@string/host"
-        android:textColor="@color/black"
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        app:elevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/guest"
-        app:layout_constraintEnd_toEndOf="@+id/Logo"
-        app:layout_constraintStart_toStartOf="@+id/Logo"
-        app:layout_constraintTop_toBottomOf="@+id/Logo"
-        app:layout_constraintVertical_chainStyle="spread" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/guest"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_mono"
-        android:onClick="onGuest"
-        android:text="@string/guest"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/manual"
-        app:layout_constraintEnd_toEndOf="@+id/host"
-        app:layout_constraintStart_toStartOf="@+id/host"
-        app:layout_constraintTop_toBottomOf="@+id/host" />
+            <fragment
+                android:id="@+id/navHostFragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:navGraph="@navigation/navigation" />
+        </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/manual"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="270dp"
-        android:layout_height="46dp"
-        android:fontFamily="@font/roboto_mono"
-        android:text="@string/manual"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/guest"
-        app:layout_constraintStart_toStartOf="@+id/guest"
-        app:layout_constraintTop_toBottomOf="@+id/guest" />
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/sidemenu" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/verticalGuideLine50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontalGuideline50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontalGuideline75"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>

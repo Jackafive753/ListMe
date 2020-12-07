@@ -1,67 +1,35 @@
 package com.hkproductions.listme
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import com.hkproductions.listme.guest.GuestActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.hkproductions.listme.databinding.ActivityMainBinding
+
+const val DEVELOPER_MODE = true
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var drawerLayout: DrawerLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.hide()
-        setContentView(R.layout.activity_main)
+//        supportActionBar?.hide()
+
+        val binding =
+            DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        drawerLayout = binding.drawerLayout
+
+        val navController = this.findNavController(R.id.navHostFragment)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        NavigationUI.setupWithNavController(binding.navView, navController)
     }
 
-    fun onGuest(view: View) {
-        startActivity(Intent(this, GuestActivity::class.java))
-    }
-
-    companion object {
-        /**
-         * Start Activity of the clicked Item and close drawerLayout
-         *
-         * Standard NavigationMethod
-         * if the activity open of the clicked menu item close drawer and do nothing
-         */
-        fun navigationItemSelected(
-            context: Context,
-            item: MenuItem,
-            drawerLayout: DrawerLayout,
-            id: Int
-        ): Boolean {
-            when (item.itemId) {
-                id -> drawerLayout.close()
-                R.id.navigate_host -> {
-                    Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show()
-//                context.startActivity(Intent(context, HostActivity::class.java))
-                }
-                R.id.navigate_guest -> {
-                    context.startActivity(Intent(context, GuestActivity::class.java))
-                }
-                R.id.navigate_instruction -> {
-                    Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show()
-//                context.startActivity(Intent(context, InstructionActivity::class.java))
-                }
-                R.id.navigate_about -> {
-                    Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show()
-//                context.startActivity(Intent(context, AboutActivity::class.java))
-                }
-                R.id.navigate_data_protection -> {
-                    Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show()
-//                context.startActivity(Intent(context, DataProtectionActivity::class.java))
-                }
-                R.id.navigate_impressum -> {
-                    Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show()
-//                context.startActivity(Intent(context, ImpressumActivity::class.java))
-                }
-            }
-            drawerLayout.close()
-            return true
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.navHostFragment)
+        return NavigationUI.navigateUp(navController, drawerLayout)
     }
 }

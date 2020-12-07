@@ -49,8 +49,7 @@ data class GuestData(
      */
     @ColumnInfo(name = "phone_owner")
     var phoneOwner: Boolean = false
-)
-{
+) {
     fun copyData(data: GuestData) {
         this.firstName = data.firstName
         this.lastName = data.lastName

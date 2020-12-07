@@ -17,7 +17,7 @@ class EditViewViewModel(private val database: GuestDataDao, dataId: Long) : View
 
     init {
         viewModelScope.launch {
-            var contact = database.getDataById(dataId)
+            var contact: GuestData? = database.getDataById(dataId)
             if (contact == null) {
                 contact = GuestData()
                 val phoneOwner = database.getPhoneOwner()

@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.hkproductions.listme.DEVELOPER_MODE
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentStartviewBinding
-import com.hkproductions.listme.guest.DEVELOPER_MODE
 import com.hkproductions.listme.guest.database.GuestDataDao
 import com.hkproductions.listme.guest.database.GuestDatabase
 

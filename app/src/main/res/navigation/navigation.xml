@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/guest_navigation"
-    app:startDestination="@id/startViewFragment">
+    app:startDestination="@id/mainScreenFragment">
     <fragment
-        android:id="@+id/startViewFragment"
+        android:id="@+id/guestStartViewFragment"
         android:name="com.hkproductions.listme.guest.startview.StartViewFragment"
-        android:label="StartViewFragment">
+        android:label="GuestStartViewFragment"
+        tools:layout="@layout/guest_fragment_startview">
         <action
             android:id="@+id/action_data_create"
             app:destination="@id/editViewFragment" />
@@ -17,18 +19,20 @@
     <fragment
         android:id="@+id/editViewFragment"
         android:name="com.hkproductions.listme.guest.editview.EditViewFragment"
-        android:label="EditViewFragment">
+        android:label="EditViewFragment"
+        tools:layout="@layout/guest_fragment_edit_view">
         <argument
             android:name="dataId"
             app:argType="long" />
         <action
             android:id="@+id/action_editViewFragment_to_startViewFragment"
-            app:destination="@id/startViewFragment" />
+            app:destination="@id/guestStartViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/guestDetailFragment"
         android:name="com.hkproductions.listme.guest.detailview.GuestDetailFragment"
-        android:label="GuestDetailFragment">
+        android:label="GuestDetailFragment"
+        tools:layout="@layout/guest_fragment_detail_view">
         <action
             android:id="@+id/action_guestDetailFragment_to_editViewFragment"
             app:destination="@id/editViewFragment" />
@@ -37,6 +41,15 @@
             app:argType="long" />
         <action
             android:id="@+id/action_after_delete"
-            app:destination="@id/startViewFragment" />
+            app:destination="@id/guestStartViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.hkproductions.listme.main.HomeFragment"
+        android:label="MainScreenFragment"
+        tools:layout="@layout/main_fragment_home">
+        <action
+            android:id="@+id/action_start_guest"
+            app:destination="@id/guestStartViewFragment" />
     </fragment>
 </navigation>
