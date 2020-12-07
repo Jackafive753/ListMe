@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -22,6 +22,7 @@
             android:layout_marginTop="@dimen/side_margin"
             android:layout_marginEnd="@dimen/side_margin"
             android:layout_marginBottom="@dimen/side_margin"
+            android:contentDescription="@string/simple_box_image_description"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

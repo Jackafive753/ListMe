@@ -23,7 +23,7 @@ class GuestDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             layoutInflater,
             R.layout.guest_fragment_detail_view,

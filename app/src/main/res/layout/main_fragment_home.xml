@@ -40,7 +40,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_mono"
-            android:onClick="onGuest"
             android:text="@string/guest"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/home_manual_button"
