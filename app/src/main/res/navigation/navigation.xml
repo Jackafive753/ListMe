@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/guestDetailFragment"
         android:name="com.hkproductions.listme.guest.detailview.GuestDetailFragment"
-        android:label="GuestDetailFragment"
+        android:label="@string/guest_detail_view_title"
         tools:layout="@layout/guest_fragment_detail_view">
         <action
             android:id="@+id/action_guestDetailFragment_to_editViewFragment"
@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/mainScreenFragment"
         android:name="com.hkproductions.listme.main.HomeFragment"
-        android:label="MainScreenFragment"
+        android:label="@string/home_title"
         tools:layout="@layout/main_fragment_home">
         <action
             android:id="@+id/action_start_guest"

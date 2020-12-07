@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hkproductions.listme.R
-import com.hkproductions.listme.databinding.GuestAddButtonHouseMemberBinding
+import com.hkproductions.listme.databinding.GuestAddButtonContactBinding
 import com.hkproductions.listme.databinding.GuestStartviewContactItemBinding
 import com.hkproductions.listme.guest.database.GuestData
 import kotlinx.coroutines.CoroutineScope
@@ -72,7 +72,7 @@ class ContactAdapter(
      * Holder for the add Button on the end of the house_member list
      * in the startview of the GuestActivity
      */
-    class ButtonViewHolder private constructor(private val binding: GuestAddButtonHouseMemberBinding) :
+    class ButtonViewHolder private constructor(private val binding: GuestAddButtonContactBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(clickListener: AddContactListener) {
@@ -82,7 +82,7 @@ class ContactAdapter(
         companion object {
             fun from(parent: ViewGroup): ButtonViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = GuestAddButtonHouseMemberBinding.inflate(
+                val binding = GuestAddButtonContactBinding.inflate(
                     layoutInflater,
                     parent,
                     false
