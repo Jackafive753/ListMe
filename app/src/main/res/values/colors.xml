@@ -7,8 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="mint_green_original">#CFFFE5</color>
-    <color name="mint_green_complementary">#30001A</color>
+    <color name="mint_green_original">#73ffb3</color>
+    <color name="mint_green_complementary">#E681B9</color>
     <color name="light_green_blue">#56fca2</color>
     <color name="dark_blue">#00035B</color>
+
+    <color name="ford_mint">#8fffc6</color>
+    <color name="ford_mint_complementary">#ffb0db</color>
+    <color name="pink_100">#e5cfff</color>
 </resources>
