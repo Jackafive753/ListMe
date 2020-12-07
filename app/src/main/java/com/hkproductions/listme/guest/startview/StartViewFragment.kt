@@ -115,10 +115,10 @@ class StartViewFragment : Fragment() {
      * and give RecyclerView an GridLayoutManager
      */
     private fun fillRecyclerView() {
-        val adapter = HouseMemberAdapter(
-            HouseMemberListener { guestId ->
+        val adapter = ContactAdapter(
+            ContactListener { guestId ->
                 viewModel.onMemberClicked(guestId)
-            }, AddMemberListener {
+            }, AddContactListener {
                 viewModel.onCreateMemberClicked()
             })
         binding.houseMemberList.adapter = adapter

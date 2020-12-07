@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestAddButtonHouseMemberBinding
-import com.hkproductions.listme.databinding.HouseMemberGuestStartviewItemBinding
+import com.hkproductions.listme.databinding.GuestStartviewContactItemBinding
 import com.hkproductions.listme.guest.database.GuestData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,17 +18,17 @@ import kotlinx.coroutines.withContext
 private const val ITEM_VIEW_TYPE_ADD = 0
 private const val ITEM_VIEW_TYPE_ITEM = 1
 
-class HouseMemberAdapter(
-    private val memberDetailListener: HouseMemberListener,
-    private val memberAddListener: AddMemberListener
-) : ListAdapter<DataItem, RecyclerView.ViewHolder>(HouseMemberDiffCallback()) {
+class ContactAdapter(
+    private val memberDetailListener: ContactListener,
+    private val memberAddListener: AddContactListener
+) : ListAdapter<DataItem, RecyclerView.ViewHolder>(ContactDiffCallback()) {
 
     private val adapterScope = CoroutineScope(Dispatchers.Default)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is HouseMemberViewHolder -> {
-                val item = getItem(position) as DataItem.HouseMemberItem
+            is ContactViewHolder -> {
+                val item = getItem(position) as DataItem.ContactItem
                 holder.bind(item.member, memberDetailListener)
             }
             is ButtonViewHolder -> {
@@ -40,15 +40,15 @@ class HouseMemberAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ITEM_VIEW_TYPE_ADD -> ButtonViewHolder.from(parent)
-            ITEM_VIEW_TYPE_ITEM -> HouseMemberViewHolder.from(parent)
+            ITEM_VIEW_TYPE_ITEM -> ContactViewHolder.from(parent)
             else -> throw ClassCastException("Unknown viewType $viewType")
         }
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is DataItem.HouseMemberItem -> ITEM_VIEW_TYPE_ITEM
-            is DataItem.AddHouseMember -> ITEM_VIEW_TYPE_ADD
+            is DataItem.ContactItem -> ITEM_VIEW_TYPE_ITEM
+            is DataItem.AddContact -> ITEM_VIEW_TYPE_ADD
         }
     }
 
@@ -59,8 +59,8 @@ class HouseMemberAdapter(
     fun submitListAndAddButton(list: List<GuestData>?) {
         adapterScope.launch {
             val items = when (list) {
-                null -> listOf(DataItem.AddHouseMember)
-                else -> list.map { DataItem.HouseMemberItem(it) } + listOf(DataItem.AddHouseMember)
+                null -> listOf(DataItem.AddContact)
+                else -> list.map { DataItem.ContactItem(it) } + listOf(DataItem.AddContact)
             }
             withContext(Dispatchers.Main) {
                 submitList(items)
@@ -75,7 +75,7 @@ class HouseMemberAdapter(
     class ButtonViewHolder private constructor(private val binding: GuestAddButtonHouseMemberBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(clickListener: AddMemberListener) {
+        fun bind(clickListener: AddContactListener) {
             binding.clickListener = clickListener
         }
 
@@ -96,11 +96,11 @@ class HouseMemberAdapter(
      * Holder for a house_member on startview of GuestActivity
      * shows name and phone_number
      */
-    class HouseMemberViewHolder private constructor(private val binding: HouseMemberGuestStartviewItemBinding) :
+    class ContactViewHolder private constructor(private val binding: GuestStartviewContactItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: GuestData, clickListener: HouseMemberListener) {
+        fun bind(item: GuestData, clickListener: ContactListener) {
             binding.contactButton.text =
                 binding.root.context.resources.getString(
                     R.string.contact_short_info,
@@ -108,7 +108,7 @@ class HouseMemberAdapter(
                     item.lastName,
                     item.phoneNumber
                 )
-            binding.houseMember = item
+            binding.contact = item
             binding.clickListener = clickListener
         }
 
@@ -116,19 +116,19 @@ class HouseMemberAdapter(
             fun from(parent: ViewGroup): RecyclerView.ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding =
-                    HouseMemberGuestStartviewItemBinding.inflate(
+                    GuestStartviewContactItemBinding.inflate(
                         layoutInflater,
                         parent,
                         false
                     )
-                return HouseMemberViewHolder(binding)
+                return ContactViewHolder(binding)
             }
         }
     }
 
 }
 
-class HouseMemberDiffCallback : DiffUtil.ItemCallback<DataItem>() {
+class ContactDiffCallback : DiffUtil.ItemCallback<DataItem>() {
     override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
         return oldItem.id == newItem.id
     }
@@ -139,11 +139,11 @@ class HouseMemberDiffCallback : DiffUtil.ItemCallback<DataItem>() {
 
 }
 
-class HouseMemberListener(val clickListener: (guestId: Long) -> Unit) {
+class ContactListener(val clickListener: (guestId: Long) -> Unit) {
     fun onClick(member: GuestData) = clickListener(member.guestDataId)
 }
 
-class AddMemberListener(val clickListener: (Any?) -> Unit) {
+class AddContactListener(val clickListener: (Any?) -> Unit) {
     fun onClick() = clickListener(null)
 }
 
@@ -158,7 +158,7 @@ sealed class DataItem {
      * Hold house member
      * @param member the house member of this Item
      */
-    data class HouseMemberItem(val member: GuestData) : DataItem() {
+    data class ContactItem(val member: GuestData) : DataItem() {
         override val id = member.guestDataId
     }
 
@@ -166,7 +166,7 @@ sealed class DataItem {
      * add Button to add a house member
      * there is only one so it can be an object
      */
-    object AddHouseMember : DataItem() {
+    object AddContact : DataItem() {
         override val id = Long.MIN_VALUE
     }
 }
