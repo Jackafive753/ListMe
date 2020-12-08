@@ -2,50 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/guest_navigation"
+    android:id="@+id/navigation"
     app:startDestination="@id/mainScreenFragment">
-    <fragment
-        android:id="@+id/guestStartViewFragment"
-        android:name="com.hkproductions.listme.guest.startview.StartViewFragment"
-        android:label="GuestStartViewFragment"
-        tools:layout="@layout/guest_fragment_startview">
-        <action
-            android:id="@+id/action_data_create"
-            app:destination="@id/editViewFragment" />
-        <action
-            android:id="@+id/action_to_detail"
-            app:destination="@id/guestDetailFragment" />
-        <action
-            android:id="@+id/action_to_create_group"
-            app:destination="@id/createGroupFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editViewFragment"
-        android:name="com.hkproductions.listme.guest.editview.EditViewFragment"
-        android:label="EditViewFragment"
-        tools:layout="@layout/guest_fragment_edit_view">
-        <argument
-            android:name="dataId"
-            app:argType="long" />
-        <action
-            android:id="@+id/action_editViewFragment_to_startViewFragment"
-            app:destination="@id/guestStartViewFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/guestDetailFragment"
-        android:name="com.hkproductions.listme.guest.detailview.GuestDetailFragment"
-        android:label="@string/guest_detail_view_title"
-        tools:layout="@layout/guest_fragment_detail_view">
-        <action
-            android:id="@+id/action_guestDetailFragment_to_editViewFragment"
-            app:destination="@id/editViewFragment" />
-        <argument
-            android:name="dataId"
-            app:argType="long" />
-        <action
-            android:id="@+id/action_after_delete"
-            app:destination="@id/guestStartViewFragment" />
-    </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"
         android:name="com.hkproductions.listme.main.HomeFragment"
@@ -53,11 +11,76 @@
         tools:layout="@layout/main_fragment_home">
         <action
             android:id="@+id/action_start_guest"
-            app:destination="@id/guestStartViewFragment" />
+            app:destination="@id/guest_navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_right" />
     </fragment>
-    <fragment
-        android:id="@+id/createGroupFragment"
-        android:name="com.hkproductions.listme.guest.creategroupview.CreateGroupFragment"
-        android:label="CreateGroupFragment"
-        tools:layout="@layout/guest_fragment_create_group_view" />
+    <navigation
+        android:id="@+id/guest_navigation"
+        android:label="Guest"
+        app:startDestination="@id/guestStartViewFragment">
+        <fragment
+            android:id="@+id/guestStartViewFragment"
+            android:name="com.hkproductions.listme.guest.startview.StartViewFragment"
+            android:label="GuestStartViewFragment"
+            tools:layout="@layout/guest_fragment_startview">
+            <action
+                android:id="@+id/action_data_create"
+                app:destination="@id/editViewFragment" />
+            <action
+                android:id="@+id/action_to_detail"
+                app:destination="@id/guestDetailFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+            <action
+                android:id="@+id/action_to_create_group"
+                app:destination="@id/createGroupFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
+        </fragment>
+        <fragment
+            android:id="@+id/createGroupFragment"
+            android:name="com.hkproductions.listme.guest.creategroupview.CreateGroupFragment"
+            android:label="CreateGroupFragment"
+            tools:layout="@layout/guest_fragment_create_group_view" />
+        <fragment
+            android:id="@+id/editViewFragment"
+            android:name="com.hkproductions.listme.guest.editview.EditViewFragment"
+            android:label="EditViewFragment"
+            tools:layout="@layout/guest_fragment_edit_view">
+            <argument
+                android:name="dataId"
+                app:argType="long" />
+            <action
+                android:id="@+id/action_editViewFragment_to_startViewFragment"
+                app:destination="@id/guestStartViewFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:launchSingleTop="false"
+                app:popEnterAnim="@anim/slide_in_right"
+                app:popUpTo="@id/guestStartViewFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/guestDetailFragment"
+            android:name="com.hkproductions.listme.guest.detailview.GuestDetailFragment"
+            android:label="@string/guest_detail_view_title"
+            tools:layout="@layout/guest_fragment_detail_view">
+            <action
+                android:id="@+id/action_guestDetailFragment_to_editViewFragment"
+                app:destination="@id/editViewFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:popEnterAnim="@anim/slide_in_right" />
+            <argument
+                android:name="dataId"
+                app:argType="long" />
+            <action
+                android:id="@+id/action_after_delete"
+                app:destination="@id/guestStartViewFragment"
+                app:launchSingleTop="false" />
+        </fragment>
+    </navigation>
 </navigation>

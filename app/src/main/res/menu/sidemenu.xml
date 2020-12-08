@@ -5,7 +5,7 @@
         android:id="@+id/navigate_host"
         android:title="@string/host" />
     <item
-        android:id="@+id/guestStartViewFragment"
+        android:id="@+id/guest_navigation"
         android:title="@string/guest" />
     <item
         android:id="@+id/navigate_instruction"
