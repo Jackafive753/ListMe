@@ -26,7 +26,7 @@
             app:layout_constraintTop_toBottomOf="@+id/house_members_label" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button"
+            android:id="@+id/start_show_code_button"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button2"
+            android:id="@+id/start_code_group_button"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -55,10 +55,10 @@
             app:icon="@drawable/ic_baseline_qr_code_2_24"
             app:iconGravity="textStart"
             app:iconTint="@color/black"
-            app:layout_constraintEnd_toEndOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="@+id/start_show_code_button"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintStart_toStartOf="@+id/start_show_code_button"
+            app:layout_constraintTop_toBottomOf="@+id/start_show_code_button" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/my_data_area_button"
@@ -67,9 +67,9 @@
             android:layout_marginTop="@dimen/line_spacing"
             android:text=""
             android:textAlignment="viewStart"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
-            app:layout_constraintStart_toStartOf="@+id/button2"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="@+id/start_code_group_button"
+            app:layout_constraintStart_toStartOf="@+id/start_code_group_button"
+            app:layout_constraintTop_toBottomOf="@+id/start_code_group_button"
             tools:text="here can stand your data" />
 
         <TextView

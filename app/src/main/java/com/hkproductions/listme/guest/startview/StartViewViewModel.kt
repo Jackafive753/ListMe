@@ -23,9 +23,9 @@ class StartViewViewModel(private val database: GuestDataDao) : ViewModel() {
     val navigateToDataDetail: LiveData<Long>
         get() = _navigateToDataDetail
 
-    private val _navigateToCreateMember = MutableLiveData<Boolean>()
-    val navigateToCreateMember: LiveData<Boolean>
-        get() = _navigateToCreateMember
+    private val _navigateToCreateContact = MutableLiveData<Boolean>()
+    val navigateToCreateContact: LiveData<Boolean>
+        get() = _navigateToCreateContact
 
     init {
         viewModelScope.launch {
@@ -53,14 +53,14 @@ class StartViewViewModel(private val database: GuestDataDao) : ViewModel() {
      * switch LiveData to navigate to EditFragment as CreateFragment
      */
     fun onCreateMemberClicked() {
-        _navigateToCreateMember.value = true
+        _navigateToCreateContact.value = true
     }
 
     /**
      * Called if Navigation is finished
      */
     fun onMemberCreateNavigated() {
-        _navigateToCreateMember.value = false
+        _navigateToCreateContact.value = false
     }
 
     /**

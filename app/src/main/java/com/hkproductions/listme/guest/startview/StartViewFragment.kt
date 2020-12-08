@@ -89,7 +89,14 @@ class StartViewFragment : Fragment() {
             }
         })
 
-        configureOnNavigateToCreateMember()
+        /* Observe viewModel.navigateToCreateContact (is a boolean)
+            if this boolean change value the add contact button was pressed
+         */
+        configureOnNavigateToCreateContact()
+
+        binding.startCodeGroupButton.setOnClickListener {
+            this.findNavController().navigate(StartViewFragmentDirections.actionToCreateGroup())
+        }
 
         //DEVELOPER_MODE
         //Clear button to clear database
@@ -138,8 +145,8 @@ class StartViewFragment : Fragment() {
      * true -> createMember button is clicked and navigate to editFragment as create
      * false -> nothing is happend
      */
-    private fun configureOnNavigateToCreateMember() {
-        viewModel.navigateToCreateMember.observe(viewLifecycleOwner, {
+    private fun configureOnNavigateToCreateContact() {
+        viewModel.navigateToCreateContact.observe(viewLifecycleOwner, {
             if (it) {
                 this.findNavController().navigate(
                     StartViewFragmentDirections.actionDataCreate(-1L)

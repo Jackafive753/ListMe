@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_to_detail"
             app:destination="@id/guestDetailFragment" />
+        <action
+            android:id="@+id/action_to_create_group"
+            app:destination="@id/createGroupFragment" />
     </fragment>
     <fragment
         android:id="@+id/editViewFragment"
@@ -52,4 +55,9 @@
             android:id="@+id/action_start_guest"
             app:destination="@id/guestStartViewFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/createGroupFragment"
+        android:name="com.hkproductions.listme.guest.creategroupview.CreateGroupFragment"
+        android:label="CreateGroupFragment"
+        tools:layout="@layout/guest_fragment_create_group_view" />
 </navigation>
