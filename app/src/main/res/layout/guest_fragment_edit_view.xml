@@ -58,6 +58,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:nextFocusRight="@id/textInputEditTextPostal"
+                    android:nextFocusDown="@id/textInputEditTextPostal"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.lastName}" />
 
@@ -78,9 +80,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutLastName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextPostal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nextFocusDown="@id/textInputEditTextCity"
+                    android:nextFocusRight="@id/textInputEditTextCity"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.postalCode}" />
 
@@ -104,6 +108,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
+                    android:nextFocusRight="@id/textInputEditTextStreet"
+                    android:nextFocusDown="@id/textInputEditTextStreet"
                     android:text="@={viewModel.liveData.city}" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -124,9 +130,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPostal">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextStreet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nextFocusDown="@id/textInputEditTextHouseNumber"
+                    android:nextFocusRight="@id/textInputEditTextHouseNumber"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.street}" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -147,6 +155,8 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
+                    android:nextFocusRight="@id/textInputEditTextPhoneNumber"
+                    android:nextFocusDown="@id/textInputEditTextPhoneNumber"
                     android:text="@={viewModel.liveData.houseNumber}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,25 +176,40 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutStreet">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
+                    android:nextFocusRight="@id/editViewConfirmButton"
+                    android:nextFocusDown="@id/editViewConfirmButton"
                     android:text="@={viewModel.liveData.phoneNumber}" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:layout_marginTop="@dimen/line_spacing"
+                android:layout_marginEnd="@dimen/side_margin"
+                android:text="@string/scan_data_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPhoneNumber" />
 
             <Button
                 android:id="@+id/editViewConfirmButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
-                android:layout_marginTop="@dimen/double_line_spacing"
+                android:layout_marginTop="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/side_margin"
                 android:layout_marginBottom="@dimen/double_line_spacing"
                 android:text="@string/confirm"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPhoneNumber" />
+                app:layout_constraintTop_toBottomOf="@+id/button" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"

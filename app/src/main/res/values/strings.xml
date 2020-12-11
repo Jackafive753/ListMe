@@ -17,10 +17,12 @@
     <string name="edit">Bearbeiten</string>
     <string name="delete">Löschen</string>
 
-    <!-- Strings Detail View Header-->
+    <!-- Strings DetailView Header-->
     <string name="name_text">Name</string>
     <string name="street_hnr_text">Straße, Hausnr.</string>
     <string name="city_postal_text">Ort, PLZ</string>
+
+    <string name="scan_data_button">Daten scannen</string>
 
     <!-- Strings GuestData and HostData attributes-->
     <string name="first_name_text">Vorname</string>

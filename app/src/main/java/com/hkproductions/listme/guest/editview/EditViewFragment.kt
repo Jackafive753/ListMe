@@ -1,9 +1,11 @@
 package com.hkproductions.listme.guest.editview
 
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -77,6 +79,11 @@ class EditViewFragment : Fragment() {
                 resources.getString(R.string.data_safed),
                 Toast.LENGTH_SHORT
             ).show()
+            //Hide Keyboard
+            val inputMethodManager =
+                context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+            //Navigate back to start
             this.findNavController()
                 .navigate(EditViewFragmentDirections.actionEditViewFragmentToStartViewFragment())
         }
