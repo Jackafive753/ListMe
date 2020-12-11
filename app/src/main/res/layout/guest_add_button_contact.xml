@@ -10,7 +10,7 @@
 
     <Button xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/start_show_code_button"
+        android:id="@+id/button_guest_show_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.hkproductions.listme.DEVELOPER_MODE
+import com.hkproductions.listme.Constant
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentStartviewBinding
 import com.hkproductions.listme.guest.database.GuestDataDao
@@ -94,13 +94,13 @@ class StartViewFragment : Fragment() {
          */
         configureOnNavigateToCreateContact()
 
-        binding.startCodeGroupButton.setOnClickListener {
+        binding.buttonGuestCodeGroup.setOnClickListener {
             this.findNavController().navigate(StartViewFragmentDirections.actionToCreateGroup())
         }
 
         //DEVELOPER_MODE
         //Clear button to clear database
-        if (DEVELOPER_MODE) {
+        if (Constant.DEVELOPER_MODE) {
             binding.developerGuestClear.setOnClickListener { viewModel.onClear() }
         } else {
             binding.developerGuestClear.visibility = View.GONE

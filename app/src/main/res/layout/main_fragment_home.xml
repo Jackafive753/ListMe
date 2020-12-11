@@ -18,9 +18,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/logo_variante3" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/home_host_button"
-            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="270dp"
             android:layout_height="46dp"
             android:fontFamily="@font/roboto_mono"
@@ -34,9 +33,8 @@
             app:layout_constraintTop_toBottomOf="@+id/Logo"
             app:layout_constraintVertical_chainStyle="spread" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/home_guest_button"
-            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_mono"
@@ -47,9 +45,8 @@
             app:layout_constraintStart_toStartOf="@+id/home_host_button"
             app:layout_constraintTop_toBottomOf="@+id/home_host_button" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/home_manual_button"
-            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="270dp"
             android:layout_height="46dp"
             android:fontFamily="@font/roboto_mono"
