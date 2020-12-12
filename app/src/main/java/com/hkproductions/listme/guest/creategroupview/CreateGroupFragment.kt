@@ -1,13 +1,13 @@
 package com.hkproductions.listme.guest.creategroupview
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentCreateGroupViewBinding
 import com.hkproductions.listme.guest.database.GuestDataDao
@@ -75,8 +75,8 @@ class CreateGroupFragment : Fragment() {
                     }
                 }
             }
-            Log.i("Listme", list.toString())
-            //TODO navigate to show group code with list
+            this.findNavController()
+                .navigate(CreateGroupFragmentDirections.actionShowGroupCode(list.toLongArray()))
         }
 
         return binding.root
