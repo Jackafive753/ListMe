@@ -98,6 +98,14 @@ class StartViewFragment : Fragment() {
             this.findNavController().navigate(StartViewFragmentDirections.actionToCreateGroup())
         }
 
+        binding.buttonGuestShowCode.setOnClickListener {
+            this.findNavController()
+                .navigate(
+                    StartViewFragmentDirections
+                        .actionShowPhoneOwnerCode(viewModel.phoneOwner.value!!.guestDataId)
+                )
+        }
+
         //DEVELOPER_MODE
         //Clear button to clear database
         if (Constant.DEVELOPER_MODE) {

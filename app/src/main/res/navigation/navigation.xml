@@ -41,6 +41,9 @@
                 app:exitAnim="@android:anim/fade_out"
                 app:popEnterAnim="@anim/fragment_fade_enter"
                 app:popExitAnim="@anim/fragment_fade_exit" />
+            <action
+                android:id="@+id/action_show_phone_owner_code"
+                app:destination="@id/codeFragment" />
         </fragment>
         <fragment
             android:id="@+id/createGroupFragment"
@@ -81,6 +84,27 @@
                 android:id="@+id/action_after_delete"
                 app:destination="@id/guestStartViewFragment"
                 app:launchSingleTop="false" />
+            <action
+                android:id="@+id/action_show_code"
+                app:destination="@id/codeFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/codeFragment"
+            android:name="com.hkproductions.listme.guest.code.CodeFragment"
+            android:label="CodeFragment"
+            tools:layout="@layout/guest_fragment_code_view">
+            <argument
+                android:name="dataId"
+                app:argType="long" />
+        </fragment>
+        <fragment
+            android:id="@+id/codeGroupFragment"
+            android:name="com.hkproductions.listme.guest.codegroup.CodeGroupFragment"
+            android:label="CodeGroupFragment"
+            tools:layout="@layout/guest_fragment_group_code_view">
+            <argument
+                android:name="dataIds"
+                app:argType="long[]" />
         </fragment>
     </navigation>
 </navigation>

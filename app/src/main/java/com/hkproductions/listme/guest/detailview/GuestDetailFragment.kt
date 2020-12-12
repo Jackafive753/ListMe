@@ -55,6 +55,14 @@ class GuestDetailFragment : Fragment() {
             }
         })
 
+        binding.showCodeButton.setOnClickListener {
+            this.findNavController()
+                .navigate(
+                    GuestDetailFragmentDirections
+                        .actionShowCode(viewModel.liveData.value!!.guestDataId)
+                )
+        }
+
         binding.deleteButton.setOnClickListener {
             viewModel.deleteData()
             this.findNavController().navigate(GuestDetailFragmentDirections.actionAfterDelete())
