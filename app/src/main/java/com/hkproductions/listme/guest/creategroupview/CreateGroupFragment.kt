@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -75,8 +76,16 @@ class CreateGroupFragment : Fragment() {
                     }
                 }
             }
-            this.findNavController()
-                .navigate(CreateGroupFragmentDirections.actionShowGroupCode(list.toLongArray()))
+            if (list.isEmpty()) {
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.create_group_non_selected_error_text),
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                this.findNavController()
+                    .navigate(CreateGroupFragmentDirections.actionShowGroupCode(list.toLongArray()))
+            }
         }
 
         return binding.root

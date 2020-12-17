@@ -38,8 +38,9 @@
     <string name="create_phone_owner">Daten erstellen</string>
 
     <!-- Error Text-->
-    <string name="blank_error_text">Darf nicht leer sein</string>
+    <string name="blank_error_text">Bitte ausfüllen</string>
     <string name="postal_error_text">Ungültige PLZ</string>
+    <string name="create_group_non_selected_error_text">Bitte wählen sie mindestens eine Person aus.</string>
 
     <!-- Message Text -->
     <string name="data_safed">Daten wurden gespeichert</string>
