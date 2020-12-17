@@ -18,7 +18,7 @@ class GroupMemberAdapter : RecyclerView.Adapter<GroupMemberAdapter.TextViewHolde
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): GroupMemberAdapter.TextViewHolder {
+    ): TextViewHolder {
         return TextViewHolder.from(parent)
     }
 

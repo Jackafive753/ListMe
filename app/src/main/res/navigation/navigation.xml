@@ -53,8 +53,7 @@
             <action
                 android:id="@+id/action_show_group_code"
                 app:destination="@id/codeGroupFragment"
-                app:popUpTo="@id/guestStartViewFragment"
-                app:popUpToInclusive="true" />
+                app:popUpTo="@id/guestStartViewFragment" />
         </fragment>
         <fragment
             android:id="@+id/editViewFragment"
