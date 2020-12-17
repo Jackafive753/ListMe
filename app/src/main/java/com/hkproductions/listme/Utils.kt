@@ -48,7 +48,7 @@ suspend fun contactToText(contact: GuestData): String {
  * make an Contact into CSV
  * Shorter Version to safe place
  */
-suspend fun contactToShorterText(contact: GuestData): String {
+private suspend fun contactToShorterText(contact: GuestData): String {
     val stringBuilder = StringBuilder()
     stringBuilder.append(contact.firstName + ";")
     stringBuilder.append(contact.lastName + ";")

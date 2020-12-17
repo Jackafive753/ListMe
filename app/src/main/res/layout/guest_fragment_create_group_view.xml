@@ -50,12 +50,11 @@
             android:layout_marginStart="@dimen/side_margin"
             android:layout_marginEnd="@dimen/side_margin"
             android:layout_marginBottom="@dimen/double_line_spacing"
-            android:text="@string/confirm"
+            android:text="@string/ready"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline4"
-            app:layout_constraintVertical_bias="0.6" />
+            app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
