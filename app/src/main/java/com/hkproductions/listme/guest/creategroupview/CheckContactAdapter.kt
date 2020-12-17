@@ -5,7 +5,7 @@ import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hkproductions.listme.databinding.GuestContactCheckboxItemBinding
+import com.hkproductions.listme.databinding.GuestItemContactCheckboxBinding
 import com.hkproductions.listme.guest.creategroupview.CheckContactAdapter.CheckBoxViewHolder
 import com.hkproductions.listme.guest.database.GuestData
 
@@ -44,7 +44,7 @@ class CheckContactAdapter :
      * if checked the contact will added to a code group
      */
     class CheckBoxViewHolder
-    private constructor(private val binding: GuestContactCheckboxItemBinding) :
+    private constructor(private val binding: GuestItemContactCheckboxBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: GuestData, checkedState: SparseBooleanArray, position: Int) {
@@ -57,7 +57,7 @@ class CheckContactAdapter :
         companion object {
             fun from(parent: ViewGroup): CheckBoxViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = GuestContactCheckboxItemBinding.inflate(
+                val binding = GuestItemContactCheckboxBinding.inflate(
                     layoutInflater,
                     parent,
                     false

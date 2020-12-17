@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hkproductions.listme.R
-import com.hkproductions.listme.databinding.GuestAddButtonContactBinding
-import com.hkproductions.listme.databinding.GuestStartviewContactItemBinding
+import com.hkproductions.listme.databinding.GuestItemAddContactButtonBinding
+import com.hkproductions.listme.databinding.GuestItemStartviewContactBinding
 import com.hkproductions.listme.guest.database.GuestData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -72,7 +72,7 @@ class ContactAdapter(
      * Holder for the add Button on the end of the house_member list
      * in the startview of the GuestActivity
      */
-    class ButtonViewHolder private constructor(private val binding: GuestAddButtonContactBinding) :
+    class ButtonViewHolder private constructor(private val binding: GuestItemAddContactButtonBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(clickListener: AddContactListener) {
@@ -82,7 +82,7 @@ class ContactAdapter(
         companion object {
             fun from(parent: ViewGroup): ButtonViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = GuestAddButtonContactBinding.inflate(
+                val binding = GuestItemAddContactButtonBinding.inflate(
                     layoutInflater,
                     parent,
                     false
@@ -96,7 +96,7 @@ class ContactAdapter(
      * Holder for a house_member on startview of GuestActivity
      * shows name and phone_number
      */
-    class ContactViewHolder private constructor(private val binding: GuestStartviewContactItemBinding) :
+    class ContactViewHolder private constructor(private val binding: GuestItemStartviewContactBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
@@ -116,7 +116,7 @@ class ContactAdapter(
             fun from(parent: ViewGroup): RecyclerView.ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding =
-                    GuestStartviewContactItemBinding.inflate(
+                    GuestItemStartviewContactBinding.inflate(
                         layoutInflater,
                         parent,
                         false
