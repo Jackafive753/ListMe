@@ -31,6 +31,7 @@ suspend fun createBitmap(text: String): Bitmap {
 
 /**
  * make an Contact (GuestData) into CSV
+ * @param contact GuestData that convert
  */
 suspend fun contactToText(contact: GuestData): String {
     val stringBuilder = StringBuilder()
@@ -47,6 +48,7 @@ suspend fun contactToText(contact: GuestData): String {
 /**
  * make an Contact into CSV
  * Shorter Version to safe place
+ *
  */
 private suspend fun contactToShorterText(contact: GuestData): String {
     val stringBuilder = StringBuilder()
@@ -62,6 +64,7 @@ private suspend fun contactToShorterText(contact: GuestData): String {
 
 /**
  * make an List of Contacts into CSV
+ * @param contacts Lsit of GuestData that convert
  */
 suspend fun contactListToText(contacts: List<GuestData>): String {
     val stringBuilder = StringBuilder()
@@ -71,6 +74,21 @@ suspend fun contactListToText(contacts: List<GuestData>): String {
     return stringBuilder.toString()
 }
 
-suspend fun textToContact(text: String) {
+/**
+ * get an string and convert into GuestData
+ * @param text CSV String convert into GuestData
+ */
+suspend fun textToContact(text: String): GuestData {
     val stringList: List<String> = text.split(";")
+    val data = GuestData()
+    data.apply {
+        firstName = stringList[0]
+        lastName = stringList[1]
+        street = stringList[2]
+        houseNumber = stringList[3]
+        postalCode = stringList[4]
+        city = stringList[5]
+        phoneNumber = stringList[6]
+    }
+    return data
 }

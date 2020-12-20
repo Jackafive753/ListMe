@@ -1,25 +1,24 @@
 package com.hkproductions.listme.guest.editview
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hkproductions.listme.guest.database.GuestData
 import com.hkproductions.listme.guest.database.GuestDataDao
+import com.hkproductions.listme.textToContact
 import kotlinx.coroutines.launch
 
 class EditViewViewModel(private val database: GuestDataDao, dataId: Long) : ViewModel() {
 
-    private var _liveData: MutableLiveData<GuestData> = MutableLiveData()
-    val liveData: LiveData<GuestData>
-        get() = _liveData
+    var liveData: MutableLiveData<GuestData> = MutableLiveData()
 
     init {
         viewModelScope.launch {
-            var contact: GuestData? = database.getDataById(dataId)
-            if (contact == null) {
-                contact = GuestData()
+            if (dataId == -1L) {
+                //create Data
+                val contact = GuestData()
+
+                //preload adress of phoneOwner
                 val phoneOwner = database.getPhoneOwner()
                 phoneOwner?.apply {
                     contact.city = city
@@ -27,9 +26,13 @@ class EditViewViewModel(private val database: GuestDataDao, dataId: Long) : View
                     contact.postalCode = postalCode
                     contact.houseNumber = houseNumber
                 }
+
+                //set livedata
+                liveData.value = contact
+            } else {
+                //load data from the database
+                liveData.value = database.getDataById(dataId)
             }
-            _liveData.value = contact
-            Log.i("Listme", liveData.value.toString())
         }
     }
 
@@ -39,12 +42,12 @@ class EditViewViewModel(private val database: GuestDataDao, dataId: Long) : View
      *
      * @param data data to insert in database
      */
-    fun insertData(data: GuestData) {
+    fun insertData() {
         viewModelScope.launch {
             if (database.getPhoneOwner() == null) {
-                data.phoneOwner = true
+                liveData.value?.phoneOwner = true
             }
-            database.insert(data)
+            database.insert(liveData.value!!)
         }
     }
 
@@ -54,12 +57,15 @@ class EditViewViewModel(private val database: GuestDataDao, dataId: Long) : View
      * @param id id of the data which must be updated
      * @param edited edited data
      */
-    fun updateData(id: Long, edited: GuestData) {
-        Log.i("info", "update")
+    fun updateData() {
         viewModelScope.launch {
-            val old = database.getDataById(id)
-            old.copyData(edited)
-            database.update(old)
+            database.update(liveData.value!!)
+        }
+    }
+
+    fun scannedCode(text: String) {
+        viewModelScope.launch {
+            liveData.value = textToContact(text)
         }
     }
 }

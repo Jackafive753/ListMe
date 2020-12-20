@@ -1,19 +1,23 @@
 package com.hkproductions.listme.guest.editview
 
+import android.Manifest
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.zxing.integration.android.IntentIntegrator
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentEditViewBinding
-import com.hkproductions.listme.guest.database.GuestData
 import com.hkproductions.listme.guest.database.GuestDataDao
 import com.hkproductions.listme.guest.database.GuestDatabase
 
@@ -46,14 +50,92 @@ class EditViewFragment : Fragment() {
         dataId = EditViewFragmentArgs.fromBundle(requireArguments()).dataId
         viewModel = initViewModel()
 
-
         //give confirm Button a clickListener
         binding.editViewConfirmButton.setOnClickListener { confirmButtonClicked() }
 
+        //start scan to preload data
+        binding.buttonEditGuestScanData.setOnClickListener {
+            val integrator = IntentIntegrator.forSupportFragment(this)
+            integrator.apply {
+                setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE)
+                setPrompt("Scan Contact Code")//TODO String
+                initiateScan()
+            }
+        }
+
+        //bind variable
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        //request Camera permission
+        requestCamera()
+
         return binding.root
+    }
+
+    /**
+     * Request activation of the Camera Permission
+     * permission is given -> nothing happens
+     * permission is not given -> ask user
+     */
+    private fun requestCamera() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    requireActivity(),
+                    Manifest.permission.CAMERA
+                )
+            ) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.CAMERA),
+                    0
+                )
+            } else {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.CAMERA),
+                    0
+                )
+            }
+        }
+    }
+
+    /**
+     * Handle the result of the permisson question
+     */
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == 0) {
+            if (grantResults.size == 1 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                //Permission is denied
+                //TODO Message that camera is necessary
+                Toast.makeText(context, "Camera Permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        /**
+         * result result of the code scan
+         * contents hold the content of the code
+         */
+        if (result != null) {
+            if (result.contents == null) {
+                Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.scannedCode(result.contents)
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     /**
@@ -61,28 +143,29 @@ class EditViewFragment : Fragment() {
      * check InputFields and insert or update the data in the database
      */
     private fun confirmButtonClicked() {
-        val data = checkInputFields()
-        //if data != null -> Inputs are correct
-        //else -> Inputs are incorrect
-        if (data != null) {
-            /*
-            if id==-1 -> create
-            else -> edit
-             */
+        //true -> all entries are correct and not blank
+        //false -> some or all entries are incorrect ore blank
+        if (checkInputFields()) {
+            //dataId -1 -> create
+            //else -> edit
             if (dataId == -1L) {
-                viewModel.insertData(data)
+                viewModel.insertData()
             } else {
-                viewModel.updateData(dataId, data)
+                viewModel.updateData()
             }
+
+            //Confirmation Message
             Toast.makeText(
                 this.context,
                 resources.getString(R.string.data_safed),
                 Toast.LENGTH_SHORT
             ).show()
+
             //Hide Keyboard
             val inputMethodManager =
                 context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+
             //Navigate back to start
             this.findNavController()
                 .navigate(EditViewFragmentDirections.actionEditViewFragmentToStartViewFragment())
@@ -94,81 +177,57 @@ class EditViewFragment : Fragment() {
      * if all correct -> input or update database
      * else -> error under affected fields
      */
-    private fun checkInputFields(): GuestData? {
-        var data: GuestData? = GuestData()
+    private fun checkInputFields(): Boolean {
+        var success = true
+        viewModel.liveData.value?.apply {
+            //check fistname is not blank
+            if (firstName.isBlank()) {
+                binding.textInputLayoutFirstName.error =
+                    resources.getString(R.string.blank_error_text)
+                success = false
+            } else binding.textInputLayoutFirstName.error = ""
 
-        //check firstName not blank
-        val firstName = binding.textInputLayoutFirstName.editText?.text.toString()
-        if (firstName.isBlank()) {
-            binding.textInputLayoutFirstName.error = resources.getString(R.string.blank_error_text)
-            data = null
-        } else {
-            binding.textInputLayoutFirstName.error = ""
-            data?.firstName = firstName
-        }
+            //check lastname is not blank
+            if (lastName.isBlank()) {
+                binding.textInputLayoutLastName.error =
+                    resources.getString(R.string.blank_error_text)
+                success = false
+            } else binding.textInputLayoutLastName.error = ""
 
-        //check lastName not blank
-        val lastName = binding.textInputLayoutLastName.editText?.text.toString()
-        if (lastName.isBlank()) {
-            binding.textInputLayoutLastName.error = resources.getString(R.string.blank_error_text)
-            data = null
-        } else {
-            binding.textInputLayoutLastName.error = ""
-            data?.lastName = lastName
-        }
+            //check postal have 5 numbers
+            if (postalCode.length != 5 || !postalCode.matches("[0-9]+".toRegex())) {
+                binding.textInputLayoutPostal.error =
+                    resources.getString(R.string.postal_error_text)
+                success = false
+            } else binding.textInputLayoutPostal.error = ""
 
-        //check postal have 5 numbers and only numbers
-        val postal = binding.textInputLayoutPostal.editText?.text.toString()
-        if (postal.length != 5 || !postal.matches("[0-9]+".toRegex())) {
-            binding.textInputLayoutPostal.error = resources.getString(R.string.postal_error_text)
-            data = null
-        } else {
-            binding.textInputLayoutPostal.error = ""
-            data?.postalCode = postal
-        }
+            //check city is not blank
+            if (city.isBlank()) {
+                binding.textInputLayoutCity.error = resources.getString(R.string.blank_error_text)
+                success = false
+            } else binding.textInputLayoutCity.error = ""
 
-        //check city not blank
-        val city = binding.textInputLayoutCity.editText?.text.toString()
-        if (city.isBlank()) {
-            binding.textInputLayoutCity.error = resources.getString(R.string.blank_error_text)
-            data = null
-        } else {
-            binding.textInputLayoutCity.error = ""
-            data?.city = city
-        }
+            //check street is not blank
+            if (street.isBlank()) {
+                binding.textInputLayoutStreet.error = resources.getString(R.string.blank_error_text)
+                success = false
+            } else binding.textInputLayoutStreet.error = ""
 
-        //check street not blank
-        val street = binding.textInputLayoutStreet.editText?.text.toString()
-        if (street.isBlank()) {
-            binding.textInputLayoutStreet.error = resources.getString(R.string.blank_error_text)
-            data = null
-        } else {
-            binding.textInputLayoutStreet.error = ""
-            data?.street = street
-        }
+            //check houseNumber is not blank
+            if (houseNumber.isBlank()) {
+                binding.textInputLayoutHouseNumber.error =
+                    resources.getString(R.string.blank_error_text)
+                success = false
+            } else binding.textInputLayoutHouseNumber.error = ""
 
-        //check houseNumber not blank
-        val houseNumber = binding.textInputLayoutHouseNumber.editText?.text.toString()
-        if (houseNumber.isBlank()) {
-            binding.textInputLayoutHouseNumber.error =
-                resources.getString(R.string.blank_error_text)
-            data = null
-        } else {
-            binding.textInputLayoutHouseNumber.error = ""
-            data?.houseNumber = houseNumber
+            //check phoneNumber is not blank
+            if (phoneNumber.isBlank()) {
+                binding.textInputLayoutPhoneNumber.error =
+                    resources.getString(R.string.blank_error_text)
+                success = false
+            } else binding.textInputLayoutPhoneNumber.error = ""
         }
-
-        //check phoneNumber not blank
-        val phoneNumber = binding.textInputLayoutPhoneNumber.editText?.text.toString()
-        if (phoneNumber.isBlank()) {
-            binding.textInputLayoutPhoneNumber.error =
-                resources.getString(R.string.blank_error_text)
-            data = null
-        } else {
-            binding.textInputLayoutPhoneNumber.error = ""
-            data?.phoneNumber = phoneNumber
-        }
-        return data
+        return success
     }
 
     private fun initViewModel(): EditViewViewModel {
