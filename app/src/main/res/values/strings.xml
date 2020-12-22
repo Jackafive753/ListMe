@@ -18,6 +18,7 @@
     <string name="delete">Löschen</string>
     <string name="group_member_label">Gruppenmitglieder:</string>
     <string name="code_with_full_name">Code von %s %s</string>
+    <string name="show_code_text">Code anzeigen von:</string>
 
     <!-- Strings DetailView Header-->
     <string name="name_text">Name</string>
@@ -42,10 +43,11 @@
     <!-- Error Text-->
     <string name="blank_error_text">Bitte ausfüllen</string>
     <string name="postal_error_text">Ungültige PLZ</string>
-    <string name="create_group_non_selected_error_text">Bitte wählen sie mindestens eine Person aus.</string>
+    <string name="create_group_non_selected_error_text">Bitte wählen Sie mindestens eine Person aus.</string>
 
     <!-- Message Text -->
     <string name="data_safed">Daten wurden gespeichert</string>
+    <string name="no_phone_owner_message">Sie haben noch keine Daten eingefügt. Erstellen sie jetzt ihr Profil</string>
 
     <!-- for my data are in startview of the guest
             (firstname, lastname, street, house_number, postal_code, city, phone_number)-->

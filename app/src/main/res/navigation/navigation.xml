@@ -52,8 +52,7 @@
             tools:layout="@layout/guest_fragment_create_group_view">
             <action
                 android:id="@+id/action_show_group_code"
-                app:destination="@id/codeGroupFragment"
-                app:popUpTo="@id/guestStartViewFragment" />
+                app:destination="@id/codeGroupFragment" />
         </fragment>
         <fragment
             android:id="@+id/editViewFragment"

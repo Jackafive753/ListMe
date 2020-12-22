@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.hkproductions.listme.Constant
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentStartviewBinding
@@ -47,16 +47,12 @@ class StartViewFragment : Fragment() {
         //Fill my Data Area with content
         viewModel.phoneOwner.observe(viewLifecycleOwner, {
             if (it == null) {
-                //TODO Discuss Styling
-                binding.houseMemberList.visibility = View.GONE
-                binding.houseMembersLabel.visibility = View.GONE
-//                binding.button.visibility = View.GONE
-//                binding.button2.visibility = View.GONE
-                binding.myDataAreaButton.text = resources.getString(R.string.create_phone_owner)
-                binding.myDataAreaButton.setOnClickListener {
-                    this.findNavController()
-                        .navigate(StartViewFragmentDirections.actionDataCreate(-1L))
-                }
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.no_phone_owner_message),
+                    Toast.LENGTH_LONG
+                ).show()
+                this.findNavController().navigate(StartViewFragmentDirections.actionDataCreate(-1L))
             } else {
                 val navController = this.findNavController()
                 it.apply {
@@ -106,6 +102,10 @@ class StartViewFragment : Fragment() {
                 )
         }
 
+        binding.buttonGuestStartAddContact.setOnClickListener {
+            this.findNavController().navigate(StartViewFragmentDirections.actionDataCreate(-1L))
+        }
+
         //DEVELOPER_MODE
         //Clear button to clear database
         if (Constant.DEVELOPER_MODE) {
@@ -133,19 +133,14 @@ class StartViewFragment : Fragment() {
         val adapter = ContactAdapter(
             ContactListener { guestId ->
                 viewModel.onMemberClicked(guestId)
-            }, AddContactListener {
-                viewModel.onCreateMemberClicked()
             })
         binding.houseMemberList.adapter = adapter
 
         viewModel.houseMembers.observe(viewLifecycleOwner, {
             it?.let {
-                adapter.submitListAndAddButton(it)
+                adapter.data = it
             }
         })
-
-        val manager = GridLayoutManager(activity, 2)
-        binding.houseMemberList.layoutManager = manager
     }
 
     /**
