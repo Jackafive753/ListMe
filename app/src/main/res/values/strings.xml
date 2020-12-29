@@ -19,6 +19,7 @@
     <string name="group_member_label">Gruppenmitglieder:</string>
     <string name="code_with_full_name">Code von %s %s</string>
     <string name="show_code_text">Code anzeigen von:</string>
+    <string name="scan_guest_header">Scanne den Code von deinem Kontakt</string>
 
     <!-- Strings DetailView Header-->
     <string name="name_text">Name</string>

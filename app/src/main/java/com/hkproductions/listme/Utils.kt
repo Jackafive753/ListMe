@@ -6,9 +6,9 @@ import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
 import com.hkproductions.listme.guest.database.GuestData
+import com.hkproductions.listme.host.database.HostData
 
 suspend fun createBitmap(text: String): Bitmap {
-    //TODO find useful width
     val width = 400
 
     val writer: QRCodeWriter = QRCodeWriter()
@@ -81,6 +81,25 @@ suspend fun contactListToText(contacts: List<GuestData>): String {
 suspend fun textToContact(text: String): GuestData {
     val stringList: List<String> = text.split(";")
     val data = GuestData()
+    data.apply {
+        firstName = stringList[0]
+        lastName = stringList[1]
+        street = stringList[2]
+        houseNumber = stringList[3]
+        postalCode = stringList[4]
+        city = stringList[5]
+        phoneNumber = stringList[6]
+    }
+    return data
+}
+
+/**
+ * get an string and convert into HostData
+ * @param text CSV String convert into HostData
+ */
+suspend fun textToGuest(text: String): HostData {
+    val stringList: List<String> = text.split(";")
+    val data = HostData()
     data.apply {
         firstName = stringList[0]
         lastName = stringList[1]

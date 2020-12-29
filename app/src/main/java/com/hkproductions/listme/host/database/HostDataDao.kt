@@ -21,25 +21,21 @@ interface HostDataDao {
     @Query("SELECT * FROM host_data_table")
     fun getAllEntries(): LiveData<List<HostData>>
 
-//    @Query(
-//        "SELECT DISTINCT * FROM host_data_table WHERE " +
-//                "first_name+' '+last_name LIKE '%'+:name+'%'"
-//    )
-//    fun getEntriesByName(name: String): LiveData<List<HostData>>
-//
-//    @Query(
-//        "SELECT DISTINCT * FROM host_data_table WHERE " +
-//                "(start_time_milli >= :starttime AND start_time_milli <= :endtime) " +
-//                "OR (end_time_milli >= :starttime AND end_time_milli <= :endtime)"
-//    )
-//    fun getEntriesByTime(starttime: Long, endtime: Long)
-//
-//    @Query(
-//        "SELECT DISTINCT * FROM host_data_table WHERE " +
-//                "((start_time_milli >= :starttime AND start_time_milli <= :endtime) " +
-//                "OR (end_time_milli >= :starttime AND end_time_milli <= :endtime)) " +
-//                "AND first_name+' '+last_name LIKE '%:name%'"
-//    )
-//    fun getEntriesByNameAndTime(name: String, starttime: Long, endtime: Long)
+    @Query("SELECT DISTINCT * FROM host_data_table WHERE first_name+' '+last_name LIKE '%'+:name+'%'")
+    fun getEntriesByName(name: String): LiveData<List<HostData>>
+
+    @Query(
+        "SELECT DISTINCT * FROM host_data_table WHERE (start_time_milli >= :starttime AND start_time_milli <= :endtime) OR (end_time_milli >= :starttime AND end_time_milli <= :endtime)"
+    )
+    fun getEntriesByTime(starttime: Long, endtime: Long): LiveData<List<HostData>>
+
+    @Query(
+        "SELECT DISTINCT * FROM host_data_table WHERE ((start_time_milli >= :starttime AND start_time_milli <= :endtime) OR (end_time_milli >= :starttime AND end_time_milli <= :endtime)) AND first_name+' '+last_name LIKE '%'+:name+'%'"
+    )
+    fun getEntriesByNameAndTime(
+        name: String,
+        starttime: Long,
+        endtime: Long
+    ): LiveData<List<HostData>>
 
 }

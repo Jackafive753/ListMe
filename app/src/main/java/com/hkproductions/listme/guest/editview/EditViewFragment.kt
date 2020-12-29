@@ -58,7 +58,8 @@ class EditViewFragment : Fragment() {
             val integrator = IntentIntegrator.forSupportFragment(this)
             integrator.apply {
                 setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE)
-                setPrompt("Scan Contact Code")//TODO String
+                setPrompt(resources.getString(R.string.scan_guest_header))
+                setOrientationLocked(true)
                 initiateScan()
             }
         }
