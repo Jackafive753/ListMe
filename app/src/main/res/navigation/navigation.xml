@@ -124,13 +124,19 @@
             android:label="HostStartViewFragment" >
             <action
                 android:id="@+id/action_hostStartViewFragment_to_guestListFragment"
-                app:destination="@id/guestListFragment" />
+                app:destination="@id/guestListFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit" />
             <action
                 android:id="@+id/action_hostStartViewFragment_to_tableManagementFragment"
-                app:destination="@id/tableManagementFragment" />
+                app:destination="@id/tableManagementFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit" />
             <action
                 android:id="@+id/action_hostStartViewFragment_to_scanResultFragment"
-                app:destination="@id/scanResultFragment" />
+                app:destination="@id/scanResultFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit" />
         </fragment>
         <fragment
             android:id="@+id/guestListFragment"
@@ -138,10 +144,14 @@
             android:label="GuestListFragment" >
             <action
                 android:id="@+id/action_guestListFragment_to_guestDetailViewFragment"
-                app:destination="@id/guestDetailViewFragment" />
+                app:destination="@id/guestDetailViewFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit" />
             <action
                 android:id="@+id/action_guestListFragment_to_detailListFragment"
-                app:destination="@id/detailListFragment" />
+                app:destination="@id/detailListFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit" />
         </fragment>
         <fragment
             android:id="@+id/tableManagementFragment"
@@ -153,7 +163,9 @@
             android:label="ScanResultFragment" >
             <action
                 android:id="@+id/action_scanResultFragment_to_guestDetailViewFragment"
-                app:destination="@id/guestDetailViewFragment" />
+                app:destination="@id/guestDetailViewFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit" />
         </fragment>
         <fragment
             android:id="@+id/guestDetailViewFragment"
