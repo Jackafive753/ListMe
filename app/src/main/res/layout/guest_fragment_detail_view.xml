@@ -73,7 +73,7 @@
             app:layout_constraintTop_toBottomOf="@+id/edit_button" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewNameHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_margin"
@@ -89,8 +89,8 @@
             android:layout_marginStart="@dimen/line_spacing"
             android:text="@{viewModel.liveData.firstName + ' ' + viewModel.liveData.lastName}"
             app:layout_constraintBottom_toTopOf="@+id/textView3"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/textViewNameHeader"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameHeader"
             tools:text="data_name" />
 
         <TextView
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:text="@string/street_hnr_text"
             app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/textViewNameHeader"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
