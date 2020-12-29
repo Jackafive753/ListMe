@@ -59,7 +59,7 @@
             app:layout_constraintStart_toStartOf="@+id/button_guest_show_code"
             app:layout_constraintTop_toBottomOf="@+id/button_guest_show_code" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/my_data_area_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -82,15 +82,6 @@
             app:layout_constraintTop_toTopOf="@+id/button_guestStart_addContact"
             app:layout_constraintVertical_bias="0.7" />
 
-        <!-- DEVELOPER_MODE-->
-
-        <Button
-            android:id="@+id/developer_guest_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/clear_database"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/button_guestStart_addContact"
@@ -103,6 +94,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/house_members_label"
             app:layout_constraintTop_toBottomOf="@+id/my_data_area_button" />
+
+        <!-- DEVELOPER_MODE-->
+        <Button
+            android:id="@+id/developer_guest_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear_database"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
