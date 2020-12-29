@@ -55,6 +55,7 @@ class EditViewFragment : Fragment() {
 
         //start scan to preload data
         binding.buttonEditGuestScanData.setOnClickListener {
+            requestCamera()
             val integrator = IntentIntegrator.forSupportFragment(this)
             integrator.apply {
                 setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE)
@@ -69,7 +70,7 @@ class EditViewFragment : Fragment() {
         binding.lifecycleOwner = this
 
         //request Camera permission
-        requestCamera()
+//        requestCamera()
 
         return binding.root
     }
