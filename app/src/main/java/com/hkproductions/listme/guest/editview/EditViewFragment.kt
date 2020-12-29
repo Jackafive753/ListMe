@@ -1,16 +1,13 @@
 package com.hkproductions.listme.guest.editview
 
-import android.Manifest
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -55,7 +52,6 @@ class EditViewFragment : Fragment() {
 
         //start scan to preload data
         binding.buttonEditGuestScanData.setOnClickListener {
-            requestCamera()
             val integrator = IntentIntegrator.forSupportFragment(this)
             integrator.apply {
                 setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE)
@@ -69,59 +65,9 @@ class EditViewFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        //request Camera permission
-//        requestCamera()
-
         return binding.root
     }
 
-    /**
-     * Request activation of the Camera Permission
-     * permission is given -> nothing happens
-     * permission is not given -> ask user
-     */
-    private fun requestCamera() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.CAMERA
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
-                    requireActivity(),
-                    Manifest.permission.CAMERA
-                )
-            ) {
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    arrayOf(Manifest.permission.CAMERA),
-                    0
-                )
-            } else {
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    arrayOf(Manifest.permission.CAMERA),
-                    0
-                )
-            }
-        }
-    }
-
-    /**
-     * Handle the result of the permisson question
-     */
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == 0) {
-            if (grantResults.size == 1 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                //Permission is denied
-                //TODO Message that camera is necessary
-                Toast.makeText(context, "Camera Permission Denied", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
@@ -130,9 +76,7 @@ class EditViewFragment : Fragment() {
          * contents hold the content of the code
          */
         if (result != null) {
-            if (result.contents == null) {
-                Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show()
-            } else {
+            if (result.contents != null) {
                 viewModel.scannedCode(result.contents)
             }
         } else {
