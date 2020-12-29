@@ -14,6 +14,9 @@
             app:destination="@id/guest_navigation"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_host_navigation"
+            app:destination="@id/host_navigation" />
     </fragment>
     <navigation
         android:id="@+id/guest_navigation"
@@ -110,5 +113,55 @@
                 android:name="dataIds"
                 app:argType="long[]" />
         </fragment>
+    </navigation>
+    <navigation
+        android:id="@+id/host_navigation"
+        android:label="@string/host"
+        app:startDestination="@id/hostStartViewFragment">
+        <fragment
+            android:id="@+id/hostStartViewFragment"
+            android:name="com.hkproductions.listme.host.startview.HostStartViewFragment"
+            android:label="HostStartViewFragment" >
+            <action
+                android:id="@+id/action_hostStartViewFragment_to_guestListFragment"
+                app:destination="@id/guestListFragment" />
+            <action
+                android:id="@+id/action_hostStartViewFragment_to_tableManagementFragment"
+                app:destination="@id/tableManagementFragment" />
+            <action
+                android:id="@+id/action_hostStartViewFragment_to_scanResultFragment"
+                app:destination="@id/scanResultFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/guestListFragment"
+            android:name="com.hkproductions.listme.host.guestlist.GuestListFragment"
+            android:label="GuestListFragment" >
+            <action
+                android:id="@+id/action_guestListFragment_to_guestDetailViewFragment"
+                app:destination="@id/guestDetailViewFragment" />
+            <action
+                android:id="@+id/action_guestListFragment_to_detailListFragment"
+                app:destination="@id/detailListFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/tableManagementFragment"
+            android:name="com.hkproductions.listme.host.tablemanagement.TableManagementFragment"
+            android:label="TableManagementFragment" />
+        <fragment
+            android:id="@+id/scanResultFragment"
+            android:name="com.hkproductions.listme.host.scanresult.ScanResultFragment"
+            android:label="ScanResultFragment" >
+            <action
+                android:id="@+id/action_scanResultFragment_to_guestDetailViewFragment"
+                app:destination="@id/guestDetailViewFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/guestDetailViewFragment"
+            android:name="com.hkproductions.listme.host.guestdetailview.GuestDetailViewFragment"
+            android:label="GuestDetailViewFragment" />
+        <fragment
+            android:id="@+id/detailListFragment"
+            android:name="com.hkproductions.listme.host.detaillist.DetailListFragment"
+            android:label="DetailListFragment" />
     </navigation>
 </navigation>
