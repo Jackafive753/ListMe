@@ -20,6 +20,9 @@
     <string name="code_with_full_name">Code von %s %s</string>
     <string name="show_code_text">Code anzeigen von:</string>
     <string name="scan_guest_header">Scanne den Code von deinem Kontakt</string>
+    <string name="checkinout_text">Ein-/Auschecken</string>
+    <string name="guestlist_text">Gästeliste</string>
+    <string name="dailyclosing_text">Tagesabschluss</string>
 
     <!-- Strings DetailView Header-->
     <string name="name_text">Name</string>

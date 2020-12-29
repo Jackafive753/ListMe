@@ -7,14 +7,14 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_hostStartView_einauschecken"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_margin"
             android:layout_marginTop="@dimen/side_margin"
             android:layout_marginEnd="@dimen/side_margin"
             android:fontFamily="@font/roboto_mono"
-            android:text="Ein-/Auschecken"
+            android:text="@string/checkinout_text"
             android:textColor="@color/black"
             app:icon="@drawable/ic_baseline_qr_code_2_24"
             app:iconGravity="textStart"
@@ -24,45 +24,46 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_hostStartView_gaesteliste"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/line_spacing"
             android:fontFamily="@font/roboto_mono"
-            android:text="Gästeliste"
+            android:text="@string/guestlist_text"
             android:textColor="@color/black"
             app:icon="@drawable/ic_baseline_format_list_bulleted_24"
             app:iconGravity="textStart"
             app:iconTint="@color/black"
-            app:layout_constraintEnd_toEndOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="@+id/button_hostStartView_einauschecken"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintStart_toStartOf="@+id/button_hostStartView_einauschecken"
+            app:layout_constraintTop_toBottomOf="@+id/button_hostStartView_einauschecken" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/area_list"
+            android:id="@+id/recyclerView_hostStartView_areaList"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/content_line_spacing"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
-            app:layout_constraintStart_toStartOf="@+id/button2"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/button_hostStartView_tagesabschluss"
+            app:layout_constraintEnd_toEndOf="@+id/button_hostStartView_gaesteliste"
+            app:layout_constraintStart_toStartOf="@+id/button_hostStartView_gaesteliste"
+            app:layout_constraintTop_toBottomOf="@+id/button_hostStartView_gaesteliste" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button_hostStartView_tagesabschluss"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/roboto_mono"
-            android:text="Tagesabschluss"
+            android:text="@string/dailyclosing_text"
             android:textColor="@color/black"
-            app:icon="@drawable/ic_baseline_format_list_bulleted_24"
+            app:icon="@drawable/ic_baseline_bedtime_24"
             app:iconGravity="textStart"
             app:iconTint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/area_list">
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView_hostStartView_areaList"
+            app:layout_constraintStart_toStartOf="@+id/recyclerView_hostStartView_areaList" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
