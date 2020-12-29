@@ -1,4 +1,4 @@
-package com.hkproductions.listme.host.StartView;
+package com.hkproductions.listme.host.startview;
 
 import androidx.fragment.app.Fragment;
 
