@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.mainScreenFragment,
-                R.id.guestStartViewFragment
+                R.id.guestStartViewFragment,
+                R.id.hostStartViewFragment
             ),
             drawerLayout
         )

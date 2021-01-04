@@ -24,6 +24,10 @@ class HomeFragment : Fragment() {
             this.findNavController().navigate(HomeFragmentDirections.actionStartGuest())
         }
 
+        binding.homeHostButton.setOnClickListener {
+            this.findNavController().navigate(HomeFragmentDirections.actionStartHost())
+        }
+
         return binding.root
     }
 

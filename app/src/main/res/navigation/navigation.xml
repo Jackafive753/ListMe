@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/host_navigation">
+    app:startDestination="@id/mainScreenFragment">
     <fragment
         android:id="@+id/mainScreenFragment"
         android:name="com.hkproductions.listme.main.HomeFragment"
@@ -15,7 +15,7 @@
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_right" />
         <action
-            android:id="@+id/action_mainScreenFragment_to_host_navigation"
+            android:id="@+id/action_start_host"
             app:destination="@id/host_navigation" />
     </fragment>
     <navigation
