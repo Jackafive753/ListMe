@@ -24,6 +24,7 @@
     <string name="guestlist_text">Gästeliste</string>
     <string name="dailyclosing_text">Tagesabschluss</string>
     <string name="allCheckout_text">Alle Auschecken</string>
+    <string name="checkout_text">Auschecken</string>
 
     <!-- Strings DetailView Header-->
     <string name="name_text">Name</string>
@@ -73,4 +74,5 @@
     <!-- Image descriptions-->
     <string name="simple_box_image_description">simpleBox</string>
     <string name="code_image_description">Code</string>
+    <string name="expandcollapse_arrow_image_description"></string>
 </resources>
