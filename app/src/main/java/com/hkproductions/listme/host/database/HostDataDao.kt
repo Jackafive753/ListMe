@@ -38,4 +38,10 @@ interface HostDataDao {
         endtime: Long
     ): LiveData<List<HostData>>
 
+    @Query("SELECT * FROM area_data_table")
+    suspend fun getAllAreas(): List<Area>
+
+    @Query("SELECT * FROM host_data_table WHERE area_name = :area AND end_time_milli = -1")
+    suspend fun getOpenEntriesInArea(area: String): List<HostData>
+
 }
