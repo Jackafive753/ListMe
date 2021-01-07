@@ -121,7 +121,8 @@
         <fragment
             android:id="@+id/hostStartViewFragment"
             android:name="com.hkproductions.listme.host.startview.HostStartViewFragment"
-            android:label="HostStartViewFragment" >
+            android:label="HostStartViewFragment"
+            tools:layout="@layout/host_fragment_startview">
             <action
                 android:id="@+id/action_hostStartViewFragment_to_guestListFragment"
                 app:destination="@id/guestListFragment"

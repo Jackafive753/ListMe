@@ -25,6 +25,7 @@
     <string name="dailyclosing_text">Tagesabschluss</string>
     <string name="allCheckout_text">Alle Auschecken</string>
     <string name="checkout_text">Auschecken</string>
+    <string name="host_scan_header">Scannen sie den Code des Gastes</string>
 
     <!-- Strings DetailView Header-->
     <string name="name_text">Name</string>
@@ -74,5 +75,5 @@
     <!-- Image descriptions-->
     <string name="simple_box_image_description">simpleBox</string>
     <string name="code_image_description">Code</string>
-    <string name="expandcollapse_arrow_image_description"></string>
+    <string name="expandcollapse_arrow_image_description">Ein Pfeilicon für expand oder collapse</string>
 </resources>

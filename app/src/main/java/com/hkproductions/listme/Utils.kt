@@ -1,6 +1,7 @@
 package com.hkproductions.listme
 
 import android.graphics.Bitmap
+import android.util.Log
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
@@ -79,8 +80,9 @@ suspend fun contactListToText(contacts: List<GuestData>): String {
  * @param text CSV String convert into GuestData
  */
 suspend fun textToContact(text: String): GuestData {
-    val stringList: List<String> = text.split(";")
+    val stringList: List<String> = text.split(";").dropLast(1)
     val data = GuestData()
+    Log.i("Listme", "${stringList.size} ${stringList.toString()}")
     data.apply {
         firstName = stringList[0]
         lastName = stringList[1]
@@ -97,17 +99,40 @@ suspend fun textToContact(text: String): GuestData {
  * get an string and convert into HostData
  * @param text CSV String convert into HostData
  */
-suspend fun textToGuest(text: String): HostData {
-    val stringList: List<String> = text.split(";")
-    val data = HostData()
-    data.apply {
-        firstName = stringList[0]
-        lastName = stringList[1]
-        street = stringList[2]
-        houseNumber = stringList[3]
-        postalCode = stringList[4]
-        city = stringList[5]
-        phoneNumber = stringList[6]
+suspend fun textToGuestList(text: String): List<HostData> {
+    /*
+    make an iterator over stringlist
+    make stringlist out of the result string
+     */
+    val stringList = text.split(";").dropLast(1).iterator()
+    val guestList = mutableListOf<HostData>()
+
+    while (stringList.hasNext()) {
+        val previousData = guestList.lastOrNull()
+        val data = HostData()
+        data.apply {
+            firstName = stringList.next()
+            lastName = stringList.next()
+            street = when (val s = stringList.next()) {
+                "" -> previousData?.street!!
+                else -> s
+            }
+            houseNumber = when (val s = stringList.next()) {
+                "" -> previousData?.houseNumber!!
+                else -> s
+            }
+            postalCode = when (val s = stringList.next()) {
+                "" -> previousData?.postalCode!!
+                else -> s
+            }
+            city = when (val s = stringList.next()) {
+                "" -> previousData?.city!!
+                else -> s
+            }
+            phoneNumber = stringList.next()
+        }
+        guestList.add(data)
     }
-    return data
+
+    return guestList
 }

@@ -7,11 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.hkproductions.listme.host.database.Area
 import com.hkproductions.listme.host.database.HostData
 import com.hkproductions.listme.host.database.HostDataDao
+import com.hkproductions.listme.textToGuestList
 import kotlinx.coroutines.launch
 
 class HostStartViewModel(val database: HostDataDao) : ViewModel() {
 
     val openEntries: LiveData<List<HostData>> = database.getOpenEntries()
+
+    private val _scanResult = MutableLiveData<LongArray>()
+    val scanResult: LiveData<LongArray>
+        get() = _scanResult
 
     private val _checkedInAreas = MutableLiveData<Map<Area, List<HostData>>>()
     val checkedInAreas: LiveData<Map<Area, List<HostData>>>
@@ -28,8 +33,18 @@ class HostStartViewModel(val database: HostDataDao) : ViewModel() {
             for (area in database.getAllAreas()) {
                 map.put(area, database.getOpenEntriesInArea(area.name))
             }
-            map.put(Area(name = "NO_AREA"), database.getOpenEntriesInArea(""))
+            map[Area(name = "NO_AREA")] = database.getOpenEntriesInArea("")
             _checkedInAreas.value = map
+        }
+    }
+
+    fun scannedCode(result: String) {
+        viewModelScope.launch {
+            try {
+                val guestList = textToGuestList(result)
+            } catch (e: NoSuchElementException) {
+                //TODO ERROR HANDLING Scanned Code are Illegal
+            }
         }
     }
 
