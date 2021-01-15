@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hkproductions.listme.host.tablemanagement.AreaManagementViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout_areaManagement"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/side_margin"
+            android:hint="@string/area_designation_text"
+            android:inputType="textPersonName"
+            app:endIconMode="clear_text"
+            app:layout_constraintEnd_toStartOf="@+id/button_areaManagement_okDesignation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_areaManagement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:text="@={viewModel.designation}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_areaManagement_okDesignation"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:layout_weight="1"
+            android:text="@android:string/ok"
+            app:layout_constraintBottom_toBottomOf="@+id/inputLayout_areaManagement"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/inputLayout_areaManagement" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/areas_label"
+            app:layout_constraintBottom_toBottomOf="@+id/button_areaManagement_addArea"
+            app:layout_constraintStart_toStartOf="@+id/inputLayout_areaManagement"
+            app:layout_constraintTop_toTopOf="@+id/button_areaManagement_addArea"
+            app:layout_constraintVertical_bias="0.75" />
+
+        <Button
+            android:id="@+id/button_areaManagement_addArea"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/double_line_spacing"
+            android:layout_marginTop="@dimen/double_line_spacing"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:text="@string/add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayout_areaManagement" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_areaManagement"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:layout_marginBottom="@dimen/side_margin"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_areaManagement_addArea" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
