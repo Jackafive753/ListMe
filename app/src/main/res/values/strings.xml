@@ -26,6 +26,8 @@
     <string name="allCheckout_text">Alle Auschecken</string>
     <string name="checkout_text">Auschecken</string>
     <string name="host_scan_header">Scannen sie den Code des Gastes</string>
+    <string name="area_designation_text">Bereichsbeschreibung</string>
+    <string name="areas_label">Bereiche:</string>
 
     <!-- Strings DetailView Header-->
     <string name="name_text">Name</string>
@@ -76,4 +78,5 @@
     <string name="simple_box_image_description">simpleBox</string>
     <string name="code_image_description">Code</string>
     <string name="expandcollapse_arrow_image_description">Ein Pfeilicon für expand oder collapse</string>
+    <string name="delete_icon_description">Mülleimer zum löschen</string>
 </resources>
