@@ -79,4 +79,7 @@
     <string name="code_image_description">Code</string>
     <string name="expandcollapse_arrow_image_description">Ein Pfeilicon für expand oder collapse</string>
     <string name="delete_icon_description">Mülleimer zum löschen</string>
+    <string name="date_label">Datum</string>
+    <string name="timeframelabel">Zeitraum</string>
+    <string name="overlapping_entries">Überschneidende Einträge</string>
 </resources>
