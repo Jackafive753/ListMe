@@ -1,9 +1,11 @@
 package com.hkproductions.listme.guest.detailview
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -64,7 +66,18 @@ class GuestDetailFragment : Fragment() {
         }
 
         binding.deleteButton.setOnClickListener {
-            viewModel.deleteData()
+            val alertDialogBuilder = AlertDialog.Builder(context)
+            alertDialogBuilder.setMessage("Datensatz wirklich löschen?")
+            alertDialogBuilder.setTitle("Löschen von Daten")
+            alertDialogBuilder.setPositiveButton("Löschen") { dialog, which ->
+                Toast.makeText(context, "Daten gelöscht!", Toast.LENGTH_LONG).show()
+                viewModel.deleteData()
+            }
+            alertDialogBuilder.setNegativeButton("Abbrechen") { dialog, which ->
+                Toast.makeText(context, "Abgebrochen", Toast.LENGTH_LONG).show()
+            }
+            alertDialogBuilder.show()
+
             this.findNavController().navigate(GuestDetailFragmentDirections.actionAfterDelete())
         }
 
