@@ -1,20 +1,36 @@
 package com.hkproductions.listme.host.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface HostDataDao {
 
+    //INSERT
     @Insert
-    fun insert(data: HostData)
+    suspend fun insertHostData(data: HostData)
+
+    @Insert
+    suspend fun insertArea(area: Area)
+
+    //UPDATE
+    @Update
+    suspend fun updateHostData(data: HostData)
 
     @Update
-    fun update(data: HostData)
+    suspend fun updateArea(area: Area)
 
+    //DELETE
+    @Delete
+    suspend fun deleteHostData(data: HostData)
+
+    @Delete
+    suspend fun deleteArea(area: Area)
+
+    @Query("DELETE FROM area_data_table WHERE areaId = :areaId")
+    suspend fun deleteAreaById(areaId: Long)
+
+    //HOSTDATA - GET
     @Query("SELECT * FROM host_data_table WHERE end_time_milli = -1")
     fun getOpenEntries(): LiveData<List<HostData>>
 
@@ -38,10 +54,27 @@ interface HostDataDao {
         endtime: Long
     ): LiveData<List<HostData>>
 
+
+    //AREA - GET
+    @Query("SELECT area_qualifier FROM area_data_table LIMIT 1")
+    suspend fun getAreaDesignation(): String
+
+    @Query("SELECT * FROM area_data_table WHERE areaId = :id LIMIT 1")
+    fun getLiveAreaById(id: Long): LiveData<Area>
+
+    @Query("SELECT * FROM area_data_table WHERE areaId = :areaId LIMIT 1")
+    suspend fun getAreaById(areaId: Long): Area
+
     @Query("SELECT * FROM area_data_table")
-    suspend fun getAllAreas(): List<Area>
+    fun getAllAreas(): LiveData<List<Area>>
+
+    @Query("SELECT areaId FROM area_data_table")
+    fun getAllAreaIds(): LiveData<List<Long>>
+
+    @Query("SELECT * FROM area_data_table")
+    suspend fun getAllAreasAsList(): List<Area>
 
     @Query("SELECT * FROM host_data_table WHERE area_name = :area AND end_time_milli = -1")
-    suspend fun getOpenEntriesInArea(area: String): List<HostData>
+    suspend fun getOpenEntriesInAreaAsList(area: String): List<HostData>
 
 }

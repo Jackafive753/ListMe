@@ -30,10 +30,10 @@ class HostStartViewModel(val database: HostDataDao) : ViewModel() {
     fun actualizeMap() {
         viewModelScope.launch {
             val map = mutableMapOf<Area, List<HostData>>()
-            for (area in database.getAllAreas()) {
-                map.put(area, database.getOpenEntriesInArea(area.name))
+            for (area in database.getAllAreasAsList()) {
+                map.put(area, database.getOpenEntriesInAreaAsList(area.name))
             }
-            map[Area(name = "NO_AREA")] = database.getOpenEntriesInArea("")
+            map[Area(name = "NO_AREA")] = database.getOpenEntriesInAreaAsList("")
             _checkedInAreas.value = map
         }
     }
