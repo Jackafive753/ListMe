@@ -28,7 +28,7 @@
     <string name="host_scan_header">Scannen sie den Code des Gastes</string>
     <string name="area_designation_text">Bereichsbeschreibung</string>
     <string name="areas_label">Bereiche:</string>
-
+    <string name="cancel">Abbrechen</string>
     <!-- Strings DetailView Header-->
     <string name="name_text">Name</string>
     <string name="street_hnr_text">Straße, Hausnr.</string>
