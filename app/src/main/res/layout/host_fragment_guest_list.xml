@@ -84,35 +84,18 @@
         app:layout_constraintStart_toEndOf="@+id/editTextTimeStart"
         app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
-    <Button
-        android:id="@+id/buttonSearch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/side_margin"
-        android:layout_marginTop="@dimen/content_line_spacing"
-        android:layout_marginEnd="@dimen/side_margin"
-        android:text="@string/search_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTimeStart" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.40218878" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewGuests"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/side_margin"
+        android:layout_marginTop="@dimen/content_line_spacing"
         android:layout_marginEnd="@dimen/side_margin"
+        android:layout_marginBottom="@dimen/content_line_spacing"
         app:layout_constraintBottom_toTopOf="@+id/buttonShowDetailList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline10" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTimeStart" />
 
     <Button
         android:id="@+id/buttonShowDetailList"
