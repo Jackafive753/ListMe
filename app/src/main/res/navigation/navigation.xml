@@ -124,12 +124,12 @@
             android:label="HostStartViewFragment"
             tools:layout="@layout/host_fragment_startview">
             <action
-                android:id="@+id/action_hostStartViewFragment_to_guestListFragment"
+                android:id="@+id/action_show_guest_list"
                 app:destination="@id/guestListFragment"
                 app:enterAnim="@anim/fragment_open_enter"
                 app:exitAnim="@anim/fragment_open_exit" />
             <action
-                android:id="@+id/action_hostStartViewFragment_to_scanResultFragment"
+                android:id="@+id/action_show_scan_result"
                 app:destination="@id/scanResultFragment"
                 app:enterAnim="@anim/fragment_open_enter"
                 app:exitAnim="@anim/fragment_open_exit" />
@@ -139,12 +139,12 @@
             android:name="com.hkproductions.listme.host.guestlist.GuestListFragment"
             android:label="GuestListFragment" >
             <action
-                android:id="@+id/action_guestListFragment_to_guestDetailViewFragment"
+                android:id="@+id/action_show_guest_details"
                 app:destination="@id/guestDetailViewFragment"
                 app:enterAnim="@anim/fragment_open_enter"
                 app:exitAnim="@anim/fragment_open_exit" />
             <action
-                android:id="@+id/action_guestListFragment_to_detailListFragment"
+                android:id="@+id/action_from_list_show_detail_list"
                 app:destination="@id/detailListFragment"
                 app:enterAnim="@anim/fragment_open_enter"
                 app:exitAnim="@anim/fragment_open_exit" />
@@ -152,17 +152,15 @@
         <fragment
             android:id="@+id/scanResultFragment"
             android:name="com.hkproductions.listme.host.scanresult.ScanResultFragment"
-            android:label="ScanResultFragment" >
-            <action
-                android:id="@+id/action_scanResultFragment_to_guestDetailViewFragment"
-                app:destination="@id/guestDetailViewFragment"
-                app:enterAnim="@anim/fragment_open_enter"
-                app:exitAnim="@anim/fragment_open_exit" />
-        </fragment>
+            android:label="ScanResultFragment" />
         <fragment
             android:id="@+id/guestDetailViewFragment"
             android:name="com.hkproductions.listme.host.guestdetailview.GuestDetailViewFragment"
-            android:label="GuestDetailViewFragment" />
+            android:label="GuestDetailViewFragment">
+            <action
+                android:id="@+id/action_from_detail_show_detail_list"
+                app:destination="@id/detailListFragment" />
+        </fragment>
         <fragment
             android:id="@+id/detailListFragment"
             android:name="com.hkproductions.listme.host.detaillist.DetailListFragment"

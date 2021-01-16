@@ -61,6 +61,7 @@
     <string name="blank_error_text">Bitte ausfüllen</string>
     <string name="postal_error_text">Ungültige PLZ</string>
     <string name="create_group_non_selected_error_text">Bitte wählen Sie mindestens eine Person aus.</string>
+    <string name="scan_failure_error_text">Scan war fehlerhaft! Versuchen sie es erneut.</string>
 
     <!-- Message Text -->
     <string name="data_safed">Daten wurden gespeichert</string>

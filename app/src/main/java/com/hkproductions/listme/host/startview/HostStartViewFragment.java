@@ -61,6 +61,11 @@ public class HostStartViewFragment extends Fragment {
             integrator.initiateScan();
         });
 
+        viewModel.getNavigateToScanResult().observe(getViewLifecycleOwner(), longs -> {
+            //TODO if Max pushed his navigation and the scanresultFragment has an argument then uncomment next line
+//            Navigation.findNavController(getView()).navigate(HostStartViewFragmentDirections.actionShowScanResult(longs));
+        });
+
         //DEVELOPERMODE
         binding.buttonHostStartClearHostData.setOnClickListener(event -> {
             viewModel.clearHostData();
@@ -74,7 +79,7 @@ public class HostStartViewFragment extends Fragment {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
-                viewModel.scannedCode(result.getContents());
+                viewModel.scannedCode(result.getContents(), getContext());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
