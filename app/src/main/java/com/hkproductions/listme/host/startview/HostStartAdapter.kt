@@ -85,6 +85,6 @@ sealed class DataItem {
     }
 
     data class NameItem(val data: HostData) : DataItem() {
-        override val id: Long = data.guestDataId
+        override val id: Long = data.hostDataId
     }
 }
