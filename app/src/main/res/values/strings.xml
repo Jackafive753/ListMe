@@ -82,4 +82,10 @@
     <string name="date_label">Datum</string>
     <string name="timeframelabel">Zeitraum</string>
     <string name="overlapping_entries">Überschneidende Einträge</string>
+    <string name="aktuelles_datum">aktuelles_datum</string>
+    <string name="calendarIconImage">calendarIcon</string>
+    <string name="timePickerStartTimeLabel">Uhrzeit Beginn</string>
+    <string name="timePickerEndTimeLabel">Uhrzeit Ende</string>
+    <string name="search_text">Suchen</string>
+    <string name="detailliste_anzeigen">Detailliste anzeigen</string>
 </resources>
