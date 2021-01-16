@@ -67,18 +67,25 @@ class GuestDetailFragment : Fragment() {
 
         binding.deleteButton.setOnClickListener {
             val alertDialogBuilder = AlertDialog.Builder(context)
-            alertDialogBuilder.setMessage("Datensatz wirklich löschen?")
-            alertDialogBuilder.setTitle("Löschen von Daten")
-            alertDialogBuilder.setPositiveButton("Löschen") { dialog, which ->
-                Toast.makeText(context, "Daten gelöscht!", Toast.LENGTH_LONG).show()
+            alertDialogBuilder.setMessage(resources.getString(R.string.alert_deleteguestdata_message))
+            alertDialogBuilder.setTitle(resources.getString(R.string.alert_deleteguestdata_title))
+            alertDialogBuilder.setPositiveButton(resources.getString(R.string.alert_deleteguestdata_positive_delete)) { dialog, which ->
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.alert_deleteguestdata_positive_feedback),
+                    Toast.LENGTH_LONG
+                ).show()
                 viewModel.deleteData()
+                this.findNavController().navigate(GuestDetailFragmentDirections.actionAfterDelete())
             }
-            alertDialogBuilder.setNegativeButton("Abbrechen") { dialog, which ->
-                Toast.makeText(context, "Abgebrochen", Toast.LENGTH_LONG).show()
+            alertDialogBuilder.setNegativeButton(resources.getString(R.string.alert_deleteguestdata_negative_cancel)) { dialog, which ->
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.alert_deleteguestdata_negative_feedback),
+                    Toast.LENGTH_LONG
+                ).show()
             }
             alertDialogBuilder.show()
-
-            this.findNavController().navigate(GuestDetailFragmentDirections.actionAfterDelete())
         }
 
         return binding.root
