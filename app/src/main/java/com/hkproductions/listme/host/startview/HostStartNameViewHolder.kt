@@ -5,17 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hkproductions.listme.databinding.HostItemStartNameBinding
-import com.hkproductions.listme.host.checkout
 import com.hkproductions.listme.host.database.HostData
 
 class HostStartNameViewHolder(private val binding: HostItemStartNameBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     @SuppressLint("SetTextI18n")
-    public fun bind(item: HostData) {
-        binding.textViewStartNameItemName.text = "$item.firstName $item.lastname"
+    public fun bind(item: HostData, clickListener: CheckoutListener) {
+        binding.textViewStartNameItemName.text = "${item.firstName} ${item.lastName}"
         binding.buttonStartNameItemCheckout.setOnClickListener {
-            checkout(item)
+            clickListener.onClick(listOf(item))
         }
     }
 

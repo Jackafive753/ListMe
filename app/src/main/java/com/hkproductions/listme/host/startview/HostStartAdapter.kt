@@ -16,7 +16,8 @@ import kotlinx.coroutines.withContext
 private const val VIEW_TYPE_AREA_ITEM = 0
 private const val VIEW_TYPE_NAME_ITEM = 1
 
-class HostStartAdapter : ListAdapter<DataItem, RecyclerView.ViewHolder>(DiffCallback()) {
+class HostStartAdapter(val clickListener: CheckoutListener) :
+    ListAdapter<DataItem, RecyclerView.ViewHolder>(DiffCallback()) {
 
     private val adapterScope = CoroutineScope(Dispatchers.Default)
 
@@ -32,11 +33,11 @@ class HostStartAdapter : ListAdapter<DataItem, RecyclerView.ViewHolder>(DiffCall
         when (holder) {
             is HostStartNameViewHolder -> {
                 val item = getItem(position) as NameItem
-                holder.bind(item.data)
+                holder.bind(item.data, clickListener)
             }
             is HostStartAreaViewHolder -> {
                 val item = getItem(position) as AreaItem
-                holder.bind(item.area, item.nameList)
+                holder.bind(item.area, item.nameList, clickListener)
             }
         }
     }
@@ -85,6 +86,6 @@ sealed class DataItem {
     }
 
     data class NameItem(val data: HostData) : DataItem() {
-        override val id: Long = data.guestDataId
+        override val id: Long = data.hostDataId
     }
 }

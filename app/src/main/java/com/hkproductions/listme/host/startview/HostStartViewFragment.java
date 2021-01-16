@@ -41,7 +41,11 @@ public class HostStartViewFragment extends Fragment {
                 )).get(HostStartViewModel.class
         );
 
-        HostStartAdapter adapter = new HostStartAdapter();
+        HostStartAdapter adapter = new HostStartAdapter(new CheckoutListener(
+                (hostDataids) -> {
+                    viewModel.checkout(hostDataids);
+                    return null;
+                }));
         binding.recyclerViewHostStartViewAreaList.setAdapter(adapter);
 
         viewModel.getOpenEntries().observe(getViewLifecycleOwner(),
@@ -57,6 +61,19 @@ public class HostStartViewFragment extends Fragment {
             integrator.initiateScan();
         });
 
+        viewModel.getNavigateToScanResult().observe(getViewLifecycleOwner(), longs -> {
+            //TODO if Max pushed his navigation and the scanresultFragment has an argument then uncomment next line
+//            Navigation.findNavController(getView()).navigate(HostStartViewFragmentDirections.actionShowScanResult(longs));
+        });
+
+        //To Delete all HostDatas that older than dataLifeSpan
+        viewModel.refreshDatabase();
+
+        //DEVELOPERMODE
+        binding.buttonHostStartClearHostData.setOnClickListener(event -> {
+            viewModel.clearHostData();
+        });
+
         return binding.getRoot();
     }
 
@@ -65,7 +82,7 @@ public class HostStartViewFragment extends Fragment {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
-                viewModel.scannedCode(result.getContents());
+                viewModel.scannedCode(result.getContents(), getContext());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

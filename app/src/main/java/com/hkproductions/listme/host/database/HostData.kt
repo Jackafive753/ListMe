@@ -22,7 +22,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "host_data_table")
 data class HostData(
     @PrimaryKey(autoGenerate = true)
-    var guestDataId: Long = 0L,
+    var hostDataId: Long = 0L,
 
     @ColumnInfo(name = "first_name")
     var firstName: String = "",

@@ -29,12 +29,17 @@
     <string name="area_designation_text">Bereichsbeschreibung</string>
     <string name="areas_label">Bereiche:</string>
     <string name="cancel">Abbrechen</string>
-    <!-- Strings DetailView Header-->
-    <string name="name_text">Name</string>
-    <string name="street_hnr_text">Straße, Hausnr.</string>
-    <string name="city_postal_text">Ort, PLZ</string>
-
+    <string name="overlapping_entries">Überschneidende Einträge</string>
     <string name="scan_data_button">Daten scannen</string>
+    <string name="create_phone_owner">Daten erstellen</string>
+
+    <!-- Alert Dialog Strings delete GuestData-->
+    <string name="alert_deleteguestdata_message">Datensatz unwiderruflich löschen?</string>
+    <string name="alert_deleteguestdata_title">Daten löschen</string>
+    <string name="alert_deleteguestdata_positive_delete">Löschen</string>
+    <string name="alert_deleteguestdata_negative_cancel">Abbrechen</string>
+    <string name="alert_deleteguestdata_positive_feedback">Datensatz erfolgreich gelöscht</string>
+    <string name="alert_deleteguestdata_negative_feedback">Löschvorgang abgebrochen</string>
 
     <!-- Strings GuestData and HostData attributes-->
     <string name="first_name_text">Vorname</string>
@@ -46,13 +51,17 @@
     <string name="house_number_text_short">HausNr.</string>
     <string name="house_number_text">Hausnummer</string>
     <string name="phone_number_text">Telefonnummer</string>
-
-    <string name="create_phone_owner">Daten erstellen</string>
+    <string name="date_label">Datum</string>
+    <string name="name_text">Name</string>
+    <string name="street_hnr_text">Straße, Hausnr.</string>
+    <string name="city_postal_text">Ort, PLZ</string>
+    <string name="timeframelabel">Zeitraum</string>
 
     <!-- Error Text-->
     <string name="blank_error_text">Bitte ausfüllen</string>
     <string name="postal_error_text">Ungültige PLZ</string>
     <string name="create_group_non_selected_error_text">Bitte wählen Sie mindestens eine Person aus.</string>
+    <string name="scan_failure_error_text">Scan war fehlerhaft! Versuchen sie es erneut.</string>
 
     <!-- Message Text -->
     <string name="data_safed">Daten wurden gespeichert</string>
@@ -88,4 +97,5 @@
     <string name="timePickerEndTimeLabel">Uhrzeit Ende</string>
     <string name="search_text">Suchen</string>
     <string name="detailliste_anzeigen">Detailliste anzeigen</string>
+
 </resources>

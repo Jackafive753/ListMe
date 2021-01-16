@@ -8,7 +8,7 @@ interface HostDataDao {
 
     //INSERT
     @Insert
-    suspend fun insertHostData(data: HostData)
+    suspend fun insertHostData(data: HostData): Long
 
     @Insert
     suspend fun insertArea(area: Area)
@@ -30,12 +30,21 @@ interface HostDataDao {
     @Query("DELETE FROM area_data_table WHERE areaId = :areaId")
     suspend fun deleteAreaById(areaId: Long)
 
+    @Query("DELETE FROM host_data_table")
+    suspend fun deleteAllHostData()
+
     //HOSTDATA - GET
+    @Query("SELECT * FROM host_data_table WHERE hostDataId = :id LIMIT 1")
+    suspend fun getHostDataById(id: Long): HostData
+
     @Query("SELECT * FROM host_data_table WHERE end_time_milli = -1")
     fun getOpenEntries(): LiveData<List<HostData>>
 
     @Query("SELECT * FROM host_data_table")
     fun getAllEntries(): LiveData<List<HostData>>
+
+    @Query("SELECT * FROM host_data_table")
+    suspend fun getAllEntriesAsList(): List<HostData>
 
     @Query("SELECT DISTINCT * FROM host_data_table WHERE first_name+' '+last_name LIKE '%'+:name+'%'")
     fun getEntriesByName(name: String): LiveData<List<HostData>>
