@@ -1,5 +1,6 @@
 package com.hkproductions.listme.host
 
+import com.hkproductions.listme.Constant.hostDataLifeSpan
 import com.hkproductions.listme.host.database.HostDataDao
 import com.hkproductions.listme.textToGuestList
 
@@ -34,13 +35,9 @@ suspend fun refreshDatabase(database: HostDataDao) {
     val hostDatas = database.getAllEntriesAsList()
     val currentTime = System.currentTimeMillis()
 
-    //2.5 weeks = 1,512,000,000 milliseconds
-    //2 weeks = 1,209,600,000 milliseconds
-    val dataLifeSpan = 1512000000
-
     for (data in hostDatas) {
         //if data older then dataLifeSpan then delete data
-        if (data.endTimeMilli < currentTime - dataLifeSpan) {
+        if (data.endTimeMilli < currentTime - hostDataLifeSpan) {
             database.deleteHostData(data)
         }
     }
