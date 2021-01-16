@@ -129,11 +129,6 @@
                 app:enterAnim="@anim/fragment_open_enter"
                 app:exitAnim="@anim/fragment_open_exit" />
             <action
-                android:id="@+id/action_hostStartViewFragment_to_tableManagementFragment"
-                app:destination="@id/tableManagementFragment"
-                app:enterAnim="@anim/fragment_open_enter"
-                app:exitAnim="@anim/fragment_open_exit" />
-            <action
                 android:id="@+id/action_hostStartViewFragment_to_scanResultFragment"
                 app:destination="@id/scanResultFragment"
                 app:enterAnim="@anim/fragment_open_enter"
@@ -155,10 +150,6 @@
                 app:exitAnim="@anim/fragment_open_exit" />
         </fragment>
         <fragment
-            android:id="@+id/tableManagementFragment"
-            android:name="com.hkproductions.listme.host.tablemanagement.TableManagementFragment"
-            android:label="TableManagementFragment" />
-        <fragment
             android:id="@+id/scanResultFragment"
             android:name="com.hkproductions.listme.host.scanresult.ScanResultFragment"
             android:label="ScanResultFragment" >
@@ -176,5 +167,10 @@
             android:id="@+id/detailListFragment"
             android:name="com.hkproductions.listme.host.detaillist.DetailListFragment"
             android:label="DetailListFragment" />
+        <fragment
+            android:id="@+id/areaManagementFragment"
+            android:name="com.hkproductions.listme.host.tablemanagement.AreaManagementFragment"
+            android:label="AreaManagementFragment"
+            tools:layout="@layout/host_fragment_area_management" />
     </navigation>
 </navigation>
