@@ -65,6 +65,12 @@ class HostStartViewModel(val database: HostDataDao) : ViewModel() {
         }
     }
 
+    fun refreshDatabase() {
+        viewModelScope.launch {
+            com.hkproductions.listme.host.refreshDatabase(database)
+        }
+    }
+
     /**
      * Method only for DEVELOPERMODE
      * clear host_data_table

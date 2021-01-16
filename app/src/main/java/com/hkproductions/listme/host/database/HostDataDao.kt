@@ -43,6 +43,9 @@ interface HostDataDao {
     @Query("SELECT * FROM host_data_table")
     fun getAllEntries(): LiveData<List<HostData>>
 
+    @Query("SELECT * FROM host_data_table")
+    suspend fun getAllEntriesAsList(): List<HostData>
+
     @Query("SELECT DISTINCT * FROM host_data_table WHERE first_name+' '+last_name LIKE '%'+:name+'%'")
     fun getEntriesByName(name: String): LiveData<List<HostData>>
 

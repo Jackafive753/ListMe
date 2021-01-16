@@ -66,6 +66,9 @@ public class HostStartViewFragment extends Fragment {
 //            Navigation.findNavController(getView()).navigate(HostStartViewFragmentDirections.actionShowScanResult(longs));
         });
 
+        //To Delete all HostDatas that older than dataLifeSpan
+        viewModel.refreshDatabase();
+
         //DEVELOPERMODE
         binding.buttonHostStartClearHostData.setOnClickListener(event -> {
             viewModel.clearHostData();
