@@ -41,7 +41,11 @@ public class HostStartViewFragment extends Fragment {
                 )).get(HostStartViewModel.class
         );
 
-        HostStartAdapter adapter = new HostStartAdapter();
+        HostStartAdapter adapter = new HostStartAdapter(new CheckoutListener(
+                (hostDataids) -> {
+                    viewModel.checkout(hostDataids);
+                    return null;
+                }));
         binding.recyclerViewHostStartViewAreaList.setAdapter(adapter);
 
         viewModel.getOpenEntries().observe(getViewLifecycleOwner(),
@@ -55,6 +59,11 @@ public class HostStartViewFragment extends Fragment {
             integrator.setPrompt(getResources().getString(R.string.host_scan_header));
             integrator.setOrientationLocked(true);
             integrator.initiateScan();
+        });
+
+        //DEVELOPERMODE
+        binding.buttonHostStartClearHostData.setOnClickListener(event -> {
+            viewModel.clearHostData();
         });
 
         return binding.getRoot();

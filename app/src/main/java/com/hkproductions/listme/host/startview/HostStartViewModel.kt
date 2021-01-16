@@ -31,7 +31,7 @@ class HostStartViewModel(val database: HostDataDao) : ViewModel() {
         viewModelScope.launch {
             val map = mutableMapOf<Area, List<HostData>>()
             for (area in database.getAllAreasAsList()) {
-                map.put(area, database.getOpenEntriesInAreaAsList(area.name))
+                map[area] = database.getOpenEntriesInAreaAsList(area.name)
             }
             map[Area(name = "NO_AREA")] = database.getOpenEntriesInAreaAsList("")
             _checkedInAreas.value = map
@@ -45,6 +45,26 @@ class HostStartViewModel(val database: HostDataDao) : ViewModel() {
             } catch (e: NoSuchElementException) {
                 //TODO ERROR HANDLING Scanned Code are Illegal
             }
+        }
+    }
+
+    fun checkout(hostDataIds: LongArray) {
+        viewModelScope.launch {
+            for (id in hostDataIds) {
+                val hostData = database.getHostDataById(id)
+                hostData.endTimeMilli = System.currentTimeMillis()
+                database.updateHostData(hostData)
+            }
+        }
+    }
+
+    /**
+     * Method only for DEVELOPERMODE
+     * clear host_data_table
+     */
+    fun clearHostData() {
+        viewModelScope.launch {
+            database.deleteAllHostData()
         }
     }
 
