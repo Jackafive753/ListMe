@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -59,6 +60,10 @@ public class HostStartViewFragment extends Fragment {
             integrator.setPrompt(getResources().getString(R.string.host_scan_header));
             integrator.setOrientationLocked(true);
             integrator.initiateScan();
+        });
+
+        binding.buttonHostStartViewGaesteliste.setOnClickListener(event -> {
+            Navigation.findNavController(getView()).navigate(HostStartViewFragmentDirections.actionShowGuestList());
         });
 
         viewModel.getNavigateToScanResult().observe(getViewLifecycleOwner(), longs -> {
