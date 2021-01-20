@@ -4,6 +4,7 @@ import android.app.Application;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,9 @@ public class GuestListFragment extends Fragment {
         binding.recyclerViewGuests.setAdapter(guestAdapter);
 
         //initialize datepicker
+        /**
+         * TODO: alter datepicker to last value
+         */
         binding.imageButtonDatePicker.setOnClickListener(l -> {
             final Calendar c = Calendar.getInstance();
             int mYear = c.get(Calendar.YEAR);
@@ -73,14 +77,14 @@ public class GuestListFragment extends Fragment {
 
         });
         //initialize timepicker startTime
-        binding.editTextTimeStart.setOnClickListener(l -> {
-            alterTime(binding.editTextTimeStart);
+        binding.imageButtonClockStart.setOnClickListener(l -> {
+            alterTime(binding.TextInputEditTextStartTime);
         });
 
 
         //initialize timepicker endTime
-        binding.editTextTimeEnd.setOnClickListener(l -> {
-            alterTime(binding.editTextTimeEnd);
+        binding.imageButtonClockEnd.setOnClickListener(l -> {
+            alterTime(binding.TextInputEditTextEndTime);
         });
         //TODO:: MAKE IMAGEBUTTON, TEXTVIEWS as big as TEXTINPUTLAYOUT with DIMENSIONS hardcoded
 
@@ -90,8 +94,8 @@ public class GuestListFragment extends Fragment {
         viewModel.liveEndTime.observe(getViewLifecycleOwner(), observer);
 
 
-        viewModel.data.observe(getViewLifecycleOwner(), hostData -> guestAdapter.submitList(hostData));
-        return super.onCreateView(inflater, container, savedInstanceState);
+        viewModel.data.observe(getViewLifecycleOwner(), guestAdapter::submitList);
+        return binding.getRoot();
     }
 
     /**
@@ -99,6 +103,7 @@ public class GuestListFragment extends Fragment {
      *
      * @param textView Used for altering the textViews displaying the Time
      *                 Uses TimepickerDialog
+     * TODO: alter TimePicker to last value
      */
     private void alterTime(TextView textView) {
         final Calendar c = Calendar.getInstance();
@@ -106,7 +111,7 @@ public class GuestListFragment extends Fragment {
         int mMinute = c.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
             textView.setText(hourOfDay + ":" + minute);
-            if (textView.getId() == R.id.editTextTimeStart) {
+            if (textView.getId() == R.id.TextInputEditTextStartTime) {
                 viewModel.liveStartTime.setValue((((long) hourOfDay) * 3600000 + ((long) minute) * 6000));
             } else {
                 viewModel.liveEndTime.setValue((((long) hourOfDay) * 3600000 + ((long) minute) * 6000));
