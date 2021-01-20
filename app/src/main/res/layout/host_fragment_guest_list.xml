@@ -2,14 +2,34 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.hkproductions.listme.host.guestlist.GuestListViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/imageButtonClockEnd"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="@dimen/content_line_spacing"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:background="@color/white"
+            android:contentDescription="@string/ContentDescriptionClockIcon"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/TextInputLayoutEndTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/TextInputLayoutEndTime"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCurrentDate"
+            app:srcCompat="@drawable/ic_baseline_access_time_24" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/TextInputLayoutSearchName"
@@ -25,11 +45,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:text="@={viewModel.liveName}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:hint="@string/name_text"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:text="@={viewModel.liveName}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -37,7 +57,8 @@
             android:id="@+id/imageButtonDatePicker"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginTop="@dimen/content_line_spacing"
+            android:layout_marginStart="@dimen/content_line_spacing"
+            android:layout_marginTop="@dimen/line_spacing"
             android:layout_marginEnd="16dp"
             android:adjustViewBounds="false"
             android:background="#FFFFFF"
@@ -45,64 +66,42 @@
             android:cropToPadding="false"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textInputLayoutCurrentDate"
             app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutSearchName"
             app:srcCompat="@drawable/ic_baseline_today_24" />
 
-        <TextView
-            android:id="@+id/editTextDate"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutCurrentDate"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_margin"
-            android:layout_marginTop="@dimen/content_line_spacing"
-            android:layout_marginEnd="@dimen/content_line_spacing"
-            android:ems="10"
-            android:hint="@string/aktuelles_datum"
+            android:layout_marginTop="@dimen/line_spacing"
             app:layout_constraintBottom_toBottomOf="@+id/imageButtonDatePicker"
             app:layout_constraintEnd_toStartOf="@+id/imageButtonDatePicker"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutSearchName" />
+            app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutSearchName">
 
-        <TextView
-            android:id="@+id/editTextTimeStart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/side_margin"
-            android:layout_marginTop="@dimen/content_line_spacing"
-            android:layout_marginEnd="@dimen/content_line_spacing"
-            android:ems="10"
-            android:hint="@string/timePickerStartTimeLabel"
-            android:inputType="time"
-            app:layout_constraintEnd_toStartOf="@+id/editTextTimeEnd"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
-
-        <TextView
-            android:id="@+id/editTextTimeEnd"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/content_line_spacing"
-            android:layout_marginEnd="@dimen/side_margin"
-            android:ems="10"
-            android:hint="@string/timePickerEndTimeLabel"
-            android:inputType="time"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/editTextTimeStart"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/aktuelles_datum" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewGuests"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/side_margin"
-            android:layout_marginTop="@dimen/content_line_spacing"
             android:layout_marginEnd="@dimen/side_margin"
             android:layout_marginBottom="@dimen/content_line_spacing"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/buttonShowDetailList"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTimeStart" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutStartTime" />
 
         <Button
             android:id="@+id/buttonShowDetailList"
@@ -116,5 +115,60 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutStartTime"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonClockStart"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCurrentDate">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/TextInputEditTextStartTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/startzeit" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonClockStart"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="@dimen/content_line_spacing"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            android:background="@color/white"
+            android:contentDescription="@string/ContentDescriptionClockIcon"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutStartTime"
+            app:layout_constraintEnd_toStartOf="@+id/TextInputLayoutEndTime"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textInputLayoutStartTime"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCurrentDate"
+            app:srcCompat="@drawable/ic_baseline_access_time_24" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/TextInputLayoutEndTime"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/content_line_spacing"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonClockEnd"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageButtonClockStart"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCurrentDate">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/TextInputEditTextEndTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/endzeit" />
+        </com.google.android.material.textfield.TextInputLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
