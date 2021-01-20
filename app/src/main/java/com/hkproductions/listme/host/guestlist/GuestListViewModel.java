@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.hkproductions.listme.host.database.HostData;
 import com.hkproductions.listme.host.database.HostDataDao;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -22,12 +23,16 @@ public class GuestListViewModel extends ViewModel {
     public MutableLiveData<Long> liveEndTime= new MutableLiveData<Long>();
     public GuestListViewModel(HostDataDao database){
         this.database = database;
-//        data = database.getEntriesByNameAndTime();
+        liveDate.setValue(Calendar.getInstance().getTimeInMillis());
+        liveStartTime.setValue(0L);
+        liveEndTime.setValue(0L);
+        alterList();
     }
     public void alterList(){
+        Log.i("GuestListAltering", String.valueOf(liveDate.getValue()));
+
         data = database.getEntriesByNameAndTime(liveName.getValue(),
                 liveDate.getValue() + liveStartTime.getValue(),
                 liveDate.getValue() + liveEndTime.getValue());
-        Log.i("GuestListAltering", String.valueOf(liveDate.getValue()));
     }
 }
