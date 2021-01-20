@@ -94,5 +94,8 @@
     <string name="timePickerEndTimeLabel">Uhrzeit Ende</string>
     <string name="search_text">Suchen</string>
     <string name="detailliste_anzeigen">Detailliste anzeigen</string>
+    <string name="startzeit">startZeit</string>
+    <string name="ContentDescriptionClockIcon">simpleClock</string>
+    <string name="endzeit">endZeit</string>
 
 </resources>
