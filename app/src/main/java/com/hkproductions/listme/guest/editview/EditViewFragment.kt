@@ -34,6 +34,11 @@ class EditViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        //Hide Keyboard
+        val inputMethodManager =
+            context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.guest_fragment_edit_view,

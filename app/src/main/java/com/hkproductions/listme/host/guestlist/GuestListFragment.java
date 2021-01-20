@@ -1,38 +1,28 @@
 package com.hkproductions.listme.host.guestlist;
 
-import android.app.Application;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.hkproductions.listme.R;
 import com.hkproductions.listme.databinding.HostFragmentGuestListBinding;
-import com.hkproductions.listme.host.database.HostData;
 import com.hkproductions.listme.host.database.HostDataDao;
 import com.hkproductions.listme.host.database.HostDatabase;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class GuestListFragment extends Fragment {
 
@@ -43,6 +33,10 @@ public class GuestListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        //Hide Keyboard
+        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 
         Observer<Long> observer = aLong -> viewModel.alterList();
 
