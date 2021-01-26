@@ -30,16 +30,22 @@ public class HostStartViewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        //Hide Keyboard
-        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-
         binding = DataBindingUtil.inflate(
                 inflater,
                 R.layout.host_fragment_startview,
                 container,
                 false
         );
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //Hide Keyboard
+        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 
         viewModel = new ViewModelProvider(
                 this,
@@ -85,8 +91,6 @@ public class HostStartViewFragment extends Fragment {
         binding.buttonHostStartClearHostData.setOnClickListener(event -> {
             viewModel.clearHostData();
         });
-
-        return binding.getRoot();
     }
 
     @Override
