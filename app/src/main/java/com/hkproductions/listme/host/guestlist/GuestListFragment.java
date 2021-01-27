@@ -56,19 +56,15 @@ public class GuestListFragment extends Fragment {
         binding.recyclerViewGuests.setAdapter(guestAdapter);
 
         //initialize datepicker
-        /**
-         * TODO: alter datepicker to last value
-         */
+        Calendar c = Calendar.getInstance();
         binding.imageButtonDatePicker.setOnClickListener(l -> {
-            final Calendar c = Calendar.getInstance();
             int mYear = c.get(Calendar.YEAR);
             int mMonth = c.get(Calendar.MONTH);
             int mDay = c.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
-                binding.editTextDate.setText(dayOfMonth + "-" + month + "-" + year);
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year, month, dayOfMonth);
-                viewModel.liveDate.setValue(calendar.getTimeInMillis());
+                binding.editTextDate.setText(dayOfMonth + "-" + month+1 + "-" + year);
+                c.set(year,month,dayOfMonth);
+                viewModel.liveDate.setValue(c.getTimeInMillis());
             }, mYear, mMonth, mDay);
             datePickerDialog.show();
 
