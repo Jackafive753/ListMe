@@ -21,6 +21,8 @@ import com.hkproductions.listme.R;
 import com.hkproductions.listme.databinding.HostFragmentStartviewBinding;
 import com.hkproductions.listme.host.database.HostDatabase;
 
+import java.util.Objects;
+
 public class HostStartViewFragment extends Fragment {
 
     private HostFragmentStartviewBinding binding;
@@ -44,8 +46,8 @@ public class HostStartViewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //Hide Keyboard
-        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+        InputMethodManager inputMethodManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
 
         viewModel = new ViewModelProvider(
                 this,
@@ -76,12 +78,11 @@ public class HostStartViewFragment extends Fragment {
         });
 
         binding.buttonHostStartViewGaesteliste.setOnClickListener(event -> {
-            Navigation.findNavController(getView()).navigate(HostStartViewFragmentDirections.actionShowGuestList());
+            Navigation.findNavController(requireView()).navigate(HostStartViewFragmentDirections.actionShowGuestList());
         });
 
         viewModel.getNavigateToScanResult().observe(getViewLifecycleOwner(), longs -> {
-            //TODO if Max pushed his navigation and the scanresultFragment has an argument then uncomment next line
-//            Navigation.findNavController(getView()).navigate(HostStartViewFragmentDirections.actionShowScanResult(longs));
+            Navigation.findNavController(requireView()).navigate(HostStartViewFragmentDirections.actionShowScanResult(longs));
         });
 
         //To Delete all HostDatas that older than dataLifeSpan
@@ -98,7 +99,7 @@ public class HostStartViewFragment extends Fragment {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
-                viewModel.scannedCode(result.getContents(), getContext());
+                viewModel.scannedCode(result.getContents(), requireContext());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

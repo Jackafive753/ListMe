@@ -24,6 +24,10 @@
     <string name="guestlist_text">Gästeliste</string>
     <string name="dailyclosing_text">Tagesabschluss</string>
     <string name="allCheckout_text">Alle Auschecken</string>
+    <string name="scannedEntrys_single_text">Gescannter Eintrag:</string>
+    <string name="scannedEntrys_multi_text">Gescannte Einträge:</string>
+    <string name="newScan_text">Erneut Scannen</string>
+    <string name="continue_text">Weiter</string>
     <string name="checkout_text">Auschecken</string>
     <string name="host_scan_header">Scannen sie den Code des Gastes</string>
     <string name="area_designation_text">Bereichsbeschreibung</string>
@@ -32,6 +36,8 @@
     <string name="overlapping_entries">Überschneidende Einträge</string>
     <string name="scan_data_button">Daten scannen</string>
     <string name="create_phone_owner">Daten erstellen</string>
+    <string name="checked_in">eingecheckt</string>
+    <string name="checked_out">ausgecheckt</string>
 
     <!-- Strings GuestList -->
     <string name="date_display">%1$d.%2$d.%3$d</string>

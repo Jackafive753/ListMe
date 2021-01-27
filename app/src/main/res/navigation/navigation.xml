@@ -151,8 +151,13 @@
         </fragment>
         <fragment
             android:id="@+id/scanResultFragment"
+            tools:layout="@layout/host_fragment_scanresult"
             android:name="com.hkproductions.listme.host.scanresult.ScanResultFragment"
-            android:label="ScanResultFragment" />
+            android:label="ScanResultFragment" >
+            <argument
+                android:name="hostDataIds"
+                app:argType="long[]" />
+        </fragment>
         <fragment
             android:id="@+id/guestDetailViewFragment"
             android:name="com.hkproductions.listme.host.guestdetailview.GuestDetailViewFragment"
