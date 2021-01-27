@@ -7,7 +7,7 @@ import androidx.room.*
 interface HostDataDao {
 
     //INSERT
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHostData(data: HostData): Long
 
     @Insert
@@ -36,6 +36,9 @@ interface HostDataDao {
     //HOSTDATA - GET
     @Query("SELECT * FROM host_data_table WHERE hostDataId = :id LIMIT 1")
     suspend fun getHostDataById(id: Long): HostData
+
+    @Query("SELECT * FROM host_data_table WHERE first_name = :fn AND last_name = :ln AND street = :s AND house_number = :hn AND postal_code = :pc AND city = :c AND phone_number = :pn AND end_time_milli = -1")
+    suspend fun getHostDataByAttributesAndCheckedIn(fn: String, ln: String, s: String, hn: String, pc: String, c: String, pn: String): HostData?
 
     @Query("SELECT * FROM host_data_table WHERE end_time_milli = -1")
     fun getOpenEntries(): LiveData<List<HostData>>

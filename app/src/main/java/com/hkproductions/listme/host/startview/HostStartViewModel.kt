@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hkproductions.listme.R
-import com.hkproductions.listme.host.checkin
+import com.hkproductions.listme.host.checkinout
 import com.hkproductions.listme.host.database.Area
 import com.hkproductions.listme.host.database.HostData
 import com.hkproductions.listme.host.database.HostDataDao
@@ -48,7 +48,7 @@ class HostStartViewModel(val database: HostDataDao) : ViewModel() {
     fun scannedCode(result: String, context: Context) {
         viewModelScope.launch {
             try {
-                _navigateToScanResult.value = checkin(result, database)
+                _navigateToScanResult.value = checkinout(result, database)
             } catch (e: NoSuchElementException) {
                 Toast.makeText(context, R.string.scan_failure_error_text, Toast.LENGTH_LONG).show()
             }

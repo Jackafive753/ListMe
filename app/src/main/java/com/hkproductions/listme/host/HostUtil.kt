@@ -12,13 +12,27 @@ import com.hkproductions.listme.textToGuestList
  * @param string string from scan result
  * @param database database where the check in happens
  */
-suspend fun checkin(string: String, database: HostDataDao): LongArray {
+suspend fun checkinout(string: String, database: HostDataDao): LongArray {
 
     val guestList = textToGuestList(string)
 
     val hostDataIds = LongArray(guestList.size)
 
     for ((index, guest) in guestList.withIndex()) {
+
+        if (database.getHostDataByAttributesAndCheckedIn(
+                guest.firstName,
+                guest.lastName,
+                guest.street,
+                guest.houseNumber,
+                guest.postalCode,
+                guest.city,
+                guest.phoneNumber
+            ) != null
+        ){
+            guest.endTimeMilli = System.currentTimeMillis()
+        }
+
         //insertHostData returns given id of the guest
         hostDataIds[index] = database.insertHostData(guest)
     }
