@@ -23,6 +23,7 @@ import com.hkproductions.listme.host.database.HostDataDao;
 import com.hkproductions.listme.host.database.HostDatabase;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class GuestListFragment extends Fragment {
 
@@ -55,14 +56,19 @@ public class GuestListFragment extends Fragment {
         GuestAdapter guestAdapter = new GuestAdapter();
         binding.recyclerViewGuests.setAdapter(guestAdapter);
 
-        //initialize datepicker
+
+        // initialize date to current
         Calendar c = Calendar.getInstance();
+        binding.editTextDate.setText(c.get(Calendar.DAY_OF_MONTH)+"."+(c.get(Calendar.MONTH)+1)+"."+(c.get(Calendar.YEAR)));
+        viewModel.liveDate.setValue(c.getTimeInMillis());
+        //initialize datepicker
+
         binding.imageButtonDatePicker.setOnClickListener(l -> {
             int mYear = c.get(Calendar.YEAR);
             int mMonth = c.get(Calendar.MONTH);
             int mDay = c.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
-                binding.editTextDate.setText(dayOfMonth + "-" + month+1 + "-" + year);
+                binding.editTextDate.setText(dayOfMonth + "." + month+1 + "." + year);
                 c.set(year,month,dayOfMonth);
                 viewModel.liveDate.setValue(c.getTimeInMillis());
             }, mYear, mMonth, mDay);
@@ -70,14 +76,25 @@ public class GuestListFragment extends Fragment {
 
         });
         //initialize timepicker startTime
+        Calendar cT = Calendar.getInstance();
+        cT.set(Calendar.HOUR_OF_DAY,0);
+        cT.set(Calendar.MINUTE,0);
+        binding.TextInputEditTextStartTime.setText(cT.get(Calendar.HOUR_OF_DAY)+"0:0"+cT.get(Calendar.MINUTE));
+        viewModel.liveStartTime.setValue(cT.getTimeInMillis());
         binding.imageButtonClockStart.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextStartTime);
         });
 
 
         //initialize timepicker endTime
+        Calendar cTEnd = Calendar.getInstance();
+        cTEnd.set(Calendar.HOUR_OF_DAY,23);
+        cTEnd.set(Calendar.MINUTE,59);
+        binding.TextInputEditTextEndTime.setText(cTEnd.get(Calendar.HOUR_OF_DAY)+":"+cTEnd.get(Calendar.MINUTE));
+        viewModel.liveEndTime.setValue(cTEnd.getTimeInMillis());
         binding.imageButtonClockEnd.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextEndTime);
+            viewModel.alterList();
         });
         //TODO:: MAKE IMAGEBUTTON, TEXTVIEWS as big as TEXTINPUTLAYOUT with DIMENSIONS hardcoded
 
@@ -99,11 +116,17 @@ public class GuestListFragment extends Fragment {
      * TODO: alter TimePicker to last value
      */
     private void alterTime(TextView textView) {
-        final Calendar c = Calendar.getInstance();
+        Calendar c = Calendar.getInstance();
         int mHour = c.get(Calendar.HOUR_OF_DAY);
         int mMinute = c.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
-            textView.setText(hourOfDay + ":" + minute);
+            String hourString="";
+            String minString="";
+            if(hourOfDay < 10){ hourString = "0"+String.valueOf(hourOfDay);}
+            else{hourString = String.valueOf(hourOfDay);}
+            if(minute < 10){minString = "0"+String.valueOf(minute);}
+            else{minString = String.valueOf(minute);};
+            textView.setText(hourString+":"+minString);
             if (textView.getId() == R.id.TextInputEditTextStartTime) {
                 viewModel.liveStartTime.setValue((((long) hourOfDay) * 3600000 + ((long) minute) * 6000));
             } else {
