@@ -87,6 +87,7 @@
                 android:id="@+id/editTextDate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:editable="false"
                 android:hint="@string/aktuelles_datum" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +110,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_margin"
             android:layout_marginEnd="@dimen/side_margin"
-            android:layout_marginBottom="@dimen/side_margin"
             android:text="@string/detailliste_anzeigen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -128,6 +128,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCurrentDate">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:editable="false"
                 android:id="@+id/TextInputEditTextStartTime"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -163,6 +164,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCurrentDate">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:editable="false"
                 android:id="@+id/TextInputEditTextEndTime"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
