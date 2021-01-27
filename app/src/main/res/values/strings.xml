@@ -33,6 +33,8 @@
     <string name="scan_data_button">Daten scannen</string>
     <string name="create_phone_owner">Daten erstellen</string>
 
+    <!-- Strings GuestList -->
+    <string name="date_display">%1$d.%2$d.%3$d</string>
     <!-- Alert Dialog Strings delete GuestData-->
     <string name="alert_deleteguestdata_message">Datensatz unwiderruflich löschen?</string>
     <string name="alert_deleteguestdata_title">Daten löschen</string>
@@ -88,14 +90,14 @@
     <string name="code_image_description">Code</string>
     <string name="expandcollapse_arrow_image_description">Ein Pfeilicon für expand oder collapse</string>
     <string name="delete_icon_description">Mülleimer zum löschen</string>
-    <string name="aktuelles_datum">aktuelles_datum</string>
+    <string name="aktuelles_datum">Datum</string>
     <string name="calendarIconImage">calendarIcon</string>
     <string name="timePickerStartTimeLabel">Uhrzeit Beginn</string>
     <string name="timePickerEndTimeLabel">Uhrzeit Ende</string>
     <string name="search_text">Suchen</string>
     <string name="detailliste_anzeigen">Detailliste anzeigen</string>
-    <string name="startzeit">startZeit</string>
+    <string name="startzeit">Von</string>
     <string name="ContentDescriptionClockIcon">simpleClock</string>
-    <string name="endzeit">endZeit</string>
+    <string name="endzeit">Bis</string>
 
 </resources>
