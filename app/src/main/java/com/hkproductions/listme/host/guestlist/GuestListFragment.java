@@ -23,7 +23,6 @@ import com.hkproductions.listme.host.database.HostDataDao;
 import com.hkproductions.listme.host.database.HostDatabase;
 
 import java.util.Calendar;
-import java.util.TimeZone;
 
 public class GuestListFragment extends Fragment {
 
@@ -60,7 +59,7 @@ public class GuestListFragment extends Fragment {
 
         // initialize date to current
         c = Calendar.getInstance();
-        binding.editTextDate.setText(c.get(Calendar.DAY_OF_MONTH)+"."+(c.get(Calendar.MONTH)+1)+"."+(c.get(Calendar.YEAR)));
+        binding.editTextDate.setText(c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + (c.get(Calendar.YEAR)));
         viewModel.liveDate.setValue(c.getTimeInMillis());
 
         // set on clickListener on Calendar icon
@@ -69,15 +68,15 @@ public class GuestListFragment extends Fragment {
             setDate();
         });
         // set OnClickListener on Date Textfield
-        binding.editTextDate.setOnClickListener(l ->{
+        binding.editTextDate.setOnClickListener(l -> {
             // method for picking date
             setDate();
         });
         //initialize timepicker startTime
         Calendar cT = Calendar.getInstance();
-        cT.set(Calendar.HOUR_OF_DAY,0);
-        cT.set(Calendar.MINUTE,0);
-        binding.TextInputEditTextStartTime.setText(cT.get(Calendar.HOUR_OF_DAY)+"0:0"+cT.get(Calendar.MINUTE));
+        cT.set(Calendar.HOUR_OF_DAY, 0);
+        cT.set(Calendar.MINUTE, 0);
+        binding.TextInputEditTextStartTime.setText(cT.get(Calendar.HOUR_OF_DAY) + "0:0" + cT.get(Calendar.MINUTE));
         viewModel.liveStartTime.setValue(cT.getTimeInMillis());
 
         //set OnClickListener on left clock icon (startTime)
@@ -86,15 +85,15 @@ public class GuestListFragment extends Fragment {
         });
 
         //set OnClickListener on left textfield displaying time
-        binding.TextInputEditTextStartTime.setOnClickListener(l ->{
+        binding.TextInputEditTextStartTime.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextStartTime);
         });
 
         //initialize timepicker endTime
         Calendar cTEnd = Calendar.getInstance();
-        cTEnd.set(Calendar.HOUR_OF_DAY,23);
-        cTEnd.set(Calendar.MINUTE,59);
-        binding.TextInputEditTextEndTime.setText(cTEnd.get(Calendar.HOUR_OF_DAY)+":"+cTEnd.get(Calendar.MINUTE));
+        cTEnd.set(Calendar.HOUR_OF_DAY, 23);
+        cTEnd.set(Calendar.MINUTE, 59);
+        binding.TextInputEditTextEndTime.setText(cTEnd.get(Calendar.HOUR_OF_DAY) + ":" + cTEnd.get(Calendar.MINUTE));
         viewModel.liveEndTime.setValue(cTEnd.getTimeInMillis());
 
         //set OnClickListener on right clock icon (endtime)
@@ -104,7 +103,7 @@ public class GuestListFragment extends Fragment {
         });
 
         //set OnClickListener on right textfield displaying time
-        binding.TextInputEditTextEndTime.setOnClickListener(l ->{
+        binding.TextInputEditTextEndTime.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextEndTime);
         });
         //TODO:: MAKE IMAGEBUTTON, TEXTVIEWS as big as TEXTINPUTLAYOUT with DIMENSIONS hardcoded
@@ -122,23 +121,33 @@ public class GuestListFragment extends Fragment {
     /**
      * Utility Method alter Time
      *
-     * @param textView Used for altering the textViews displaying the Time
-     *                 Uses TimepickerDialog
-     * TODO: alter TimePicker to last value
+     * @param textView
+     * @return void
+     * Uses android.app.TimePickerDialog
+     * Displays the picked time in the TimepickerDialog on the textView given as param
+     * Updates the liveData liveStartTime or liveEndTime depending on which textView was given as param
+     * with the chosen Time
      */
     private void alterTime(TextView textView) {
         Calendar c = Calendar.getInstance();
         int mHour = c.get(Calendar.HOUR_OF_DAY);
         int mMinute = c.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
-            String hourString="";
-            String minString="";
-            if(hourOfDay < 10){ hourString = "0"+String.valueOf(hourOfDay);}
-            else{hourString = String.valueOf(hourOfDay);}
-            if(minute < 10){minString = "0"+String.valueOf(minute);}
-            else{minString = String.valueOf(minute);};
-            textView.setText(hourString+":"+minString);
-            if (textView.getId() == R.id.TextInputEditTextStartTime ) {
+            String hourString = "";
+            String minString = "";
+            if (hourOfDay < 10) {
+                hourString = "0" + String.valueOf(hourOfDay);
+            } else {
+                hourString = String.valueOf(hourOfDay);
+            }
+            if (minute < 10) {
+                minString = "0" + String.valueOf(minute);
+            } else {
+                minString = String.valueOf(minute);
+            }
+            ;
+            textView.setText(hourString + ":" + minString);
+            if (textView.getId() == R.id.TextInputEditTextStartTime) {
                 viewModel.liveStartTime.setValue((((long) hourOfDay) * 3600000 + ((long) minute) * 6000));
             } else {
                 viewModel.liveEndTime.setValue((((long) hourOfDay) * 3600000 + ((long) minute) * 6000));
@@ -147,13 +156,21 @@ public class GuestListFragment extends Fragment {
         timePickerDialog.show();
     }
 
-    private void setDate(){
+    /**
+     * Utility Method set Date
+     *
+     * @return void
+     * Uses android.app.DatePickerDialog
+     * Displays the picked date in the DatePickerDialog on the editTextDate textView
+     * Updates the liveData liveDate with chosen date
+     */
+    private void setDate() {
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
-            binding.editTextDate.setText(dayOfMonth + "." + month+1 + "." + year);
-            c.set(year,month,dayOfMonth);
+            binding.editTextDate.setText(dayOfMonth + "." + month + 1 + "." + year);
+            c.set(year, month, dayOfMonth);
             viewModel.liveDate.setValue(c.getTimeInMillis());
         }, mYear, mMonth, mDay);
         datePickerDialog.show();
