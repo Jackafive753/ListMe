@@ -137,7 +137,8 @@
         <fragment
             android:id="@+id/guestListFragment"
             android:name="com.hkproductions.listme.host.guestlist.GuestListFragment"
-            android:label="GuestListFragment" >
+            android:label="GuestListFragment"
+            tools:layout="@layout/host_fragment_guest_list">
             <action
                 android:id="@+id/action_show_guest_details"
                 app:destination="@id/guestDetailViewFragment"
