@@ -194,7 +194,9 @@ public class GuestListFragment extends Fragment {
         viewModel.liveEndTime.setValue(cTEnd.getTimeInMillis());
     }
     /**
-     *
+     * ExpandCollapseSearch Method
+     * Expands or collapses the cardview to achieve more viewing space of the guestlist for the host
+     * @param expandedSearchfield determines wether the cardview is expanded or not
      */
     private void expandCollapseSearch(boolean expandedSearchfield){
         if(expandedSearchfield){
