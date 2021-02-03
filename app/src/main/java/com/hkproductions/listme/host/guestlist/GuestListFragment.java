@@ -160,7 +160,7 @@ public class GuestListFragment extends Fragment {
     private void expandCollapseSearch(boolean expandedSearchfield){
         if(expandedSearchfield){
 
-            binding.cardView.setVisibility(View.INVISIBLE);
+            binding.cardView.setVisibility(View.GONE);
 
             binding.imageViewArrowStart.animate().rotation(180).setDuration(300);
             binding.imageViewArrowEnd.animate().rotation(180).setDuration(300);
@@ -171,8 +171,8 @@ public class GuestListFragment extends Fragment {
         else{
 
             binding.cardView.setVisibility(View.VISIBLE);
-            binding.imageViewArrowStart.animate().rotation(180).setDuration(300);
-            binding.imageViewArrowEnd.animate().rotation(180).setDuration(300);
+            binding.imageViewArrowStart.animate().rotation(0).setDuration(300);
+            binding.imageViewArrowEnd.animate().rotation(0).setDuration(300);
             binding.textViewExpandCollapseSearch.setText(R.string.collapse_search_fields_text);
             this.expandedSearchfield = true;
         }
