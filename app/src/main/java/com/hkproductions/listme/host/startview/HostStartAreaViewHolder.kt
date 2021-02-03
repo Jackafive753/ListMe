@@ -2,6 +2,7 @@ package com.hkproductions.listme.host.startview
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hkproductions.listme.databinding.HostItemStartAreaBinding
@@ -10,6 +11,8 @@ import com.hkproductions.listme.host.database.HostData
 
 class HostStartAreaViewHolder(private val binding: HostItemStartAreaBinding) :
     RecyclerView.ViewHolder(binding.root) {
+
+    var isExpanded = false
 
     @SuppressLint("SetTextI18n")
     fun bind(area: Area, list: List<HostData>, clickListener: CheckoutListener) {
@@ -24,7 +27,16 @@ class HostStartAreaViewHolder(private val binding: HostItemStartAreaBinding) :
         //Set ClickListener to Check all guest in this area out
         binding.buttonStartAreaItemCheckAllOut.setOnClickListener { clickListener.onClick(list) }
 
-        //TODO clickListener to expand or collapse
+        binding.root.setOnClickListener{
+            if(isExpanded){
+                binding.imageView3.animate().rotation(180F).setDuration(300).start()
+                binding.recyclerViewStartAreaItem.animate().scaleY(0F).setDuration(300).withEndAction { binding.recyclerViewStartAreaItem.visibility = View.GONE }.start()
+            }else{
+                binding.imageView3.animate().rotation(0F).setDuration(300).start()
+                binding.recyclerViewStartAreaItem.animate().scaleY(100F).setDuration(300).withEndAction { binding.recyclerViewStartAreaItem.visibility = View.GONE }.start()
+            }
+            isExpanded = !isExpanded
+        }
     }
 
     companion object {
