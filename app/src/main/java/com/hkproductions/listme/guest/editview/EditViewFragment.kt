@@ -97,13 +97,7 @@ class EditViewFragment : Fragment() {
         //true -> all entries are correct and not blank
         //false -> some or all entries are incorrect ore blank
         if (checkInputFields()) {
-            //dataId -1 -> create
-            //else -> edit
-            if (dataId == -1L) {
-                viewModel.insertData()
-            } else {
-                viewModel.updateData()
-            }
+            viewModel.insertData()
 
             //Confirmation Message
             Toast.makeText(

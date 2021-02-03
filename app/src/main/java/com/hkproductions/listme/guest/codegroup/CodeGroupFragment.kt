@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentGroupCodeViewBinding
 import com.hkproductions.listme.guest.database.GuestDatabase
@@ -50,7 +51,7 @@ class CodeGroupFragment : Fragment() {
         val adapter = GroupMemberAdapter()
         binding.recyclerviewGroupcodeGroupmember.adapter = adapter
         viewModel.groupMembers.observe(viewLifecycleOwner, {
-            it?.let {
+            it.let {
                 adapter.data = it
             }
         })
