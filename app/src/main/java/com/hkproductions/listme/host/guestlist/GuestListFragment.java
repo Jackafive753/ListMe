@@ -30,37 +30,16 @@ public class GuestListFragment extends Fragment {
     private GuestListViewModel viewModel;
     private HostDataDao datasource;
     private Calendar c;
+    private boolean expandedSearchfield = true;
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //Hide Keyboard
         InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-    }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        Observer<Long> observer = aLong -> viewModel.alterList();
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.host_fragment_guest_list, container, false);
-
-        //initialize datasource
-        datasource = HostDatabase.Companion.getInstance(getContext()).getHostDataDao();
-
-        //initialize viewModel
-        GuestListViewModelFactory guestListViewModelFactory = new GuestListViewModelFactory(datasource);
-        ViewModelProvider viewModelProvider = new ViewModelProvider(this, guestListViewModelFactory);
-        viewModel = viewModelProvider.get(GuestListViewModel.class);
-        GuestAdapter guestAdapter = new GuestAdapter();
-        binding.recyclerViewGuests.setAdapter(guestAdapter);
-
-
-        // initialize date to current
-        c = Calendar.getInstance();
-        binding.editTextDate.setText(c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + (c.get(Calendar.YEAR)));
-        viewModel.liveDate.setValue(c.getTimeInMillis());
+        initDateAndTime();
 
         // set on clickListener on Calendar icon
         binding.imageButtonDatePicker.setOnClickListener(l -> {
@@ -72,13 +51,6 @@ public class GuestListFragment extends Fragment {
             // method for picking date
             setDate();
         });
-        //initialize timepicker startTime
-        Calendar cT = Calendar.getInstance();
-        cT.set(Calendar.HOUR_OF_DAY, 0);
-        cT.set(Calendar.MINUTE, 0);
-        binding.TextInputEditTextStartTime.setText(cT.get(Calendar.HOUR_OF_DAY) + "0:0" + cT.get(Calendar.MINUTE));
-        viewModel.liveStartTime.setValue(cT.getTimeInMillis());
-
         //set OnClickListener on left clock icon (startTime)
         binding.imageButtonClockStart.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextStartTime);
@@ -88,45 +60,65 @@ public class GuestListFragment extends Fragment {
         binding.TextInputEditTextStartTime.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextStartTime);
         });
-
-        //initialize timepicker endTime
-        Calendar cTEnd = Calendar.getInstance();
-        cTEnd.set(Calendar.HOUR_OF_DAY, 23);
-        cTEnd.set(Calendar.MINUTE, 59);
-        binding.TextInputEditTextEndTime.setText(cTEnd.get(Calendar.HOUR_OF_DAY) + ":" + cTEnd.get(Calendar.MINUTE));
-        viewModel.liveEndTime.setValue(cTEnd.getTimeInMillis());
-
         //set OnClickListener on right clock icon (endtime)
         binding.imageButtonClockEnd.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextEndTime);
             viewModel.alterList();
         });
-
         //set OnClickListener on right textfield displaying time
         binding.TextInputEditTextEndTime.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextEndTime);
         });
-        //TODO:: MAKE IMAGEBUTTON, TEXTVIEWS as big as TEXTINPUTLAYOUT with DIMENSIONS hardcoded
 
+        //set OnClickListener on imageViewArrowStart
+        binding.imageViewArrowStart.setOnClickListener(l->{
+            expandCollapseSearch(expandedSearchfield);
+        });
+        //set OnClickListener on imageViewArrowEnd
+        binding.imageViewArrowEnd.setOnClickListener(l->{
+            expandCollapseSearch(expandedSearchfield);
+        });
+
+        //set OnClickListener on textViewExpandCollapseSearch
+        binding.textViewExpandCollapseSearch.setOnClickListener(l->{
+            expandCollapseSearch(expandedSearchfield);
+        });
+
+        Observer<Long> observer = aLong -> viewModel.alterList();
+        GuestAdapter guestAdapter = new GuestAdapter();
+        binding.recyclerViewGuests.setAdapter(guestAdapter);
         viewModel.liveName.observe(getViewLifecycleOwner(), s -> viewModel.alterList());
         viewModel.liveDate.observe(getViewLifecycleOwner(), observer);
         viewModel.liveStartTime.observe(getViewLifecycleOwner(), observer);
         viewModel.liveEndTime.observe(getViewLifecycleOwner(), observer);
-
-
         viewModel.data.observe(getViewLifecycleOwner(), guestAdapter::submitList);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.host_fragment_guest_list, container, false);
+
+        //initialize datasource
+        datasource = HostDatabase.Companion.getInstance(getContext()).getHostDataDao();
+
+        //initialize viewModel
+        GuestListViewModelFactory guestListViewModelFactory = new GuestListViewModelFactory(datasource);
+        ViewModelProvider viewModelProvider = new ViewModelProvider(this, guestListViewModelFactory);
+        viewModel = viewModelProvider.get(GuestListViewModel.class);
+
         return binding.getRoot();
     }
 
     /**
      * Utility Method alter Time
      *
-     * @param textView
-     * @return void
      * Uses android.app.TimePickerDialog
      * Displays the picked time in the TimepickerDialog on the textView given as param
      * Updates the liveData liveStartTime or liveEndTime depending on which textView was given as param
      * with the chosen Time
+     * @param textView
      */
     private void alterTime(TextView textView) {
         Calendar c = Calendar.getInstance();
@@ -159,7 +151,6 @@ public class GuestListFragment extends Fragment {
     /**
      * Utility Method set Date
      *
-     * @return void
      * Uses android.app.DatePickerDialog
      * Displays the picked date in the DatePickerDialog on the editTextDate textView
      * Updates the liveData liveDate with chosen date
@@ -174,5 +165,55 @@ public class GuestListFragment extends Fragment {
             viewModel.liveDate.setValue(c.getTimeInMillis());
         }, mYear, mMonth, mDay);
         datePickerDialog.show();
+    }
+    /**
+     * Initializing Method initDateAndTime
+     *
+     * Initializes the Date TextView with the current date, sets liveDate to current Date
+     * Initializes the StartTime TextView with 00:00, sets liveStartDate to 00:00
+     * Initializes the EndTime TextView with 23:59, sets liveEndDate to 23:59
+     */
+    private void initDateAndTime(){
+        // initialize date to current
+        c = Calendar.getInstance();
+        binding.editTextDate.setText(c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + (c.get(Calendar.YEAR)));
+        viewModel.liveDate.setValue(c.getTimeInMillis());
+
+        //initialize timepicker startTime
+        Calendar cT = Calendar.getInstance();
+        cT.set(Calendar.HOUR_OF_DAY, 0);
+        cT.set(Calendar.MINUTE, 0);
+        binding.TextInputEditTextStartTime.setText(cT.get(Calendar.HOUR_OF_DAY) + "0:0" + cT.get(Calendar.MINUTE));
+        viewModel.liveStartTime.setValue(cT.getTimeInMillis());
+
+        //initialize timepicker endTime
+        Calendar cTEnd = Calendar.getInstance();
+        cTEnd.set(Calendar.HOUR_OF_DAY, 23);
+        cTEnd.set(Calendar.MINUTE, 59);
+        binding.TextInputEditTextEndTime.setText(cTEnd.get(Calendar.HOUR_OF_DAY) + ":" + cTEnd.get(Calendar.MINUTE));
+        viewModel.liveEndTime.setValue(cTEnd.getTimeInMillis());
+    }
+    /**
+     *
+     */
+    private void expandCollapseSearch(boolean expandedSearchfield){
+        if(expandedSearchfield){
+
+            binding.cardView.setVisibility(View.INVISIBLE);
+
+            binding.imageViewArrowStart.animate().rotation(180).setDuration(300);
+            binding.imageViewArrowEnd.animate().rotation(180).setDuration(300);
+            binding.textViewExpandCollapseSearch.setText(R.string.expand_search_fields_text);
+
+            this.expandedSearchfield = false;
+        }
+        else{
+
+            binding.cardView.setVisibility(View.VISIBLE);
+            binding.imageViewArrowStart.animate().rotation(180).setDuration(300);
+            binding.imageViewArrowEnd.animate().rotation(180).setDuration(300);
+            binding.textViewExpandCollapseSearch.setText(R.string.collapse_search_fields_text);
+            this.expandedSearchfield = true;
+        }
     }
 }
