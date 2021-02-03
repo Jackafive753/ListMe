@@ -133,6 +133,9 @@
                 app:destination="@id/scanResultFragment"
                 app:enterAnim="@anim/fragment_open_enter"
                 app:exitAnim="@anim/fragment_open_exit" />
+            <action
+                android:id="@+id/action_open_area_management"
+                app:destination="@id/areaManagementFragment" />
         </fragment>
         <fragment
             android:id="@+id/guestListFragment"

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -88,10 +91,26 @@ public class HostStartViewFragment extends Fragment {
         //To Delete all HostDatas that older than dataLifeSpan
         viewModel.refreshDatabase();
 
+        setHasOptionsMenu(true);
+
         //DEVELOPERMODE
         binding.buttonHostStartClearHostData.setOnClickListener(event -> {
             viewModel.clearHostData();
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.host_start_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.areaManagementMenuItem){
+            Navigation.findNavController(requireView()).navigate(HostStartViewFragmentDirections.actionOpenAreaManagement());
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -38,6 +38,7 @@
     <string name="create_phone_owner">Daten erstellen</string>
     <string name="checked_in">eingecheckt</string>
     <string name="checked_out">ausgecheckt</string>
+    <string name="area_management_text">Bereichsverwaltung</string>
 
     <!-- Strings GuestList -->
     <string name="date_display">%1$d.%2$d.%3$d</string>
