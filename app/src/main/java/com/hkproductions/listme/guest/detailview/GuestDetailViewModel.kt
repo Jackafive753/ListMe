@@ -12,6 +12,12 @@ class GuestDetailViewModel(private val database: GuestDataDao, private val dataI
     val liveData: LiveData<GuestData>
         get() = _liveData
 
+    /**
+     * Boolean
+     * true -> show delete button
+     * false -> hide delete button
+     * delete button is shown if the data is not the phone owner
+     */
     val deleteButtonVisible = Transformations.map(liveData) {
         it.phoneOwner
     }
@@ -22,6 +28,9 @@ class GuestDetailViewModel(private val database: GuestDataDao, private val dataI
         }
     }
 
+    /**
+     * called to delete actuell shown data
+     */
     fun deleteData() {
         viewModelScope.launch {
             database.clearDataById(liveData.value!!.guestDataId)

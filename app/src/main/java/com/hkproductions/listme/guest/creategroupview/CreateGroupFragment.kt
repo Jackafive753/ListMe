@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentCreateGroupViewBinding
@@ -54,7 +55,7 @@ class CreateGroupFragment : Fragment() {
         adapter = CheckContactAdapter()
         binding.recyclerviewGroupContacts.adapter = adapter
         viewModel.contacts.observe(viewLifecycleOwner, {
-            it?.let {
+            it.let {
                 adapter.data = it
             }
         })

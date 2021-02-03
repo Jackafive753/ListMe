@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.hkproductions.listme.Constant
 import com.hkproductions.listme.R
@@ -86,7 +87,7 @@ class StartViewFragment : Fragment() {
         })
 
         viewModel.navigateToDataDetail.observe(viewLifecycleOwner, { member ->
-            member?.let {
+            member.let {
                 this.findNavController()
                     .navigate(StartViewFragmentDirections.actionToDetail(member))
                 viewModel.onMemberDetailNavigated()
@@ -145,7 +146,7 @@ class StartViewFragment : Fragment() {
         binding.houseMemberList.adapter = adapter
 
         viewModel.houseMembers.observe(viewLifecycleOwner, {
-            it?.let {
+            it.let {
                 adapter.data = it
             }
         })

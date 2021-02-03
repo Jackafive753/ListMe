@@ -39,8 +39,6 @@ class EditViewViewModel(private val database: GuestDataDao, dataId: Long) : View
     /**
      * insert Data in the database
      * if there is no phoneOwner in the database, the data change to phoneOwner data
-     *
-     * @param data data to insert in database
      */
     fun insertData() {
         viewModelScope.launch {
@@ -52,17 +50,10 @@ class EditViewViewModel(private val database: GuestDataDao, dataId: Long) : View
     }
 
     /**
-     * get data to update from database by id and copy data from edited
+     * get a string and convert it to an contact
      *
-     * @param id id of the data which must be updated
-     * @param edited edited data
+     * @param text result of the scan is the string which is converted
      */
-    fun updateData() {
-        viewModelScope.launch {
-            database.update(liveData.value!!)
-        }
-    }
-
     fun scannedCode(text: String) {
         viewModelScope.launch {
             liveData.value = textToContact(text)
