@@ -38,51 +38,10 @@ public class GuestListFragment extends Fragment {
         //Hide Keyboard
         InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-
+        // initialize starting values
         initDateAndTime();
-
-        // set on clickListener on Calendar icon
-        binding.imageButtonDatePicker.setOnClickListener(l -> {
-            // method for picking date
-            setDate();
-        });
-        // set OnClickListener on Date Textfield
-        binding.editTextDate.setOnClickListener(l -> {
-            // method for picking date
-            setDate();
-        });
-        //set OnClickListener on left clock icon (startTime)
-        binding.imageButtonClockStart.setOnClickListener(l -> {
-            alterTime(binding.TextInputEditTextStartTime);
-        });
-
-        //set OnClickListener on left textfield displaying time
-        binding.TextInputEditTextStartTime.setOnClickListener(l -> {
-            alterTime(binding.TextInputEditTextStartTime);
-        });
-        //set OnClickListener on right clock icon (endtime)
-        binding.imageButtonClockEnd.setOnClickListener(l -> {
-            alterTime(binding.TextInputEditTextEndTime);
-            viewModel.alterList();
-        });
-        //set OnClickListener on right textfield displaying time
-        binding.TextInputEditTextEndTime.setOnClickListener(l -> {
-            alterTime(binding.TextInputEditTextEndTime);
-        });
-
-        //set OnClickListener on imageViewArrowStart
-        binding.imageViewArrowStart.setOnClickListener(l->{
-            expandCollapseSearch(expandedSearchfield);
-        });
-        //set OnClickListener on imageViewArrowEnd
-        binding.imageViewArrowEnd.setOnClickListener(l->{
-            expandCollapseSearch(expandedSearchfield);
-        });
-
-        //set OnClickListener on textViewExpandCollapseSearch
-        binding.textViewExpandCollapseSearch.setOnClickListener(l->{
-            expandCollapseSearch(expandedSearchfield);
-        });
+        // initialize onClickListeners
+        setOnClickListeners();
 
         Observer<Long> observer = aLong -> viewModel.alterList();
         GuestAdapter guestAdapter = new GuestAdapter();
@@ -217,5 +176,53 @@ public class GuestListFragment extends Fragment {
             binding.textViewExpandCollapseSearch.setText(R.string.collapse_search_fields_text);
             this.expandedSearchfield = true;
         }
+    }
+    /**
+     * Utility method setOnClickListeners
+     * Sets all onClickListeners for the fragment
+     */
+    private void setOnClickListeners(){
+        // set on clickListener on Calendar icon
+        binding.imageButtonDatePicker.setOnClickListener(l -> {
+            // method for picking date
+            setDate();
+        });
+        // set OnClickListener on Date Textfield
+        binding.editTextDate.setOnClickListener(l -> {
+            // method for picking date
+            setDate();
+        });
+        //set OnClickListener on left clock icon (startTime)
+        binding.imageButtonClockStart.setOnClickListener(l -> {
+            alterTime(binding.TextInputEditTextStartTime);
+        });
+
+        //set OnClickListener on left textfield displaying time
+        binding.TextInputEditTextStartTime.setOnClickListener(l -> {
+            alterTime(binding.TextInputEditTextStartTime);
+        });
+        //set OnClickListener on right clock icon (endtime)
+        binding.imageButtonClockEnd.setOnClickListener(l -> {
+            alterTime(binding.TextInputEditTextEndTime);
+            viewModel.alterList();
+        });
+        //set OnClickListener on right textfield displaying time
+        binding.TextInputEditTextEndTime.setOnClickListener(l -> {
+            alterTime(binding.TextInputEditTextEndTime);
+        });
+
+        //set OnClickListener on imageViewArrowStart
+        binding.imageViewArrowStart.setOnClickListener(l->{
+            expandCollapseSearch(expandedSearchfield);
+        });
+        //set OnClickListener on imageViewArrowEnd
+        binding.imageViewArrowEnd.setOnClickListener(l->{
+            expandCollapseSearch(expandedSearchfield);
+        });
+
+        //set OnClickListener on textViewExpandCollapseSearch
+        binding.textViewExpandCollapseSearch.setOnClickListener(l->{
+            expandCollapseSearch(expandedSearchfield);
+        });
     }
 }
