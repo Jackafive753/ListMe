@@ -30,6 +30,7 @@ public class GuestListFragment extends Fragment {
     private HostFragmentGuestListBinding binding;
     private GuestListViewModel viewModel;
     private HostDataDao datasource;
+    private Calendar c;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -58,22 +59,19 @@ public class GuestListFragment extends Fragment {
 
 
         // initialize date to current
-        Calendar c = Calendar.getInstance();
+        c = Calendar.getInstance();
         binding.editTextDate.setText(c.get(Calendar.DAY_OF_MONTH)+"."+(c.get(Calendar.MONTH)+1)+"."+(c.get(Calendar.YEAR)));
         viewModel.liveDate.setValue(c.getTimeInMillis());
-        //initialize datepicker
 
+        // set on clickListener on Calendar icon
         binding.imageButtonDatePicker.setOnClickListener(l -> {
-            int mYear = c.get(Calendar.YEAR);
-            int mMonth = c.get(Calendar.MONTH);
-            int mDay = c.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
-                binding.editTextDate.setText(dayOfMonth + "." + month+1 + "." + year);
-                c.set(year,month,dayOfMonth);
-                viewModel.liveDate.setValue(c.getTimeInMillis());
-            }, mYear, mMonth, mDay);
-            datePickerDialog.show();
-
+            // method for picking date
+            setDate();
+        });
+        // set OnClickListener on Date Textfield
+        binding.editTextDate.setOnClickListener(l ->{
+            // method for picking date
+            setDate();
         });
         //initialize timepicker startTime
         Calendar cT = Calendar.getInstance();
@@ -81,10 +79,16 @@ public class GuestListFragment extends Fragment {
         cT.set(Calendar.MINUTE,0);
         binding.TextInputEditTextStartTime.setText(cT.get(Calendar.HOUR_OF_DAY)+"0:0"+cT.get(Calendar.MINUTE));
         viewModel.liveStartTime.setValue(cT.getTimeInMillis());
+
+        //set OnClickListener on left clock icon (startTime)
         binding.imageButtonClockStart.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextStartTime);
         });
 
+        //set OnClickListener on left textfield displaying time
+        binding.TextInputEditTextStartTime.setOnClickListener(l ->{
+            alterTime(binding.TextInputEditTextStartTime);
+        });
 
         //initialize timepicker endTime
         Calendar cTEnd = Calendar.getInstance();
@@ -92,9 +96,16 @@ public class GuestListFragment extends Fragment {
         cTEnd.set(Calendar.MINUTE,59);
         binding.TextInputEditTextEndTime.setText(cTEnd.get(Calendar.HOUR_OF_DAY)+":"+cTEnd.get(Calendar.MINUTE));
         viewModel.liveEndTime.setValue(cTEnd.getTimeInMillis());
+
+        //set OnClickListener on right clock icon (endtime)
         binding.imageButtonClockEnd.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextEndTime);
             viewModel.alterList();
+        });
+
+        //set OnClickListener on right textfield displaying time
+        binding.TextInputEditTextEndTime.setOnClickListener(l ->{
+            alterTime(binding.TextInputEditTextEndTime);
         });
         //TODO:: MAKE IMAGEBUTTON, TEXTVIEWS as big as TEXTINPUTLAYOUT with DIMENSIONS hardcoded
 
@@ -127,7 +138,7 @@ public class GuestListFragment extends Fragment {
             if(minute < 10){minString = "0"+String.valueOf(minute);}
             else{minString = String.valueOf(minute);};
             textView.setText(hourString+":"+minString);
-            if (textView.getId() == R.id.TextInputEditTextStartTime) {
+            if (textView.getId() == R.id.TextInputEditTextStartTime ) {
                 viewModel.liveStartTime.setValue((((long) hourOfDay) * 3600000 + ((long) minute) * 6000));
             } else {
                 viewModel.liveEndTime.setValue((((long) hourOfDay) * 3600000 + ((long) minute) * 6000));
@@ -136,5 +147,15 @@ public class GuestListFragment extends Fragment {
         timePickerDialog.show();
     }
 
-
+    private void setDate(){
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
+            binding.editTextDate.setText(dayOfMonth + "." + month+1 + "." + year);
+            c.set(year,month,dayOfMonth);
+            viewModel.liveDate.setValue(c.getTimeInMillis());
+        }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+    }
 }
