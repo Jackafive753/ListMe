@@ -77,10 +77,11 @@
             android:layout_marginTop="@dimen/content_line_spacing"
             android:layout_marginEnd="@dimen/side_margin"
             android:layout_marginBottom="@dimen/side_margin"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_areaManagement_addArea" />
+            app:layout_constraintTop_toBottomOf="@+id/button_areaManagement_addArea"
+            app:spanCount="1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
