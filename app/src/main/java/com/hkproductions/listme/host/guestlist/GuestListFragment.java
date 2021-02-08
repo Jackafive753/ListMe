@@ -72,11 +72,12 @@ public class GuestListFragment extends Fragment {
 
     /**
      * Utility Method alter Time
-     *
+     * <p>
      * Uses android.app.TimePickerDialog
      * Displays the picked time in the TimepickerDialog on the textView given as param
      * Updates the liveData liveStartTime or liveEndTime depending on which textView was given as param
      * with the chosen Time
+     *
      * @param textView
      */
     private void alterTime(TextView textView) {
@@ -109,7 +110,7 @@ public class GuestListFragment extends Fragment {
 
     /**
      * Utility Method set Date
-     *
+     * <p>
      * Uses android.app.DatePickerDialog
      * Displays the picked date in the DatePickerDialog on the editTextDate textView
      * Updates the liveData liveDate with chosen date
@@ -125,14 +126,15 @@ public class GuestListFragment extends Fragment {
         }, mYear, mMonth, mDay);
         datePickerDialog.show();
     }
+
     /**
      * Initializing Method initDateAndTime
-     *
+     * <p>
      * Initializes the Date TextView with the current date, sets liveDate to current Date
      * Initializes the StartTime TextView with 00:00, sets liveStartDate to 00:00
      * Initializes the EndTime TextView with 23:59, sets liveEndDate to 23:59
      */
-    private void initDateAndTime(){
+    private void initDateAndTime() {
         // initialize date to current
         c = Calendar.getInstance();
         binding.editTextDate.setText(c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + (c.get(Calendar.YEAR)));
@@ -152,13 +154,16 @@ public class GuestListFragment extends Fragment {
         binding.TextInputEditTextEndTime.setText(cTEnd.get(Calendar.HOUR_OF_DAY) + ":" + cTEnd.get(Calendar.MINUTE));
         viewModel.liveEndTime.setValue(cTEnd.getTimeInMillis());
     }
+
     /**
      * ExpandCollapseSearch Method
      * Expands or collapses the cardview to achieve more viewing space of the guestlist for the host
+     *
      * @param expandedSearchfield determines wether the cardview is expanded or not
      */
-    private void expandCollapseSearch(boolean expandedSearchfield){
-        if(expandedSearchfield){
+    private void expandCollapseSearch(boolean expandedSearchfield) {
+        if (expandedSearchfield) {
+
 
             binding.cardView.setVisibility(View.GONE);
 
@@ -167,8 +172,7 @@ public class GuestListFragment extends Fragment {
             binding.textViewExpandCollapseSearch.setText(R.string.expand_search_fields_text);
 
             this.expandedSearchfield = false;
-        }
-        else{
+        } else {
 
             binding.cardView.setVisibility(View.VISIBLE);
             binding.imageViewArrowStart.animate().rotation(0).setDuration(300);
@@ -177,11 +181,12 @@ public class GuestListFragment extends Fragment {
             this.expandedSearchfield = true;
         }
     }
+
     /**
      * Utility method setOnClickListeners
      * Sets all onClickListeners for the fragment
      */
-    private void setOnClickListeners(){
+    private void setOnClickListeners() {
         // set on clickListener on Calendar icon
         binding.imageButtonDatePicker.setOnClickListener(l -> {
             // method for picking date
@@ -212,16 +217,16 @@ public class GuestListFragment extends Fragment {
         });
 
         //set OnClickListener on imageViewArrowStart
-        binding.imageViewArrowStart.setOnClickListener(l->{
+        binding.imageViewArrowStart.setOnClickListener(l -> {
             expandCollapseSearch(expandedSearchfield);
         });
         //set OnClickListener on imageViewArrowEnd
-        binding.imageViewArrowEnd.setOnClickListener(l->{
+        binding.imageViewArrowEnd.setOnClickListener(l -> {
             expandCollapseSearch(expandedSearchfield);
         });
 
         //set OnClickListener on textViewExpandCollapseSearch
-        binding.textViewExpandCollapseSearch.setOnClickListener(l->{
+        binding.textViewExpandCollapseSearch.setOnClickListener(l -> {
             expandCollapseSearch(expandedSearchfield);
         });
     }
