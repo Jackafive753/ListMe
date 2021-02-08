@@ -73,9 +73,10 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextDate"
+                        android:inputType="none"
+                        android:enabled="false"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:editable="false"
                         android:hint="@string/aktuelles_datum" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,6 +84,7 @@
                     android:id="@+id/imageButtonClockEnd"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="@dimen/content_line_spacing"
                     android:background="@color/white"
                     android:contentDescription="@string/ContentDescriptionClockIcon"
@@ -109,8 +111,9 @@
                         android:id="@+id/TextInputEditTextStartTime"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:editable="false"
-                        android:hint="@string/startzeit" />
+                        android:enabled="false"
+                        android:hint="@string/startzeit"
+                        android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageButton
@@ -134,9 +137,12 @@
                     android:id="@+id/imageButtonClockStart"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="@dimen/content_line_spacing"
+                    android:adjustViewBounds="false"
                     android:background="@color/white"
                     android:contentDescription="@string/ContentDescriptionClockIcon"
+                    android:cropToPadding="false"
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutStartTime"
                     app:layout_constraintDimensionRatio="1:1"
@@ -158,9 +164,10 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/TextInputEditTextEndTime"
+                        android:inputType="none"
+                        android:enabled="false"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:editable="false"
                         android:hint="@string/endzeit" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -181,25 +188,12 @@
             android:layout_marginStart="@dimen/side_margin"
             android:layout_marginTop="@dimen/content_line_spacing"
             android:layout_marginEnd="@dimen/side_margin"
-            android:layout_marginBottom="@dimen/content_line_spacing"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/buttonShowDetailList"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <Button
-            android:id="@+id/buttonShowDetailList"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/side_margin"
-            android:layout_marginEnd="@dimen/side_margin"
-            android:text="@string/detailliste_anzeigen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         <ImageView
             android:id="@+id/imageViewArrowStart"
