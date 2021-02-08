@@ -157,10 +157,15 @@
             android:id="@+id/scanResultFragment"
             tools:layout="@layout/host_fragment_scanresult"
             android:name="com.hkproductions.listme.host.scanresult.ScanResultFragment"
-            android:label="ScanResultFragment" >
+            android:label="ScanResultFragment">
             <argument
                 android:name="hostDataIds"
                 app:argType="long[]" />
+            <action
+                android:id="@+id/action_scanResult_to_hostStartView"
+                app:destination="@id/hostStartViewFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit" />
         </fragment>
         <fragment
             android:id="@+id/guestDetailViewFragment"

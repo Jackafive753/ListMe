@@ -60,7 +60,7 @@
             android:layout_marginEnd="@dimen/side_margin"
             android:layout_marginBottom="@dimen/side_margin"
             android:fontFamily="@font/roboto_mono"
-            android:text="@string/continue_text"
+            android:text="@string/ready"
             android:textColor="@color/black"
             app:iconGravity="textStart"
             app:iconTint="@color/black"
