@@ -24,8 +24,6 @@ import com.hkproductions.listme.R;
 import com.hkproductions.listme.databinding.HostFragmentStartviewBinding;
 import com.hkproductions.listme.host.database.HostDatabase;
 
-import java.util.Objects;
-
 public class HostStartViewFragment extends Fragment {
 
     private HostFragmentStartviewBinding binding;
@@ -84,8 +82,11 @@ public class HostStartViewFragment extends Fragment {
             Navigation.findNavController(requireView()).navigate(HostStartViewFragmentDirections.actionShowGuestList());
         });
 
-        viewModel.getNavigateToScanResult().observe(getViewLifecycleOwner(), longs -> {
-            Navigation.findNavController(requireView()).navigate(HostStartViewFragmentDirections.actionShowScanResult(longs));
+        viewModel.getNavigateToScanResult().observe(getViewLifecycleOwner(), bool -> {
+            if (bool) {
+                Navigation.findNavController(requireView()).navigate(HostStartViewFragmentDirections.actionShowScanResult(viewModel.getNavigateToScanResultData().getValue()));
+                viewModel.navigatedToScanResult();
+            }
         });
 
         //To Delete all HostDatas that older than dataLifeSpan
@@ -106,7 +107,7 @@ public class HostStartViewFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.areaManagementMenuItem){
+        if (item.getItemId() == R.id.areaManagementMenuItem) {
             Navigation.findNavController(requireView()).navigate(HostStartViewFragmentDirections.actionOpenAreaManagement());
             return true;
         }

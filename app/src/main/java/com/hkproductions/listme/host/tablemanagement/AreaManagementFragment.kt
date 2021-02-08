@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.HostFragmentAreaManagementBinding
 import com.hkproductions.listme.host.database.HostDatabase

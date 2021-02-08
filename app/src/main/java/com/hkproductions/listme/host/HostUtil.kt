@@ -1,5 +1,6 @@
 package com.hkproductions.listme.host
 
+import android.util.Log
 import com.hkproductions.listme.Constant.hostDataLifeSpan
 import com.hkproductions.listme.host.database.HostDataDao
 import com.hkproductions.listme.textToGuestList
@@ -19,22 +20,23 @@ suspend fun checkinout(string: String, database: HostDataDao): LongArray {
     val hostDataIds = LongArray(guestList.size)
 
     for ((index, guest) in guestList.withIndex()) {
-
-        if (database.getHostDataByAttributesAndCheckedIn(
-                guest.firstName,
-                guest.lastName,
-                guest.street,
-                guest.houseNumber,
-                guest.postalCode,
-                guest.city,
-                guest.phoneNumber
-            ) != null
-        ){
-            guest.endTimeMilli = System.currentTimeMillis()
+        val helpGuest = database.getHostDataByAttributesAndCheckedIn(
+            guest.firstName,
+            guest.lastName,
+            guest.street,
+            guest.houseNumber,
+            guest.postalCode,
+            guest.city,
+            guest.phoneNumber
+        )
+        if (helpGuest != null) {
+            helpGuest.endTimeMilli = System.currentTimeMillis()
+            database.updateHostData(helpGuest)
+            hostDataIds[index] = helpGuest.hostDataId
+        } else {
+            //insertHostData returns given id of the guest
+            hostDataIds[index] = database.insertHostData(guest)
         }
-
-        //insertHostData returns given id of the guest
-        hostDataIds[index] = database.insertHostData(guest)
     }
 
     return hostDataIds
@@ -46,12 +48,13 @@ suspend fun checkinout(string: String, database: HostDataDao): LongArray {
  * @param database database to actualize
  */
 suspend fun refreshDatabase(database: HostDataDao) {
+    Log.i("Refresh", "RefreshDatabase")
     val hostDatas = database.getAllEntriesAsList()
     val currentTime = System.currentTimeMillis()
 
     for (data in hostDatas) {
         //if data older then dataLifeSpan then delete data
-        if (data.endTimeMilli < currentTime - hostDataLifeSpan) {
+        if (data.endTimeMilli < currentTime - hostDataLifeSpan && data.endTimeMilli > -1) {
             database.deleteHostData(data)
         }
     }

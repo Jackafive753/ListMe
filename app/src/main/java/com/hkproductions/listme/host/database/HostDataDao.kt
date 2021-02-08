@@ -7,7 +7,7 @@ import androidx.room.*
 interface HostDataDao {
 
     //INSERT
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insertHostData(data: HostData): Long
 
     @Insert

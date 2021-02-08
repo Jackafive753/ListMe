@@ -17,17 +17,17 @@ class HostStartViewModel(val database: HostDataDao) : ViewModel() {
 
     val openEntries: LiveData<List<HostData>> = database.getOpenEntries()
 
-    private val _scanResult = MutableLiveData<LongArray>()
-    val scanResult: LiveData<LongArray>
-        get() = _scanResult
-
     private val _checkedInAreas = MutableLiveData<Map<Area, List<HostData>>>()
     val checkedInAreas: LiveData<Map<Area, List<HostData>>>
         get() = _checkedInAreas
 
-    private val _navigateToScanResult = MutableLiveData<LongArray>()
-    val navigateToScanResult: LiveData<LongArray>
+    private val _navigateToScanResult = MutableLiveData<Boolean>()
+    val navigateToScanResult: LiveData<Boolean>
         get() = _navigateToScanResult
+
+    private val _navigateToScanResultData = MutableLiveData<LongArray>()
+    val navigateToScanResultData: LiveData<LongArray>
+        get() = _navigateToScanResultData
 
     init {
         _checkedInAreas.value = mapOf()
@@ -48,7 +48,8 @@ class HostStartViewModel(val database: HostDataDao) : ViewModel() {
     fun scannedCode(result: String, context: Context) {
         viewModelScope.launch {
             try {
-                _navigateToScanResult.value = checkinout(result, database)
+                _navigateToScanResultData.value = checkinout(result, database)
+                _navigateToScanResult.value = true
             } catch (e: NoSuchElementException) {
                 Toast.makeText(context, R.string.scan_failure_error_text, Toast.LENGTH_LONG).show()
             }
@@ -69,6 +70,10 @@ class HostStartViewModel(val database: HostDataDao) : ViewModel() {
         viewModelScope.launch {
             com.hkproductions.listme.host.refreshDatabase(database)
         }
+    }
+
+    fun navigatedToScanResult() {
+        _navigateToScanResult.value = false
     }
 
     /**
