@@ -1,5 +1,6 @@
 package com.hkproductions.listme.host.guestlist;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -84,20 +85,19 @@ public class GuestListFragment extends Fragment {
         Calendar c = Calendar.getInstance();
         int mHour = c.get(Calendar.HOUR_OF_DAY);
         int mMinute = c.get(Calendar.MINUTE);
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
+        @SuppressLint("SetTextI18n") TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
             String hourString = "";
             String minString = "";
             if (hourOfDay < 10) {
-                hourString = "0" + String.valueOf(hourOfDay);
+                hourString = "0" + hourOfDay;
             } else {
                 hourString = String.valueOf(hourOfDay);
             }
             if (minute < 10) {
-                minString = "0" + String.valueOf(minute);
+                minString = "0" + minute;
             } else {
                 minString = String.valueOf(minute);
             }
-            ;
             textView.setText(hourString + ":" + minString);
             if (textView.getId() == R.id.TextInputEditTextStartTime) {
                 viewModel.liveStartTime.setValue((((long) hourOfDay) * 3600000 + ((long) minute) * 6000));
@@ -119,7 +119,7 @@ public class GuestListFragment extends Fragment {
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
+        @SuppressLint("SetTextI18n") DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
             binding.editTextDate.setText(dayOfMonth + "." + month + 1 + "." + year);
             c.set(year, month, dayOfMonth);
             viewModel.liveDate.setValue(c.getTimeInMillis());

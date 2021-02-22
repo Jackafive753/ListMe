@@ -38,7 +38,15 @@ interface HostDataDao {
     suspend fun getHostDataById(id: Long): HostData
 
     @Query("SELECT * FROM host_data_table WHERE first_name = :fn AND last_name = :ln AND street = :s AND house_number = :hn AND postal_code = :pc AND city = :c AND phone_number = :pn AND end_time_milli = -1")
-    suspend fun getHostDataByAttributesAndCheckedIn(fn: String, ln: String, s: String, hn: String, pc: String, c: String, pn: String): HostData?
+    suspend fun getHostDataByAttributesAndCheckedIn(
+        fn: String,
+        ln: String,
+        s: String,
+        hn: String,
+        pc: String,
+        c: String,
+        pn: String
+    ): HostData?
 
     @Query("SELECT * FROM host_data_table WHERE end_time_milli = -1")
     fun getOpenEntries(): LiveData<List<HostData>>
@@ -52,20 +60,18 @@ interface HostDataDao {
     @Query("SELECT DISTINCT * FROM host_data_table WHERE first_name+' '+last_name LIKE '%'+:name+'%'")
     fun getEntriesByName(name: String): LiveData<List<HostData>>
 
-    @Query(
-        "SELECT DISTINCT * FROM host_data_table WHERE (start_time_milli >= :starttime AND start_time_milli <= :endtime) OR (end_time_milli >= :starttime AND end_time_milli <= :endtime)"
-    )
-    fun getEntriesByTime(starttime: Long, endtime: Long): LiveData<List<HostData>>
+//    @Query(
+//        "SELECT DISTINCT * FROM host_data_table WHERE (start_time_milli >= :starttime AND start_time_milli <= :endtime) OR (end_time_milli >= :starttime AND end_time_milli <= :endtime)"
+//    )
+//    fun getEntriesByTime(starttime: Long, endtime: Long): LiveData<List<HostData>>
 
     @Query(
-        "SELECT DISTINCT * FROM host_data_table WHERE ((start_time_milli >= :starttime AND start_time_milli <= :endtime) OR (end_time_milli >= :starttime AND end_time_milli <= :endtime)) AND first_name+' '+last_name LIKE '%'+:name+'%'"
+        "SELECT * FROM host_data_table WHERE ((:starttime <= start_time_milli AND start_time_milli <= :endtime) OR (:starttime <= end_time_milli AND end_time_milli <= :endtime) OR (start_time_milli <= :starttime AND :endtime <= end_time_milli))"
     )
-    fun getEntriesByNameAndTime(
-        name: String,
+    suspend fun getEntriesByNameAndTime(
         starttime: Long,
         endtime: Long
-    ): LiveData<List<HostData>>
-
+    ): List<HostData>
 
     //AREA - GET
     @Query("SELECT area_qualifier FROM area_data_table LIMIT 1")
