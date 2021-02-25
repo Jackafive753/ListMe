@@ -52,10 +52,12 @@ public class HostStartViewFragment extends Fragment {
     public void createDialog(long[] hostDataIds) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.alertDialog_title);
-        builder.setSingleChoiceItems(R.array.remember_my_decision,-1, new DialogInterface.OnClickListener() {
+        builder.setMultiChoiceItems(R.array.remember_my_decision, null, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                decisionRememberDecision  = true;
+            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                if(b){
+                    decisionRememberDecision = true;
+                }
             }
         });
         builder.setPositiveButton(R.string.confirm_alertDialog, (dialogInterface, i) -> viewModel.checkout(hostDataIds));
