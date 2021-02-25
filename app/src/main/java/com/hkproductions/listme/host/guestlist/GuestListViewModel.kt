@@ -25,6 +25,7 @@ class GuestListViewModel(private val database: HostDataDao) : ViewModel() {
 
     @JvmField
     var liveEndTime = MutableLiveData<Long>()
+
     fun alterList() {
         Log.i("GuestListAltering", liveDate.value.toString())
 
@@ -32,22 +33,24 @@ class GuestListViewModel(private val database: HostDataDao) : ViewModel() {
             data.setValue(
                 when (liveName.value.isNullOrBlank()) {
                     true -> database.getEntriesByTime(
-                        liveStartTime.value!!,
-                        liveEndTime.value!!
+                        liveStartTime.value!! + liveDate.value!!,
+                        liveEndTime.value!! + liveDate.value!!
                     )
                     false -> database.getEntriesByNameAndTime(
                         liveName.value!!,
-                        liveStartTime.value!!,
-                        liveEndTime.value!!
+                        liveStartTime.value!!.plus(liveDate.value!!),
+                        liveEndTime.value!!.plus(liveDate.value!!)
                     )
                 }
             )
 
         }
         Log.i("DebugGuestListNoElement", "name: " + liveName.value)
-        Log.i("DebugGuestListNoElement", "startTime: " + liveStartTime.value)
-        Log.i("DebugGuestListNoElement", "endTime: " + liveEndTime.value)
-        Log.i("DebugGuestListNoElement", "date: " + liveDate.value)
+        Log.i(
+            "DebugGuestListNoElement",
+            "startTime: " + (liveStartTime.value?.plus(liveDate.value!!))
+        )
+        Log.i("DebugGuestListNoElement", "endTime: " + (liveEndTime.value?.plus(liveDate.value!!)))
         Log.i(
             "DebugGuestListNoElement",
             "data: " + if (data.value != null) data.value.toString() else ""
