@@ -1,6 +1,8 @@
 package com.hkproductions.listme.host.startview;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +46,23 @@ public class HostStartViewFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private boolean decisionCheckOutGuest = false;
+    private boolean decisionRememberDecision = false;
+
+    public void createDialog(long[] hostDataIds) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.alertDialog_title);
+        builder.setPositiveButton(R.string.confirm_alertDialog, (dialogInterface, i) -> viewModel.checkout(hostDataIds));
+        builder.setNegativeButton(R.string.cancel_alertDialog, (dialogInterface, i) -> {
+            Toast t = Toast.makeText(getContext(), R.string.cancelled_check_out_toast, Toast.LENGTH_SHORT);
+            t.show();
+        });
+
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -60,7 +80,15 @@ public class HostStartViewFragment extends Fragment {
 
         HostStartAdapter adapter = new HostStartAdapter(new CheckoutListener(
                 (hostDataids) -> {
-                    viewModel.checkout(hostDataids);
+//                    TODO: Dialog für Nachfrage (Wirklich auschecken?) & Checkbox für Entscheidung merken mit shared preferences
+                    if(decisionRememberDecision){
+                        viewModel.checkout(hostDataids);
+                    }
+                    else{
+                        createDialog(hostDataids);
+                    }
+
+
                     return null;
                 }));
         binding.recyclerViewHostStartViewAreaList.setAdapter(adapter);
