@@ -46,12 +46,18 @@ public class HostStartViewFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private boolean decisionCheckOutGuest = false;
+
     private boolean decisionRememberDecision = false;
 
     public void createDialog(long[] hostDataIds) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.alertDialog_title);
+        builder.setSingleChoiceItems(R.array.remember_my_decision,-1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                decisionRememberDecision  = true;
+            }
+        });
         builder.setPositiveButton(R.string.confirm_alertDialog, (dialogInterface, i) -> viewModel.checkout(hostDataIds));
         builder.setNegativeButton(R.string.cancel_alertDialog, (dialogInterface, i) -> {
             Toast t = Toast.makeText(getContext(), R.string.cancelled_check_out_toast, Toast.LENGTH_SHORT);
