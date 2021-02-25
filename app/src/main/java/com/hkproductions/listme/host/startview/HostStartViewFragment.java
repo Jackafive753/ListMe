@@ -30,16 +30,15 @@ import com.hkproductions.listme.databinding.HostFragmentStartviewBinding;
 import com.hkproductions.listme.host.database.HostDatabase;
 
 public class HostStartViewFragment extends Fragment {
-
+    private boolean decisionRememberDecision = false;
     private HostFragmentStartviewBinding binding;
     private HostStartViewModel viewModel;
     private static final String PREFS_LISTME = "com.hkproductions.listme";
     private SharedPreferences sp;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
 
 
         binding = DataBindingUtil.inflate(
@@ -52,19 +51,22 @@ public class HostStartViewFragment extends Fragment {
         return binding.getRoot();
     }
 
-
-
-    private boolean decisionRememberDecision = false;
+    /**
+     * This method creates a dialog asking the user wether he is sure to check out a guest
+     * The user gets the option to remember his decision
+     * The decision is stored in the shared Preferences File
+     * @param hostDataIds
+     */
     public void createDialog(long[] hostDataIds) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.alertDialog_title);
         builder.setMultiChoiceItems(R.array.remember_my_decision, null, (dialogInterface, i, b) -> {
-            if(b){
+            if (b) {
                 decisionRememberDecision = true;
             }
         });
         builder.setPositiveButton(R.string.confirm_alertDialog, (dialogInterface, i) -> {
-            sp.edit().putBoolean("decisionRememberDecision",decisionRememberDecision).apply();
+            sp.edit().putBoolean("decisionRememberDecision", decisionRememberDecision).apply();
             viewModel.checkout(hostDataIds);
         });
         builder.setNegativeButton(R.string.cancel_alertDialog, (dialogInterface, i) -> {
@@ -80,7 +82,7 @@ public class HostStartViewFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        sp = getContext().getSharedPreferences(PREFS_LISTME,Context.MODE_PRIVATE);
+        sp = getContext().getSharedPreferences(PREFS_LISTME, Context.MODE_PRIVATE);
         //Hide Keyboard
         InputMethodManager inputMethodManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
@@ -95,10 +97,9 @@ public class HostStartViewFragment extends Fragment {
 
         HostStartAdapter adapter = new HostStartAdapter(new CheckoutListener(
                 (hostDataids) -> {
-                    if(sp.getBoolean("decisionRememberDecision",decisionRememberDecision)){
+                    if (sp.getBoolean("decisionRememberDecision", decisionRememberDecision)) {
                         viewModel.checkout(hostDataids);
-                    }
-                    else{
+                    } else {
                         createDialog(hostDataids);
                     }
 
