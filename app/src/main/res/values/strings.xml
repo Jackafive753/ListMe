@@ -21,25 +21,33 @@
     <string name="code_with_full_name">Code von %s %s</string>
     <string name="show_code_text">Code anzeigen von:</string>
     <string name="scan_guest_header">Scanne den Code von deinem Kontakt</string>
-    <string name="checkinout_text">Ein-/Auschecken</string>
+    <string name="checkinout_text">Ein-/Austragen</string>
     <string name="guestlist_text">Gästeliste</string>
     <string name="dailyclosing_text">Tagesabschluss</string>
-    <string name="allCheckout_text">Alle Auschecken</string>
+    <string name="allCheckout_text">Alle Austragen</string>
     <string name="scannedEntrys_single_text">Gescannter Eintrag:</string>
     <string name="scannedEntrys_multi_text">Gescannte Einträge:</string>
     <string name="newScan_text">Erneut Scannen</string>
     <string name="continue_text">Weiter</string>
-    <string name="checkout_text">Auschecken</string>
-    <string name="host_scan_header">Scannen sie den Code des Gastes</string>
+    <string name="checkout_text">Austragen</string>
+    <string name="host_scan_header">Scannen Sie den Code des Gastes</string>
     <string name="area_designation_text">Bereichsbeschreibung</string>
     <string name="areas_label">Bereiche:</string>
     <string name="cancel">Abbrechen</string>
     <string name="overlapping_entries">Überschneidende Einträge</string>
     <string name="scan_data_button">Daten scannen</string>
     <string name="create_phone_owner">Daten erstellen</string>
-    <string name="checked_in">eingecheckt</string>
-    <string name="checked_out">ausgecheckt</string>
+    <string name="checked_in">eingetragen</string>
+    <string name="checked_out">ausgetragen</string>
     <string name="area_management_text">Bereichsverwaltung</string>
+
+    <!-- Strings HostStartView -->
+    <string name="alertDialog_title">Wirklich austragen?</string>
+    <string name="cancelled_check_out_toast">Austragen abgebrochen</string>
+    <string name="cancel_alertDialog">Abbrechen</string>
+    <string name="confirm_alertDialog">Austragen</string>
+    <string name="remember_my_decision_alertDialog">Nicht noch einmal fragen</string>
+    <array name="remember_my_decision">Nicht noch einmal fragen</array>
 
 
     <!-- Strings GuestList -->
