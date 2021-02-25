@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,10 +33,14 @@ public class HostStartViewFragment extends Fragment {
 
     private HostFragmentStartviewBinding binding;
     private HostStartViewModel viewModel;
-
+    private static final String PREFS_LISTME = "com.hkproductions.listme";
+    private SharedPreferences sp;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
+
 
         binding = DataBindingUtil.inflate(
                 inflater,
@@ -47,22 +53,21 @@ public class HostStartViewFragment extends Fragment {
     }
 
 
+
     private boolean decisionRememberDecision = false;
-    private boolean decisionTmp = false;
     public void createDialog(long[] hostDataIds) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.alertDialog_title);
         builder.setMultiChoiceItems(R.array.remember_my_decision, null, (dialogInterface, i, b) -> {
             if(b){
-                decisionRememberDecision= true;
+                decisionRememberDecision = true;
             }
         });
         builder.setPositiveButton(R.string.confirm_alertDialog, (dialogInterface, i) -> {
-            decisionTmp = true;
+            sp.edit().putBoolean("decisionRememberDecision",decisionRememberDecision).apply();
             viewModel.checkout(hostDataIds);
         });
         builder.setNegativeButton(R.string.cancel_alertDialog, (dialogInterface, i) -> {
-            decisionTmp = false;
             Toast t = Toast.makeText(getContext(), R.string.cancelled_check_out_toast, Toast.LENGTH_SHORT);
             t.show();
         });
@@ -75,6 +80,7 @@ public class HostStartViewFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sp = getContext().getSharedPreferences(PREFS_LISTME,Context.MODE_PRIVATE);
         //Hide Keyboard
         InputMethodManager inputMethodManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
@@ -89,7 +95,7 @@ public class HostStartViewFragment extends Fragment {
 
         HostStartAdapter adapter = new HostStartAdapter(new CheckoutListener(
                 (hostDataids) -> {
-                    if(decisionRememberDecision&& decisionTmp){
+                    if(sp.getBoolean("decisionRememberDecision",decisionRememberDecision)){
                         viewModel.checkout(hostDataids);
                     }
                     else{
