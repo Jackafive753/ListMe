@@ -29,7 +29,6 @@ public class GuestListFragment extends Fragment {
 
     private HostFragmentGuestListBinding binding;
     private GuestListViewModel viewModel;
-    private HostDataDao datasource;
     private Calendar c;
     private boolean expandedSearchfield = true;
 
@@ -52,6 +51,10 @@ public class GuestListFragment extends Fragment {
         viewModel.liveStartTime.observe(getViewLifecycleOwner(), observer);
         viewModel.liveEndTime.observe(getViewLifecycleOwner(), observer);
         viewModel.data.observe(getViewLifecycleOwner(), guestAdapter::submitList);
+
+        //bind layout with data
+        binding.setViewModel(viewModel);
+        binding.setLifecycleOwner(this.getViewLifecycleOwner());
     }
 
     @Nullable
@@ -61,7 +64,7 @@ public class GuestListFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.host_fragment_guest_list, container, false);
 
         //initialize datasource
-        datasource = HostDatabase.Companion.getInstance(getContext()).getHostDataDao();
+        HostDataDao datasource = HostDatabase.Companion.getInstance(getContext()).getHostDataDao();
 
         //initialize viewModel
         GuestListViewModelFactory guestListViewModelFactory = new GuestListViewModelFactory(datasource);

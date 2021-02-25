@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">ListMe</string>
 
     <string name="manual">Kurzanleitung</string>
@@ -45,6 +46,7 @@
     <string name="date_display">%1$d.%2$d.%3$d</string>
     <string name="expand_search_fields_text">Anzeigen</string>
     <string name="collapse_search_fields_text">Verstecken</string>
+    <string name="firstname_lastname_hint">Vorname Nachname</string>
     <!-- Alert Dialog Strings delete GuestData-->
     <string name="alert_deleteguestdata_message">Datensatz unwiderruflich löschen?</string>
     <string name="alert_deleteguestdata_title">Daten löschen</string>
