@@ -48,20 +48,21 @@ public class HostStartViewFragment extends Fragment {
 
 
     private boolean decisionRememberDecision = false;
-
+    private boolean decisionTmp = false;
     public void createDialog(long[] hostDataIds) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.alertDialog_title);
-        builder.setMultiChoiceItems(R.array.remember_my_decision, null, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                if(b){
-                    decisionRememberDecision = true;
-                }
+        builder.setMultiChoiceItems(R.array.remember_my_decision, null, (dialogInterface, i, b) -> {
+            if(b){
+                decisionRememberDecision= true;
             }
         });
-        builder.setPositiveButton(R.string.confirm_alertDialog, (dialogInterface, i) -> viewModel.checkout(hostDataIds));
+        builder.setPositiveButton(R.string.confirm_alertDialog, (dialogInterface, i) -> {
+            decisionTmp = true;
+            viewModel.checkout(hostDataIds);
+        });
         builder.setNegativeButton(R.string.cancel_alertDialog, (dialogInterface, i) -> {
+            decisionTmp = false;
             Toast t = Toast.makeText(getContext(), R.string.cancelled_check_out_toast, Toast.LENGTH_SHORT);
             t.show();
         });
@@ -88,8 +89,7 @@ public class HostStartViewFragment extends Fragment {
 
         HostStartAdapter adapter = new HostStartAdapter(new CheckoutListener(
                 (hostDataids) -> {
-//                    TODO: Dialog für Nachfrage (Wirklich auschecken?) & Checkbox für Entscheidung merken mit shared preferences
-                    if(decisionRememberDecision){
+                    if(decisionRememberDecision&& decisionTmp){
                         viewModel.checkout(hostDataids);
                     }
                     else{
