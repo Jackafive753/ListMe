@@ -25,9 +25,6 @@
     <string name="guestlist_text">Gästeliste</string>
     <string name="dailyclosing_text">Tagesabschluss</string>
     <string name="allCheckout_text">Alle Austragen</string>
-    <string name="scannedEntrys_single_text">Gescannter Eintrag:</string>
-    <string name="scannedEntrys_multi_text">Gescannte Einträge:</string>
-    <string name="newScan_text">Erneut Scannen</string>
     <string name="continue_text">Weiter</string>
     <string name="checkout_text">Austragen</string>
     <string name="host_scan_header">Scannen Sie den Code des Gastes</string>
@@ -41,13 +38,22 @@
     <string name="checked_out">ausgetragen</string>
     <string name="area_management_text">Bereichsverwaltung</string>
 
+    <!-- String HostScanResult -->
+    <string name="scannedEntrys_noArea">Kein Bereich</string>
+    <string name="scannedEntrys_single_text">Gescannter Eintrag:</string>
+    <string name="scannedEntrys_multi_text">Gescannte Einträge:</string>
+    <string name="newScan_text">Erneut Scannen</string>
+    <string name="scanResultToastMes">Gäste wurden %s zugewiesen</string>
+
     <!-- Strings HostStartView -->
     <string name="alertDialog_title">Wirklich austragen?</string>
     <string name="cancelled_check_out_toast">Austragen abgebrochen</string>
     <string name="cancel_alertDialog">Abbrechen</string>
     <string name="confirm_alertDialog">Austragen</string>
     <string name="remember_my_decision_alertDialog">Nicht noch einmal fragen</string>
-    <array name="remember_my_decision"><item>Nicht mehr fragen</item></array>
+    <array name="remember_my_decision">
+        <item>Nicht mehr fragen</item>
+    </array>
 
 
     <!-- Strings GuestList -->

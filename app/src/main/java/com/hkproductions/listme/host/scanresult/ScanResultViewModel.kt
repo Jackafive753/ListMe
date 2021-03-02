@@ -11,12 +11,27 @@ import com.hkproductions.listme.host.database.HostData
 import com.hkproductions.listme.host.database.HostDataDao
 import kotlinx.coroutines.launch
 
-class ScanResultViewModel(val database:HostDataDao, val hostDataIds:LongArray) : ViewModel() {
+class ScanResultViewModel(val database: HostDataDao, val hostDataIds: LongArray) : ViewModel() {
     val lData = MutableLiveData<List<HostData>>()
+    val areaLi = database.getAllAreas()
 
     init {
         viewModelScope.launch {
             makingList(hostDataIds)
+        }
+    }
+
+    fun saveArea(pos: Int) {
+        viewModelScope.launch {
+            val string = if (pos == -1) {
+                ""
+            } else {
+                areaLi.value?.get(pos)!!.name
+            }
+            lData.value?.map {
+                it.areaName = string
+                database.updateHostData(it)
+            }
         }
     }
 
