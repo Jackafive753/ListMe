@@ -125,5 +125,7 @@
     <string name="startzeit">Von</string>
     <string name="ContentDescriptionClockIcon">simpleClock</string>
     <string name="endzeit">Bis</string>
+    <string name="settings">Einstellungen</string>
+    <string name="SwitchQuestion">Nachfragen wenn ausgetragen wird</string>
 
 </resources>
