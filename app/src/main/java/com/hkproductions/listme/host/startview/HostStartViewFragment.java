@@ -97,7 +97,7 @@ public class HostStartViewFragment extends Fragment {
 
         HostStartAdapter adapter = new HostStartAdapter(new CheckoutListener(
                 (hostDataids) -> {
-                    if (sp.getBoolean("decisionRememberDecision", decisionRememberDecision)) {
+                    if (sp.getBoolean("decisionRememberDecision", false)) {
                         viewModel.checkout(hostDataids);
                     } else {
                         createDialog(hostDataids);
