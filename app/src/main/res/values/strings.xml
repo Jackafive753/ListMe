@@ -55,6 +55,11 @@
         <item>Nicht mehr fragen</item>
     </array>
 
+    <!--    Strings Settings-->
+    <string name="settings">Einstellungen</string>
+    <string name="SwitchQuestion">Nachfragen wenn ausgetragen wird</string>
+    <string name="switch_yes">Ja</string>
+    <string name="switch_no">Nein</string>
 
     <!-- Strings GuestList -->
     <string name="date_display">%1$d.%2$d.%3$d</string>
@@ -125,7 +130,6 @@
     <string name="startzeit">Von</string>
     <string name="ContentDescriptionClockIcon">simpleClock</string>
     <string name="endzeit">Bis</string>
-    <string name="settings">Einstellungen</string>
-    <string name="SwitchQuestion">Nachfragen wenn ausgetragen wird</string>
+
 
 </resources>
