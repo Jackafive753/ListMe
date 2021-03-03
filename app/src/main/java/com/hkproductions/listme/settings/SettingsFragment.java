@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,13 @@ import android.view.ViewGroup;
 import com.hkproductions.listme.databinding.SettingsFragmentBinding;
 import com.hkproductions.listme.R;
 
+
 public class SettingsFragment extends Fragment {
 
     private SettingsFragmentBinding binding;
     private SettingsViewModel viewModel;
     private static final String PREFS_LISTME = "com.hkproductions.listme";
+    private static final String PREF_DECISION = "decisionRememberDecision";
     private SharedPreferences sp;
 
     @Override
@@ -33,7 +36,8 @@ public class SettingsFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.settings_fragment, container, false);
         ViewModelProvider viewModelProvider = new ViewModelProvider(this);
         viewModel = viewModelProvider.get(SettingsViewModel.class);
-
+        sp = requireContext().getSharedPreferences(PREFS_LISTME, Context.MODE_PRIVATE);
+        // initialize Switch
         initSwitchRememberDecision();
 
 
@@ -45,7 +49,6 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        sp = getContext().getSharedPreferences(PREFS_LISTME, Context.MODE_PRIVATE);
 
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this.getViewLifecycleOwner());
@@ -58,9 +61,10 @@ public class SettingsFragment extends Fragment {
      * A TRUE state represents the user does not want to get asked every time he checks someone out (switch is checked OFF)
      * A FALSE state represents the user wants to get asked every time he checks someone out (switch is checked ON )
      */
-    private void initSwitchRememberDecision(){
-        binding.switchMaterial.setUseMaterialThemeColors(true);
-        binding.switchMaterial.setChecked(!sp.getBoolean("decisionRememberDecision", true));
-        sp.edit().putBoolean("decisionRememberDecision", !binding.switchMaterial.isChecked()).apply();
+    private void initSwitchRememberDecision() {
+        binding.switchMaterial.setChecked(!sp.getBoolean(PREF_DECISION, false));
+        binding.switchMaterial.setOnClickListener(l -> {
+            sp.edit().putBoolean(PREF_DECISION, !binding.switchMaterial.isChecked()).apply();
+        });
     }
 }
