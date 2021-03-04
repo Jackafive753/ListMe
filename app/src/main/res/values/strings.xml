@@ -12,7 +12,7 @@
     <string name="present_code">Code anzeigen</string>
     <string name="group_code">Gruppen Code</string>
     <string name="contact">Kontakte:</string>
-    <string name="add">hinzufügen</string>
+    <string name="add">Hinzufügen</string>
     <string name="confirm">Bestätigen</string>
     <string name="ready">Fertig</string>
     <string name="edit">Bearbeiten</string>
@@ -102,7 +102,7 @@
 
     <!-- for my data are in startview of the guest
             (firstname, lastname, street, house_number, postal_code, city, phone_number)-->
-    <string name="my_data">Meine Daten:\n    %s %s\n    %s %s\n    %s, %s\n    %s</string>
+    <string name="my_data"><u>Meine Daten: </u>\n    %s %s\n    %s %s\n    %s, %s\n    %s</string>
 
     <!-- this string stand on startview of the guest in house member cards
             (firstname, lastname, phone_number)-->

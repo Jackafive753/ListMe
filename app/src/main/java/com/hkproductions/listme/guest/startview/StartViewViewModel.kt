@@ -11,15 +11,15 @@ import kotlinx.coroutines.launch
 class StartViewViewModel(private val database: GuestDataDao) : ViewModel() {
 
     //live data of the phone owner
-    private var _phoneOwner = MutableLiveData<GuestData>()
-    val phoneOwner: LiveData<GuestData>
+    private var _phoneOwner = MutableLiveData<GuestData?>()
+    val phoneOwner: LiveData<GuestData?>
         get() = _phoneOwner
 
     //list of all house members
     val houseMembers = database.getContacts()
 
     //live data holds id of a house_member to be navigated to
-    private val _navigateToDataDetail = MutableLiveData<Long>()
+    private val _navigateToDataDetail = MutableLiveData<Long>(0L)
     val navigateToDataDetail: LiveData<Long>
         get() = _navigateToDataDetail
 
@@ -45,7 +45,7 @@ class StartViewViewModel(private val database: GuestDataDao) : ViewModel() {
      * Called if Navigation is finished
      */
     fun onMemberDetailNavigated() {
-        _navigateToDataDetail.value = null
+        _navigateToDataDetail.value = 0L
     }
 
     /**

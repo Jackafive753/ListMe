@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-
-        <variable
-            name="contact"
-            type="com.hkproductions.listme.guest.database.GuestData" />
-
-        <variable
-            name="clickListener"
-            type="com.hkproductions.listme.guest.startview.ContactListener" />
-    </data>
-
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/contact_button"
+        style="@style/ListMe_Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="@{() -> clickListener.onClick(contact)}" />
+        android:layout_margin="4dp" />
 </layout>

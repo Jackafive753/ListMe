@@ -16,6 +16,8 @@ class AreaManagementViewModel(val database: HostDataDao) : ViewModel() {
 
     init {
         viewModelScope.launch {
+            //Not sensless null check, if database found no item it returns null
+            @Suppress("SENSELESS_NULL_IN_WHEN")
             designation.value = when (val string: String = database.getAreaDesignation()) {
                 null -> ""
                 else -> string

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.GuestFragmentDetailViewBinding
@@ -77,7 +78,7 @@ class GuestDetailFragment : Fragment() {
             val alertDialogBuilder = AlertDialog.Builder(context)
             alertDialogBuilder.setMessage(resources.getString(R.string.alert_deleteguestdata_message))
             alertDialogBuilder.setTitle(resources.getString(R.string.alert_deleteguestdata_title))
-            alertDialogBuilder.setPositiveButton(resources.getString(R.string.alert_deleteguestdata_positive_delete)) { dialog, which ->
+            alertDialogBuilder.setPositiveButton(resources.getString(R.string.alert_deleteguestdata_positive_delete)) { _, _ ->
                 Toast.makeText(
                     context,
                     resources.getString(R.string.alert_deleteguestdata_positive_feedback),
@@ -86,7 +87,7 @@ class GuestDetailFragment : Fragment() {
                 viewModel.deleteData()
                 this.findNavController().navigate(GuestDetailFragmentDirections.actionAfterDelete())
             }
-            alertDialogBuilder.setNegativeButton(resources.getString(R.string.alert_deleteguestdata_negative_cancel)) { dialog, which ->
+            alertDialogBuilder.setNegativeButton(resources.getString(R.string.alert_deleteguestdata_negative_cancel)) { _, _ ->
                 Toast.makeText(
                     context,
                     resources.getString(R.string.alert_deleteguestdata_negative_feedback),

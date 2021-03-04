@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -25,6 +24,7 @@
 
             <TextView
                 android:id="@+id/textViewGuestName"
+                style="@style/ListMe_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/name_text"
@@ -34,6 +34,7 @@
 
             <TextView
                 android:id="@+id/textViewStreet"
+                style="@style/ListMe_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/street_text"
@@ -43,6 +44,7 @@
 
             <TextView
                 android:id="@+id/textViewPostalCode"
+                style="@style/ListMe_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/postal_code_text"
@@ -52,6 +54,7 @@
 
             <TextView
                 android:id="@+id/textViewPhoneNumber"
+                style="@style/ListMe_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -72,6 +75,7 @@
 
     <TextView
         android:id="@+id/textViewLabelDate"
+        style="@style/ListMe_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/date_label"
@@ -81,6 +85,7 @@
 
     <TextView
         android:id="@+id/textViewDate"
+        style="@style/ListMe_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/double_line_spacing"
@@ -90,6 +95,7 @@
 
     <TextView
         android:id="@+id/textViewTimeFrame"
+        style="@style/ListMe_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/double_line_spacing"
@@ -99,6 +105,7 @@
 
     <TextView
         android:id="@+id/textViewTimeFrameLabel"
+        style="@style/ListMe_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/timeframelabel"
@@ -108,6 +115,7 @@
 
     <TextView
         android:id="@+id/textViewAreaLabel"
+        style="@style/ListMe_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/side_margin"
@@ -118,6 +126,7 @@
 
     <TextView
         android:id="@+id/textViewArea"
+        style="@style/ListMe_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/double_line_spacing"
@@ -127,6 +136,7 @@
 
     <Button
         android:id="@+id/button"
+        style="@style/ListMe_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/side_margin"

@@ -70,9 +70,8 @@ class AreaManagementFragment : Fragment() {
         //Ok Button Clicked
         binding.buttonAreaManagementOkDesignation.setOnClickListener {
             //Hide Keyboard
-            val inputMethodManager =
-                context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+            (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                .hideSoftInputFromWindow(view?.windowToken, 0)
 
             viewModel.setNewDesignation()
         }

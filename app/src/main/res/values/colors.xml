@@ -15,4 +15,11 @@
     <color name="ford_mint">#8fffc6</color>
     <color name="ford_mint_complementary">#ffb0db</color>
     <color name="pink_100">#e5cfff</color>
+
+    <color name="green_200">#8FFFC6</color>
+    <color name="green_500">#00f28b</color>
+    <color name="green_700">#00cc6f</color>
+    <color name="green_complementary_200">#ff8fc9</color>
+    <color name="green_complementary_500">#ff0085</color>
+    <color name="green_complementary_700">#d5007a</color>
 </resources>

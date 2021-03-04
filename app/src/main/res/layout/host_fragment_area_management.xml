@@ -38,6 +38,7 @@
 
         <Button
             android:id="@+id/button_areaManagement_okDesignation"
+            style="@style/ListMe_Button_Positive"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginEnd="@dimen/side_margin"
@@ -49,6 +50,7 @@
 
         <TextView
             android:id="@+id/textView13"
+            style="@style/ListMe_Text_Header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/areas_label"
@@ -59,6 +61,7 @@
 
         <Button
             android:id="@+id/button_areaManagement_addArea"
+            style="@style/ListMe_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/double_line_spacing"

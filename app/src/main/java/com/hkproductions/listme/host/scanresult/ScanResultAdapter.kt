@@ -40,9 +40,12 @@ class ScanResultAdapter:RecyclerView.Adapter<ScanResultAdapter.ScanResultViewHol
             binding.textViewHostScanresultCityPostalCode.text= "${item.postalCode}, ${item.city}"
             binding.textViewHostScanresultStreetHousenumber.text= item.street+" "+item.houseNumber
             binding.textViewPhoneNumber.text=item.phoneNumber
-            binding.textViewHostScanresultStatus.text= when(item.endTimeMilli){
+            binding.textViewHostScanresultStatus.text= when (item.endTimeMilli) {
                 -1L -> resource.getString(R.string.checked_in)
-                else -> resource.getString(R.string.checked_out)
+                else -> {
+                    binding.textViewHostScanresultStatus.setTextColor(resource.getColor(R.color.green_700))
+                    resource.getString(R.string.checked_out)
+                }
             }
         }
     }

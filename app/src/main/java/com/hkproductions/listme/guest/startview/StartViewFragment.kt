@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -54,7 +55,7 @@ class StartViewFragment : Fragment() {
         fillRecyclerView()
 
         //Fill my Data Area with content
-        viewModel.phoneOwner.observe(viewLifecycleOwner, {
+        viewModel.phoneOwner.observe(viewLifecycleOwner, Observer {
             if (it == null) {
                 Toast.makeText(
                     context,
@@ -86,11 +87,12 @@ class StartViewFragment : Fragment() {
             }
         })
 
-        viewModel.navigateToDataDetail.observe(viewLifecycleOwner, { member ->
-            member.let {
+        viewModel.navigateToDataDetail.observe(viewLifecycleOwner, Observer { member ->
+            if (member > 0L) {
                 this.findNavController()
                     .navigate(StartViewFragmentDirections.actionToDetail(member))
                 viewModel.onMemberDetailNavigated()
+
             }
         })
 

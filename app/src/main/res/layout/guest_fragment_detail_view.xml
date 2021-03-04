@@ -34,6 +34,7 @@
 
                 <TextView
                     android:id="@+id/textView2"
+                    style="@style/ListMe_Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.liveData.firstName + ' ' + viewModel.liveData.lastName}"
@@ -44,6 +45,7 @@
 
                 <TextView
                     android:id="@+id/textView4"
+                    style="@style/ListMe_Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.liveData.street + ' ' + viewModel.liveData.houseNumber}"
@@ -54,6 +56,7 @@
 
                 <TextView
                     android:id="@+id/textView7"
+                    style="@style/ListMe_Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.liveData.postalCode + ' ' + viewModel.liveData.city}"
@@ -64,6 +67,7 @@
 
                 <TextView
                     android:id="@+id/textView8"
+                    style="@style/ListMe_Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/side_margin"
@@ -84,6 +88,7 @@
 
         <Button
             android:id="@+id/show_code_button"
+            style="@style/ListMe_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_margin"
@@ -97,6 +102,7 @@
 
         <Button
             android:id="@+id/edit_button"
+            style="@style/ListMe_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/line_spacing"
@@ -109,6 +115,7 @@
 
         <Button
             android:id="@+id/delete_button"
+            style="@style/ListMe_Button_Negative"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/line_spacing"

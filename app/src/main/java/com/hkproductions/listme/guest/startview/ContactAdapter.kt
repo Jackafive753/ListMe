@@ -46,8 +46,9 @@ class ContactAdapter(
                     item.lastName,
                     item.phoneNumber
                 )
-            binding.contact = item
-            binding.clickListener = clickListener
+            binding.contactButton.setOnClickListener {
+                clickListener.onClick(item)
+            }
         }
 
         companion object {
@@ -68,4 +69,5 @@ class ContactAdapter(
 
 class ContactListener(val clickListener: (guestId: Long) -> Unit) {
     fun onClick(member: GuestData) = clickListener(member.guestDataId)
+
 }

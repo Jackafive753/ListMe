@@ -187,6 +187,7 @@
 
             <Button
                 android:id="@+id/button_editGuest_scanData"
+                style="@style/ListMe_Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -199,6 +200,7 @@
 
             <Button
                 android:id="@+id/editViewConfirmButton"
+                style="@style/ListMe_Button_Positive"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"

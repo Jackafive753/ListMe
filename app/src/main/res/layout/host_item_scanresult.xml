@@ -24,6 +24,7 @@
 
             <TextView
                 android:id="@+id/textView_hostScanresult_name"
+                style="@style/ListMe_Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/line_spacing"
@@ -46,38 +47,41 @@
 
             <TextView
                 android:id="@+id/textView_hostScanresult_street_housenumber"
+                style="@style/ListMe_Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
                 android:layout_marginTop="@dimen/content_line_spacing"
-                tools:text="StreetAndHousenumber"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textView_hostScanresult_status"
-                app:layout_constraintTop_toBottomOf="@+id/textView_hostScanresult_name" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_hostScanresult_name"
+                tools:text="StreetAndHousenumber" />
 
             <TextView
                 android:id="@+id/textView_hostScanresult_city_postalCode"
+                style="@style/ListMe_Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
                 android:layout_marginTop="@dimen/content_line_spacing"
-                tools:text="CityAndPostalCode"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textView_hostScanresult_status"
-                app:layout_constraintTop_toBottomOf="@+id/textView_hostScanresult_street_housenumber" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_hostScanresult_street_housenumber"
+                tools:text="CityAndPostalCode" />
 
 
             <TextView
                 android:id="@+id/textViewPhoneNumber"
+                style="@style/ListMe_Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
                 android:layout_marginTop="@dimen/content_line_spacing"
                 android:layout_marginBottom="@dimen/side_margin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/textView_hostScanresult_status"
-                app:layout_constraintTop_toBottomOf="@+id/textView_hostScanresult_city_postalCode"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView_hostScanresult_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_hostScanresult_city_postalCode"
                 tools:text="@string/phone_number_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

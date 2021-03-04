@@ -1,6 +1,5 @@
 package com.hkproductions.listme
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -24,11 +23,13 @@ class MainActivity : AppCompatActivity() {
         val navView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment)
 
+        //ids of the view with burger menu
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.mainScreenFragment,
                 R.id.guestStartViewFragment,
-                R.id.hostStartViewFragment
+                R.id.hostStartViewFragment,
+                R.id.settingsFragment
             ),
             drawerLayout
         )

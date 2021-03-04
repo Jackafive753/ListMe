@@ -46,6 +46,7 @@ class CodeFragment : Fragment() {
             )
         ).get(CodeViewModel::class.java)
 
+        //set adapter and fill for recyclerview
         val adapter = ShowContactCodeAdapter(
             ShowContactCodeListener { guestId ->
                 viewModel.onShowContactCodeClicked(guestId)
@@ -57,6 +58,7 @@ class CodeFragment : Fragment() {
             adapter.data = it
         })
 
+        //observer on values to update front end
         viewModel.selected.observe(viewLifecycleOwner, {
             binding.textViewCodeNameLabel.text =
                 resources.getString(

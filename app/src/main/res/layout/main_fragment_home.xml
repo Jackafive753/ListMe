@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
         <ImageView
             android:id="@+id/Logo"
-            android:layout_width="270dp"
-            android:layout_height="270dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/double_line_spacing"
+            android:layout_marginTop="@dimen/double_line_spacing"
+            android:layout_marginEnd="@dimen/double_line_spacing"
             android:contentDescription="@string/listmelogo"
             app:layout_constraintBottom_toTopOf="@id/horizontalGuideline50"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo_variante3" />
 
         <Button
             android:id="@+id/home_host_button"
-            android:layout_width="270dp"
-            android:layout_height="46dp"
+            style="@style/ListMe_Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_mono"
             android:text="@string/host"
-            android:textColor="@color/black"
 
+            android:textColor="@color/black"
             app:elevation="5dp"
             app:layout_constraintBottom_toTopOf="@+id/home_guest_button"
             app:layout_constraintEnd_toEndOf="@+id/Logo"
@@ -35,6 +40,7 @@
 
         <Button
             android:id="@+id/home_guest_button"
+            style="@style/ListMe_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_mono"
@@ -47,8 +53,10 @@
 
         <Button
             android:id="@+id/home_manual_button"
-            android:layout_width="270dp"
-            android:layout_height="46dp"
+            style="@style/ListMe_Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/side_margin"
             android:fontFamily="@font/roboto_mono"
             android:text="@string/manual"
             android:textColor="@color/black"

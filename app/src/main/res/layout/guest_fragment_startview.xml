@@ -28,14 +28,13 @@
 
         <Button
             android:id="@+id/button_guest_show_code"
+            style="@style/ListMe_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_margin"
             android:layout_marginTop="@dimen/side_margin"
             android:layout_marginEnd="@dimen/side_margin"
-            android:fontFamily="@font/roboto_mono"
             android:text="@string/present_code"
-            android:textColor="@color/black"
             app:icon="@drawable/ic_baseline_qr_code_2_24"
             app:iconGravity="textStart"
             app:iconTint="@color/black"
@@ -45,12 +44,11 @@
 
         <Button
             android:id="@+id/button_guest_code_group"
+            style="@style/ListMe_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/line_spacing"
-            android:fontFamily="@font/roboto_mono"
             android:text="@string/group_code"
-            android:textColor="@color/black"
             app:icon="@drawable/ic_baseline_qr_code_2_24"
             app:iconGravity="textStart"
             app:iconTint="@color/black"
@@ -61,10 +59,10 @@
 
         <Button
             android:id="@+id/my_data_area_button"
+            style="@style/ListMe_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/line_spacing"
-            android:text=""
             android:textAlignment="viewStart"
             app:layout_constraintEnd_toEndOf="@+id/button_guest_code_group"
             app:layout_constraintStart_toStartOf="@+id/button_guest_code_group"
@@ -73,10 +71,11 @@
 
         <TextView
             android:id="@+id/house_members_label"
+            style="@style/ListMe_Text_Header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/contact"
-            android:textSize="16sp"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="@+id/button_guestStart_addContact"
             app:layout_constraintStart_toStartOf="@+id/my_data_area_button"
             app:layout_constraintTop_toTopOf="@+id/button_guestStart_addContact"
@@ -85,6 +84,7 @@
 
         <Button
             android:id="@+id/button_guestStart_addContact"
+            style="@style/ListMe_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/double_line_spacing"

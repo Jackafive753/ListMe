@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.hkproductions.listme.host.database.HostDataDao
 
+@Suppress("UNCHECKED_CAST")
 class AreaManagementViewModelFactory(val database: HostDataDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AreaManagementViewModel::class.java)) {

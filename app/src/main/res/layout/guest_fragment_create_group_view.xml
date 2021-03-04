@@ -45,6 +45,7 @@
 
         <Button
             android:id="@+id/button_group_confirm"
+            style="@style/ListMe_Button_Positive"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_margin"
