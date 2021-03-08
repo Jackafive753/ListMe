@@ -237,8 +237,8 @@
             tools:layout="@layout/host_fragment_area_management" />
     </navigation>
     <fragment
-        tools:layout="@layout/settings_fragment"
         android:id="@+id/settingsFragment"
         android:name="com.hkproductions.listme.settings.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="@string/setting_title"
+        tools:layout="@layout/settings_fragment" />
 </navigation>

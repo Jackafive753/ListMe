@@ -114,6 +114,7 @@
 
     <!-- Strings that are headlines of the fragments-->
     <string name="home_title">Home</string>
+    <string name="setting_title">Einstellungen</string>
     <string name="guest_detail_view_title">Übersicht</string>
     <string name="guest_start_view_title">Gast</string>
     <string name="guest_edit_view_title">Bearbeiten</string>
@@ -126,6 +127,7 @@
     <string name="host_guestList_view_title">Gästeliste</string>
     <string name="host_guestDetail_view_title">Gast-Details</string>
     <string name="host_detailList_view_title">Detailliste</string>
+
     <!-- Image descriptions-->
     <string name="simple_box_image_description">simpleBox</string>
     <string name="code_image_description">Code</string>
