@@ -31,7 +31,7 @@
         <fragment
             android:id="@+id/guestStartViewFragment"
             android:name="com.hkproductions.listme.guest.startview.StartViewFragment"
-            android:label="GuestStartViewFragment"
+            android:label="@string/guest_start_view_title"
             tools:layout="@layout/guest_fragment_startview">
             <action
                 android:id="@+id/action_data_create"
@@ -65,7 +65,7 @@
         <fragment
             android:id="@+id/createGroupFragment"
             android:name="com.hkproductions.listme.guest.creategroupview.CreateGroupFragment"
-            android:label="CreateGroupFragment"
+            android:label="@string/guest_group_view_title"
             tools:layout="@layout/guest_fragment_create_group_view">
             <action
                 android:id="@+id/action_show_group_code"
@@ -78,7 +78,7 @@
         <fragment
             android:id="@+id/editViewFragment"
             android:name="com.hkproductions.listme.guest.editview.EditViewFragment"
-            android:label="EditViewFragment"
+            android:label="@string/guest_edit_view_title"
             tools:layout="@layout/guest_fragment_edit_view">
             <argument
                 android:name="dataId"
@@ -127,7 +127,7 @@
         <fragment
             android:id="@+id/codeFragment"
             android:name="com.hkproductions.listme.guest.code.CodeFragment"
-            android:label="CodeFragment"
+            android:label="@string/guest_code_view_title"
             tools:layout="@layout/guest_fragment_code_view">
             <argument
                 android:name="dataId"
@@ -136,7 +136,7 @@
         <fragment
             android:id="@+id/codeGroupFragment"
             android:name="com.hkproductions.listme.guest.codegroup.CodeGroupFragment"
-            android:label="CodeGroupFragment"
+            android:label="@string/guest_groupCode_view_title"
             tools:layout="@layout/guest_fragment_group_code_view">
             <argument
                 android:name="dataIds"
@@ -150,7 +150,7 @@
         <fragment
             android:id="@+id/hostStartViewFragment"
             android:name="com.hkproductions.listme.host.startview.HostStartViewFragment"
-            android:label="HostStartViewFragment"
+            android:label="@string/host_start_view_title"
             tools:layout="@layout/host_fragment_startview">
             <action
                 android:id="@+id/action_show_guest_list"
@@ -177,7 +177,7 @@
         <fragment
             android:id="@+id/guestListFragment"
             android:name="com.hkproductions.listme.host.guestlist.GuestListFragment"
-            android:label="GuestListFragment"
+            android:label="@string/host_guestList_view_title"
             tools:layout="@layout/host_fragment_guest_list">
             <action
                 android:id="@+id/action_show_guest_details"
@@ -196,9 +196,9 @@
         </fragment>
         <fragment
             android:id="@+id/scanResultFragment"
-            tools:layout="@layout/host_fragment_scanresult"
             android:name="com.hkproductions.listme.host.scanresult.ScanResultFragment"
-            android:label="ScanResultFragment">
+            android:label="@string/host_scanResult_view_title"
+            tools:layout="@layout/host_fragment_scanresult">
             <argument
                 android:name="hostDataIds"
                 app:argType="long[]" />
@@ -213,7 +213,7 @@
         <fragment
             android:id="@+id/guestDetailViewFragment"
             android:name="com.hkproductions.listme.host.guestdetailview.GuestDetailViewFragment"
-            android:label="GuestDetailViewFragment">
+            android:label="@string/host_guestDetail_view_title">
             <action
                 android:id="@+id/action_from_detail_show_detail_list"
                 app:destination="@id/detailListFragment"
@@ -225,11 +225,15 @@
         <fragment
             android:id="@+id/detailListFragment"
             android:name="com.hkproductions.listme.host.detaillist.DetailListFragment"
-            android:label="DetailListFragment" />
+            android:label="@string/host_detailList_view_title">
+            <argument
+                android:name="hostDataId"
+                app:argType="long" />
+        </fragment>
         <fragment
             android:id="@+id/areaManagementFragment"
             android:name="com.hkproductions.listme.host.tablemanagement.AreaManagementFragment"
-            android:label="AreaManagementFragment"
+            android:label="@string/host_areaManag_view_title"
             tools:layout="@layout/host_fragment_area_management" />
     </navigation>
     <fragment
