@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.hkproductions.listme.host.guestdetailview.GuestDetailViewViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -27,7 +34,7 @@
                 style="@style/ListMe_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name_text"
+                android:text="@{viewModel.liveData.firstName + ' ' + viewModel.liveData.lastName}"
                 app:layout_constraintBottom_toTopOf="@+id/textViewStreet"
                 app:layout_constraintStart_toStartOf="@+id/textViewStreet"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +44,7 @@
                 style="@style/ListMe_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/street_text"
+                android:text="@{viewModel.liveData.street + ' ' + viewModel.liveData.houseNumber}"
                 app:layout_constraintBottom_toTopOf="@+id/textViewPostalCode"
                 app:layout_constraintStart_toStartOf="@+id/textViewPostalCode"
                 app:layout_constraintTop_toBottomOf="@+id/textViewGuestName" />
@@ -47,7 +54,7 @@
                 style="@style/ListMe_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/postal_code_text"
+                android:text="@{viewModel.liveData.postalCode}"
                 app:layout_constraintBottom_toTopOf="@+id/textViewPhoneNumber"
                 app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber"
                 app:layout_constraintTop_toBottomOf="@+id/textViewStreet" />
@@ -58,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
-                android:text="@string/phone_number_text"
+                android:text="@{viewModel.liveData.phoneNumber}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewPostalCode" />
@@ -89,7 +96,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/double_line_spacing"
-        android:text="@string/date_label"
         app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelDate"
         app:layout_constraintStart_toEndOf="@+id/textViewLabelDate" />
 
@@ -146,3 +152,4 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
