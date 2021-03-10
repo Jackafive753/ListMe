@@ -7,12 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hkproductions.listme.R;
 import com.hkproductions.listme.databinding.HostItemGuestlistBinding;
 import com.hkproductions.listme.host.database.HostData;
+import com.hkproductions.listme.host.guestdetailview.GuestDetailViewFragment;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -71,6 +76,12 @@ public class GuestAdapter extends ListAdapter<HostData, GuestAdapter.GuestListVi
             DateFormat dfEnd = new SimpleDateFormat("dd/MM/yy HH:mm");
             String checkOutString = dfEnd.format(data.getEndTimeMilli());
             binding.buttonGuest.setText(data.getFirstName() + data.getLastName() + "\n" + checkInString + " - " + checkOutString);
+            binding.buttonGuest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Navigation.findNavController(view).navigate(GuestListFragmentDirections.actionShowGuestDetails(data.getHostDataId()));
+                }
+            });
         }
     }
 }
