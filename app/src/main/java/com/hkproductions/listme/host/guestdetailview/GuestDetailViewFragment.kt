@@ -11,6 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.HostFragmentGuestDetailViewBinding
 import com.hkproductions.listme.guest.detailview.GuestDetailFragmentArgs
@@ -45,7 +47,9 @@ class GuestDetailViewFragment : Fragment() {
 
 
 
-
+        binding.button.setOnClickListener {
+            findNavController().navigate(GuestDetailViewFragmentDirections.actionFromDetailShowDetailList(dataId))
+        }
 
 
 
