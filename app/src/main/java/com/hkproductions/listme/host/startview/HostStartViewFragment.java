@@ -2,7 +2,6 @@ package com.hkproductions.listme.host.startview;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -25,15 +23,18 @@ import androidx.navigation.Navigation;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.hkproductions.listme.Constant;
 import com.hkproductions.listme.R;
 import com.hkproductions.listme.databinding.HostFragmentStartviewBinding;
 import com.hkproductions.listme.host.database.HostDatabase;
 
+import java.util.Objects;
+
 public class HostStartViewFragment extends Fragment {
+    private static final String PREFS_LISTME = "com.hkproductions.listme";
     private boolean decisionRememberDecision = false;
     private HostFragmentStartviewBinding binding;
     private HostStartViewModel viewModel;
-    private static final String PREFS_LISTME = "com.hkproductions.listme";
     private SharedPreferences sp;
 
     @Nullable
@@ -114,15 +115,16 @@ public class HostStartViewFragment extends Fragment {
         viewModel.getCheckedInAreas().observe(getViewLifecycleOwner(), adapter::submitMap);
 
         binding.buttonHostStartViewEinauschecken.setOnClickListener(event -> {
-            IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
-            integrator.setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE);
-            integrator.setPrompt(getResources().getString(R.string.host_scan_header));
-            integrator.setOrientationLocked(true);
-            integrator.initiateScan();
+            initiateScan();
+        });
+
+        binding.floatingActionButtonCheckInOut.setOnClickListener(event -> {
+            initiateScan();
         });
 
         binding.buttonHostStartViewGaesteliste.setOnClickListener(event -> {
-            Navigation.findNavController(requireView()).navigate(HostStartViewFragmentDirections.actionShowGuestList());
+            Navigation.findNavController(requireView())
+                    .navigate(HostStartViewFragmentDirections.actionShowGuestList());
         });
 
         viewModel.getNavigateToScanResult().observe(getViewLifecycleOwner(), bool -> {
@@ -138,6 +140,9 @@ public class HostStartViewFragment extends Fragment {
         setHasOptionsMenu(true);
 
         //DEVELOPERMODE
+        if (!Constant.DEVELOPER_MODE) {
+            binding.buttonHostStartClearHostData.setVisibility(View.GONE);
+        }
         binding.buttonHostStartClearHostData.setOnClickListener(event -> {
             viewModel.clearHostData();
         });
@@ -167,5 +172,17 @@ public class HostStartViewFragment extends Fragment {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    /**
+     * initiate Scan
+     * open Camera to scan an code of an guest to check in or check out
+     */
+    public void initiateScan() {
+        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE);
+        integrator.setPrompt(getResources().getString(R.string.host_scan_header));
+        integrator.setOrientationLocked(true);
+        integrator.initiateScan();
     }
 }
