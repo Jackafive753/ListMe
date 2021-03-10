@@ -17,10 +17,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/content_line_spacing">
 
         <TextView
             android:id="@+id/textView"
+            style="@style/ListMe_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/line_spacing"
@@ -32,23 +34,32 @@
 
         <ImageButton
             android:id="@+id/button_areaManagement_delete"
-            android:layout_width="wrap_content"
+            style="@style/ListMe_ImageButton_Negative"
+            android:layout_width="0dp"
+            android:padding="5dp"
             android:layout_height="0dp"
             android:contentDescription="@string/delete_icon_description"
             android:onClick="@{() -> clickListener.onClick(area)}"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_delete_24" />
 
         <ImageButton
             android:id="@+id/button_areaManagement_confirm"
-            android:layout_width="wrap_content"
+            style="@style/ListMe_ImageButton_Positive"
+            android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/content_line_spacing"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/button_areaManagement_delete"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.5"
             app:srcCompat="@drawable/ic_baseline_check_24" />
 
         <EditText
@@ -57,8 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/content_line_spacing"
             android:layout_marginEnd="@dimen/content_line_spacing"
-            android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|text"
             android:text="@{area.name}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_areaManagement_confirm"

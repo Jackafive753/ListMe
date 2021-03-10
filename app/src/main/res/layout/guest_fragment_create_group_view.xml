@@ -21,6 +21,7 @@
 
         <TextView
             android:id="@+id/textView9"
+            style="@style/ListMe_Text_Header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_margin"
@@ -52,6 +53,8 @@
             android:layout_marginEnd="@dimen/side_margin"
             android:layout_marginBottom="@dimen/double_line_spacing"
             android:text="@string/ready"
+            app:icon="@drawable/ic_baseline_check_24"
+            app:iconGravity="textStart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

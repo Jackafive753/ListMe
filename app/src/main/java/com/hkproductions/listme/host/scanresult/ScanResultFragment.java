@@ -102,7 +102,7 @@ public class ScanResultFragment extends Fragment {
                 event -> Navigation.findNavController(requireView())
                         .navigate(ScanResultFragmentDirections.actionScanResultToHostStartView()));
 
-        binding.buttonHostScanresultNewScan.setOnClickListener(event -> {
+        binding.buttonHostScanResultNewScan.setOnClickListener(event -> {
             IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
             integrator.setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE);
             integrator.setPrompt(getResources().getString(R.string.host_scan_header));

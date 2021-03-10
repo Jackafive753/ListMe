@@ -27,13 +27,15 @@ class HostStartAreaViewHolder(private val binding: HostItemStartAreaBinding) :
         //Set ClickListener to Check all guest in this area out
         binding.buttonStartAreaItemCheckAllOut.setOnClickListener { clickListener.onClick(list) }
 
-        binding.root.setOnClickListener{
-            if(isExpanded){
-                binding.imageView3.animate().rotation(180F).setDuration(300).start()
-                binding.recyclerViewStartAreaItem.animate().scaleY(0F).setDuration(300).withEndAction { binding.recyclerViewStartAreaItem.visibility = View.GONE }.start()
-            }else{
-                binding.imageView3.animate().rotation(0F).setDuration(300).start()
-                binding.recyclerViewStartAreaItem.animate().scaleY(100F).setDuration(300).withEndAction { binding.recyclerViewStartAreaItem.visibility = View.GONE }.start()
+        binding.root.setOnClickListener {
+            if (isExpanded) {
+                binding.imageView3.animate().rotation(180F).setDuration(300)
+                    .withEndAction { binding.recyclerViewStartAreaItem.visibility = View.GONE }
+                    .start()
+            } else {
+                binding.imageView3.animate().rotation(0F).setDuration(300)
+                    .withEndAction { binding.recyclerViewStartAreaItem.visibility = View.VISIBLE }
+                    .start()
             }
             isExpanded = !isExpanded
         }

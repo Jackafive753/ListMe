@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_margin"
             android:layout_marginTop="@dimen/side_margin"
+            android:layout_marginEnd="@dimen/content_line_spacing"
             android:hint="@string/area_designation_text"
             android:inputType="textPersonName"
             app:endIconMode="clear_text"
@@ -30,7 +31,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_areaManagement"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:text="@={viewModel.designation}" />
 
@@ -41,9 +42,12 @@
             style="@style/ListMe_Button_Positive"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/side_margin"
             android:layout_weight="1"
             android:text="@android:string/ok"
+            app:icon="@drawable/ic_baseline_check_24"
+            app:iconGravity="textStart"
             app:layout_constraintBottom_toBottomOf="@+id/inputLayout_areaManagement"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/inputLayout_areaManagement" />

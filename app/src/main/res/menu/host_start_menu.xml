@@ -5,6 +5,6 @@
     <item
         android:id="@+id/areaManagementMenuItem"
         android:title="@string/area_management_text"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 </menu>

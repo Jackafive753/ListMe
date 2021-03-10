@@ -56,6 +56,7 @@ public class HostStartViewFragment extends Fragment {
      * This method creates a dialog asking the user wether he is sure to check out a guest
      * The user gets the option to remember his decision
      * The decision is stored in the shared Preferences File
+     *
      * @param hostDataIds
      */
     public void createDialog(long[] hostDataIds) {
@@ -97,14 +98,12 @@ public class HostStartViewFragment extends Fragment {
         );
 
         HostStartAdapter adapter = new HostStartAdapter(new CheckoutListener(
-                (hostDataids) -> {
+                (hostDataIds) -> {
                     if (sp.getBoolean("decisionRememberDecision", false)) {
-                        viewModel.checkout(hostDataids);
+                        viewModel.checkout(hostDataIds);
                     } else {
-                        createDialog(hostDataids);
+                        createDialog(hostDataIds);
                     }
-
-
                     return null;
                 }));
         binding.recyclerViewHostStartViewAreaList.setAdapter(adapter);
@@ -129,7 +128,10 @@ public class HostStartViewFragment extends Fragment {
 
         viewModel.getNavigateToScanResult().observe(getViewLifecycleOwner(), bool -> {
             if (bool) {
-                Navigation.findNavController(requireView()).navigate(HostStartViewFragmentDirections.actionShowScanResult(viewModel.getNavigateToScanResultData().getValue()));
+                Navigation.findNavController(requireView())
+                        .navigate(HostStartViewFragmentDirections.actionShowScanResult(
+                                Objects.requireNonNull(viewModel.getNavigateToScanResultData().getValue())
+                        ));
                 viewModel.navigatedToScanResult();
             }
         });

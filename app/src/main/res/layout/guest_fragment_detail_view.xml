@@ -16,13 +16,14 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
+            style="@style/ListMe_Card"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/side_margin"
             android:layout_marginTop="@dimen/side_margin"
             android:layout_marginEnd="@dimen/side_margin"
             android:layout_marginBottom="@dimen/side_margin"
-            app:cardBackgroundColor="@color/ford_mint"
+            app:cardCornerRadius="5dp"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,7 @@
 
                 <TextView
                     android:id="@+id/textView2"
-                    style="@style/ListMe_Text"
+                    style="@style/ListMe_Text_Item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.liveData.firstName + ' ' + viewModel.liveData.lastName}"
@@ -45,7 +46,7 @@
 
                 <TextView
                     android:id="@+id/textView4"
-                    style="@style/ListMe_Text"
+                    style="@style/ListMe_Text_Item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.liveData.street + ' ' + viewModel.liveData.houseNumber}"
@@ -56,7 +57,7 @@
 
                 <TextView
                     android:id="@+id/textView7"
-                    style="@style/ListMe_Text"
+                    style="@style/ListMe_Text_Item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.liveData.postalCode + ' ' + viewModel.liveData.city}"
@@ -67,7 +68,7 @@
 
                 <TextView
                     android:id="@+id/textView8"
-                    style="@style/ListMe_Text"
+                    style="@style/ListMe_Text_Item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/side_margin"

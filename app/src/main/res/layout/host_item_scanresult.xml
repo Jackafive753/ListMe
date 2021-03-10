@@ -5,13 +5,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_host_scanresult_item"
+        style="@style/ListMe_Card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/side_margin"
         android:layout_marginTop="@dimen/side_margin"
         android:layout_marginEnd="@dimen/side_margin"
         android:layout_marginBottom="@dimen/side_margin"
-        app:cardBackgroundColor="@color/ford_mint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
 
             <TextView
                 android:id="@+id/textView_hostScanresult_name"
-                style="@style/ListMe_Text"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/line_spacing"
@@ -37,17 +37,18 @@
 
             <TextView
                 android:id="@+id/textView_hostScanresult_status"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/side_margin"
                 android:layout_marginTop="@dimen/side_margin"
-                tools:text="Status"
+                android:layout_marginEnd="@dimen/side_margin"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Status" />
 
             <TextView
                 android:id="@+id/textView_hostScanresult_street_housenumber"
-                style="@style/ListMe_Text"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -59,7 +60,7 @@
 
             <TextView
                 android:id="@+id/textView_hostScanresult_city_postalCode"
-                style="@style/ListMe_Text"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -72,7 +73,7 @@
 
             <TextView
                 android:id="@+id/textViewPhoneNumber"
-                style="@style/ListMe_Text"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"

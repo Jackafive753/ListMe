@@ -19,7 +19,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutFirstName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/ListMe_InputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -33,6 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/ListMe_InputText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
@@ -42,7 +43,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutLastName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/ListMe_InputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -56,6 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutFirstName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/ListMe_InputText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nextFocusRight="@id/textInputEditTextPostal"
@@ -67,7 +69,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutPostal"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/ListMe_InputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -81,10 +83,11 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEditTextPostal"
+                    style="@style/ListMe_InputText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nextFocusDown="@id/textInputEditTextCity"
                     android:nextFocusRight="@id/textInputEditTextCity"
+                    android:nextFocusDown="@id/textInputEditTextCity"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.postalCode}" />
 
@@ -92,7 +95,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutCity"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/ListMe_InputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/side_margin"
@@ -105,18 +108,19 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEditTextCity"
+                    style="@style/ListMe_InputText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
                     android:nextFocusRight="@id/textInputEditTextStreet"
                     android:nextFocusDown="@id/textInputEditTextStreet"
+                    android:singleLine="true"
                     android:text="@={viewModel.liveData.city}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutStreet"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/ListMe_InputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -131,17 +135,18 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEditTextStreet"
+                    style="@style/ListMe_InputText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nextFocusDown="@id/textInputEditTextHouseNumber"
                     android:nextFocusRight="@id/textInputEditTextHouseNumber"
+                    android:nextFocusDown="@id/textInputEditTextHouseNumber"
                     android:singleLine="true"
                     android:text="@={viewModel.liveData.street}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutHouseNumber"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/ListMe_InputLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/side_margin"
@@ -152,17 +157,18 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEditTextHouseNumber"
+                    style="@style/ListMe_InputText"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
                     android:nextFocusRight="@id/textInputEditTextPhoneNumber"
                     android:nextFocusDown="@id/textInputEditTextPhoneNumber"
+                    android:singleLine="true"
                     android:text="@={viewModel.liveData.houseNumber}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutPhoneNumber"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/ListMe_InputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -177,11 +183,12 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEditTextPhoneNumber"
+                    style="@style/ListMe_InputText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
                     android:nextFocusRight="@id/editViewConfirmButton"
                     android:nextFocusDown="@id/editViewConfirmButton"
+                    android:singleLine="true"
                     android:text="@={viewModel.liveData.phoneNumber}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,6 +201,8 @@
                 android:layout_marginTop="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/side_margin"
                 android:text="@string/scan_data_button"
+                app:icon="@drawable/ic_baseline_qr_code_scanner_24"
+                app:iconGravity="textStart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPhoneNumber" />
@@ -208,6 +217,8 @@
                 android:layout_marginEnd="@dimen/side_margin"
                 android:layout_marginBottom="@dimen/double_line_spacing"
                 android:text="@string/confirm"
+                app:icon="@drawable/ic_baseline_check_24"
+                app:iconGravity="textStart"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

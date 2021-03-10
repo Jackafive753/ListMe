@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <Button
         android:id="@+id/button_guest"
-        style="@style/ListMe_Button"
-        android:layout_width="wrap_content"
+        style="@style/ListMe_Button_Item"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         tools:text="Gast" />
 </layout>

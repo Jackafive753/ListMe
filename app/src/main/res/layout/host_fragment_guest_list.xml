@@ -15,6 +15,7 @@
 
         <TextView
             android:id="@+id/textViewExpandCollapseSearch"
+            style="@style/ListMe_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/collapse_search_fields_text"
@@ -51,6 +52,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        style="@style/ListMe_InputText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/firstname_lastname_hint"
@@ -60,11 +62,12 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutCurrentDate"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/ListMe_InputLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/content_line_spacing"
                     android:layout_marginTop="@dimen/content_line_spacing"
+                    android:layout_marginEnd="@dimen/content_line_spacing"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonDatePicker"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
@@ -72,20 +75,21 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextDate"
-                        android:inputType="none"
-                        android:enabled="false"
+                        style="@style/ListMe_InputText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/aktuelles_datum" />
+                        android:enabled="false"
+                        android:hint="@string/aktuelles_datum"
+                        android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageButton
                     android:id="@+id/imageButtonClockEnd"
+                    style="@style/ListMe_ImageButton"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="@dimen/content_line_spacing"
-                    android:background="@color/white"
                     android:contentDescription="@string/ContentDescriptionClockIcon"
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="@+id/TextInputLayoutEndTime"
@@ -96,11 +100,12 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutStartTime"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/ListMe_InputLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/content_line_spacing"
                     android:layout_marginTop="@dimen/content_line_spacing"
+                    android:layout_marginEnd="@dimen/content_line_spacing"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonClockStart"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -108,6 +113,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/TextInputEditTextStartTime"
+                        style="@style/ListMe_InputText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:enabled="false"
@@ -117,12 +123,11 @@
 
                 <ImageButton
                     android:id="@+id/imageButtonDatePicker"
+                    style="@style/ListMe_ImageButton"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="@dimen/content_line_spacing"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="@dimen/content_line_spacing"
-                    android:adjustViewBounds="false"
-                    android:background="#FFFFFF"
                     android:contentDescription="@string/calendarIconImage"
                     android:cropToPadding="false"
                     android:scaleType="fitCenter"
@@ -134,14 +139,14 @@
 
                 <ImageButton
                     android:id="@+id/imageButtonClockStart"
+                    style="@style/ListMe_ImageButton"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="@dimen/content_line_spacing"
                     android:adjustViewBounds="false"
-                    android:background="@color/white"
                     android:contentDescription="@string/ContentDescriptionClockIcon"
-                    android:cropToPadding="false"
+                    android:cropToPadding="true"
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutStartTime"
                     app:layout_constraintDimensionRatio="1:1"
@@ -151,11 +156,12 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/TextInputLayoutEndTime"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/ListMe_InputLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/content_line_spacing"
                     android:layout_marginTop="@dimen/content_line_spacing"
+                    android:layout_marginEnd="@dimen/content_line_spacing"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonClockEnd"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="@+id/guideline7"
@@ -163,11 +169,12 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/TextInputEditTextEndTime"
-                        android:inputType="none"
-                        android:enabled="false"
+                        style="@style/ListMe_InputText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/endzeit" />
+                        android:enabled="false"
+                        android:hint="@string/endzeit"
+                        android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.constraintlayout.widget.Guideline
@@ -199,6 +206,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/expandcollapse_arrow_image_description"
+            android:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/textViewExpandCollapseSearch"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/textViewExpandCollapseSearch"
@@ -210,6 +218,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/expandcollapse_arrow_image_description"
+            android:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/textViewExpandCollapseSearch"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toEndOf="@+id/textViewExpandCollapseSearch"

@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.hkproductions.listme.host.guestdetailview.GuestDetailViewViewModel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            style="@style/ListMe_Card"
+            android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/side_margin"
         android:layout_marginTop="@dimen/side_margin"
         android:layout_marginEnd="@dimen/side_margin"
         android:layout_marginBottom="@dimen/side_margin"
-        app:cardBackgroundColor="@color/ford_mint"
         app:layout_constraintBottom_toBottomOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +33,7 @@
 
             <TextView
                 android:id="@+id/textViewGuestName"
-                style="@style/ListMe_Text"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.liveData.firstName + ' ' + viewModel.liveData.lastName}"
@@ -41,7 +43,7 @@
 
             <TextView
                 android:id="@+id/textViewStreet"
-                style="@style/ListMe_Text"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.liveData.street + ' ' + viewModel.liveData.houseNumber}"
@@ -51,7 +53,7 @@
 
             <TextView
                 android:id="@+id/textViewPostalCode"
-                style="@style/ListMe_Text"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.liveData.postalCode}"
@@ -61,7 +63,7 @@
 
             <TextView
                 android:id="@+id/textViewPhoneNumber"
-                style="@style/ListMe_Text"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
