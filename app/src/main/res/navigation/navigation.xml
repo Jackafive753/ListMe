@@ -213,6 +213,7 @@
         <fragment
             android:id="@+id/guestDetailViewFragment"
             android:name="com.hkproductions.listme.host.guestdetailview.GuestDetailViewFragment"
+            tools:layout="@layout/host_fragment_guest_detail_view"
             android:label="@string/host_guestDetail_view_title">
             <action
                 android:id="@+id/action_from_detail_show_detail_list"
@@ -221,6 +222,9 @@
                 app:exitAnim="@anim/fragment_open_exit"
                 app:popEnterAnim="@anim/fragment_open_enter"
                 app:popExitAnim="@anim/fragment_open_exit" />
+            <argument
+                android:name="dataId"
+                app:argType="long" />
         </fragment>
         <fragment
             android:id="@+id/detailListFragment"
