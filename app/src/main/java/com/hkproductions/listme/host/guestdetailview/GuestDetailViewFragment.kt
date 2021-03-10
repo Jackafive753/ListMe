@@ -65,7 +65,7 @@ class GuestDetailViewFragment : Fragment() {
         binding.lifecycleOwner = this
 
         viewModel.liveData.observe(viewLifecycleOwner, {
-            val df = SimpleDateFormat("dd//MM//yy").format(it.startTimeMilli)
+            val df = SimpleDateFormat("dd.MM.yy").format(it.startTimeMilli)
             binding.textViewDate.text = df
             val dfStart = SimpleDateFormat("HH:mm").format(it.startTimeMilli)
             val dfEnd = SimpleDateFormat("HH:mm").format(it.endTimeMilli)
