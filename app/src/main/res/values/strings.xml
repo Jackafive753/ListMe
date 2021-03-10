@@ -68,6 +68,10 @@
     <string name="firstname_lastname_hint">Vorname Nachname</string>
     <string name="no_endtime_text">Keine Endzeit</string>
 
+
+    <!-- DetailList Strings-->
+    <string name="contact_person_one_text">Kontaktperson I</string>
+    <string name="contact_person_two_text">Kontaktperson II</string>
     <!-- Alert Dialog Strings delete GuestData-->
     <string name="alert_deleteguestdata_message">Datensatz unwiderruflich löschen?</string>
     <string name="alert_deleteguestdata_title">Daten löschen</string>
