@@ -5,11 +5,10 @@
 
     <TextView
         android:id="@+id/textview_host_detaillist_label_header"
+        style="@style/ListMe_Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/side_margin"
         android:layout_marginTop="@dimen/side_margin"
-        android:layout_marginEnd="@dimen/side_margin"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

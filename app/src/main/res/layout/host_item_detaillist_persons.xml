@@ -5,12 +5,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_host_detaillist_item"
+        style="@style/ListMe_Card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/side_margin"
         android:layout_marginTop="@dimen/side_margin"
-        android:layout_marginEnd="@dimen/side_margin"
-        android:layout_marginBottom="@dimen/side_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +21,7 @@
 
             <TextView
                 android:id="@+id/textView_hostDetailList_name"
+                style="@style/ListMe_Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/line_spacing"
@@ -35,6 +34,7 @@
 
             <TextView
                 android:id="@+id/textView_hostDetailList_Date"
+                style="@style/ListMe_Text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/line_spacing"
