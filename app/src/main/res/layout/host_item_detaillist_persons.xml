@@ -21,7 +21,7 @@
 
             <TextView
                 android:id="@+id/textView_hostDetailList_name"
-                style="@style/ListMe_Text"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/line_spacing"
@@ -34,7 +34,7 @@
 
             <TextView
                 android:id="@+id/textView_hostDetailList_Date"
-                style="@style/ListMe_Text"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/line_spacing"
@@ -47,6 +47,7 @@
 
             <TextView
                 android:id="@+id/textView_hostDetailList_street_housenumber"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -58,6 +59,7 @@
 
             <TextView
                 android:id="@+id/textView_hostDetailList_city_postalCode"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
@@ -70,6 +72,7 @@
 
             <TextView
                 android:id="@+id/textView_hostDetailList_PhoneNumber"
+                style="@style/ListMe_Text_Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
