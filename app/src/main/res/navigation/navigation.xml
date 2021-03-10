@@ -229,7 +229,8 @@
         <fragment
             android:id="@+id/detailListFragment"
             android:name="com.hkproductions.listme.host.detaillist.DetailListFragment"
-            android:label="@string/host_detailList_view_title">
+            android:label="@string/host_detailList_view_title"
+            >
             <argument
                 android:name="hostDataId"
                 app:argType="long" />
