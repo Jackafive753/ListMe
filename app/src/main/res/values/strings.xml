@@ -29,7 +29,7 @@
     <string name="checkout_text">Austragen</string>
     <string name="host_scan_header">Scannen Sie den Code des Gastes</string>
     <string name="area_designation_text">Bereichsbeschreibung</string>
-    <string name="areas_label">Bereiche:</string>
+    <string name="areas_label">Bereiche</string>
     <string name="cancel">Abbrechen</string>
     <string name="overlapping_entries">Überschneidende Einträge</string>
     <string name="scan_data_button">Daten scannen</string>
