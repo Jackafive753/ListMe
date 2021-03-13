@@ -72,6 +72,8 @@
             android:layout_marginTop="@dimen/double_line_spacing"
             android:layout_marginEnd="@dimen/side_margin"
             android:text="@string/add"
+            app:icon="@drawable/ic_baseline_add_24"
+            app:iconGravity="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView13"
             app:layout_constraintTop_toBottomOf="@+id/inputLayout_areaManagement" />

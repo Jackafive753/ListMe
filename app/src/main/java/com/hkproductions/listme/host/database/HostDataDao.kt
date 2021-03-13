@@ -95,13 +95,13 @@ interface HostDataDao {
     @Query("SELECT * FROM area_data_table WHERE areaId = :areaId LIMIT 1")
     suspend fun getAreaById(areaId: Long): Area
 
-    @Query("SELECT * FROM area_data_table")
+    @Query("SELECT * FROM area_data_table ORDER BY area_name ASC")
     fun getAllAreas(): LiveData<List<Area>>
 
     @Query("SELECT areaId FROM area_data_table")
     fun getAllAreaIds(): LiveData<List<Long>>
 
-    @Query("SELECT * FROM area_data_table")
+    @Query("SELECT * FROM area_data_table ORDER BY area_name ASC")
     suspend fun getAllAreasAsList(): List<Area>
 
     @Query("SELECT * FROM host_data_table WHERE area_name = :area AND end_time_milli = -1")

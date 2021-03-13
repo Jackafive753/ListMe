@@ -92,7 +92,7 @@ class DetailListAdapter(val resource: Resources) :
             binding.textViewHostDetailListStreetHousenumber.text =
                 item.street + " " + item.houseNumber
             binding.textViewHostDetailListPhoneNumber.text = item.phoneNumber
-            val dfStart = SimpleDateFormat("dd.MM.yy HH:mm")
+            val dfStart = SimpleDateFormat("dd.MM.yyyy HH:mm")
             val dfEnd = SimpleDateFormat("HH:mm")
             val checkInString = dfStart.format(item.startTimeMilli)
             var checkOutString = if (item.endTimeMilli == -1L) {

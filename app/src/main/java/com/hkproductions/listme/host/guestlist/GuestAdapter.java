@@ -71,9 +71,9 @@ public class GuestAdapter extends ListAdapter<HostData, GuestAdapter.GuestListVi
          */
         @SuppressLint("SetTextI18n")
         public void bind(HostData data) {
-            DateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm");
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             String checkInString = df.format(data.getStartTimeMilli());
-            DateFormat dfEnd = new SimpleDateFormat("dd.MM.yy HH:mm");
+            DateFormat dfEnd = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             String checkOutString = "";
             if (data.getEndTimeMilli() == -1) {
                 checkOutString = parent.getResources().getString(R.string.no_endtime_text);
