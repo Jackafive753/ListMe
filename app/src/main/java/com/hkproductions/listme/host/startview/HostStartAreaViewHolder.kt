@@ -14,7 +14,7 @@ class HostStartAreaViewHolder(private val binding: HostItemStartAreaBinding) :
 
     var isExpanded = false
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
     fun bind(area: Area, list: List<HostData>, clickListener: CheckoutListener) {
         //Set Label with name of the area
         binding.textViewStartAreaItemAreaName.text = "${area.designation} ${area.name}"
@@ -38,6 +38,12 @@ class HostStartAreaViewHolder(private val binding: HostItemStartAreaBinding) :
                     .start()
             }
             isExpanded = !isExpanded
+        }
+
+        //if list is empty no one can checked out, so this button is disabled
+        if (list.isEmpty()) {
+            binding.buttonStartAreaItemCheckAllOut.isEnabled = false
+            binding.buttonStartAreaItemCheckAllOut.alpha = 0.5F
         }
     }
 

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Base application theme. -->
     <style name="Theme.ListMe" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
