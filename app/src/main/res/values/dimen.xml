@@ -4,4 +4,6 @@
     <dimen name="double_line_spacing">32dp</dimen>
     <dimen name="line_spacing">16dp</dimen>
     <dimen name="content_line_spacing">8dp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="text_size_header">20sp</dimen>
 </resources>

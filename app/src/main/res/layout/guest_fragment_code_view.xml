@@ -57,7 +57,6 @@
             android:layout_marginStart="@dimen/side_margin"
             android:layout_marginTop="@dimen/side_margin"
             android:layout_marginEnd="@dimen/side_margin"
-            android:layout_marginBottom="@dimen/side_margin"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

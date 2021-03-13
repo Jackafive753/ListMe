@@ -1,6 +1,7 @@
 package com.hkproductions.listme.host.scanresult
 
 import android.content.Context
+import android.content.res.Resources
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,32 +22,41 @@ class ScanResultViewModel(val database: HostDataDao, val hostDataIds: LongArray)
         }
     }
 
-    fun saveArea(pos: Int) {
+    fun saveArea(pos: Int, context: Context, resources: Resources) {
         viewModelScope.launch {
-            val string = if (pos == -1) {
-                ""
+            val area = if (pos == -1) {
+                null
             } else {
-                areaLi.value?.get(pos)!!.name
+                areaLi.value?.get(pos)!!
             }
             lData.value?.map {
-                it.areaName = string
+                it.areaName = area?.name ?: ""
                 database.updateHostData(it)
             }
+            Toast.makeText(
+                context,
+                resources.getString(
+                    R.string.scanResultToastMes,
+                    area ?: resources.getString(R.string.scannedEntrys_noArea)
+                ),
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
-    fun scannedCode(bao: String, context: Context) {
+    fun scannedCode(bao: String, context: Context, areaPosition: Int, resources: Resources) {
         viewModelScope.launch {
             try {
-                var erg = checkinout(bao, database)
+                val erg = checkinout(bao, database)
                 makingList(erg)
+                saveArea(areaPosition, context, resources)
             } catch (e: NoSuchElementException) {
                 Toast.makeText(context, R.string.scan_failure_error_text, Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    suspend fun makingList(boa: LongArray) {
+    private suspend fun makingList(boa: LongArray) {
         val nData = mutableListOf<HostData>()
         for (max in boa) {
             nData.add(database.getHostDataById(max))

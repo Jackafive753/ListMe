@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -70,7 +69,7 @@ public class ScanResultFragment extends Fragment {
 
         //fill Spinner
         ArrayAdapter<String> areaAdapter = new ArrayAdapter<String>(requireContext(),
-                android.R.layout.simple_spinner_item);
+                R.layout.host_item_spinner);
         binding.spinner.setAdapter(areaAdapter);
 
         viewModel.getAreaLi().observe(getViewLifecycleOwner(), list -> {
@@ -86,10 +85,7 @@ public class ScanResultFragment extends Fragment {
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                viewModel.saveArea(position - 1);
-                Toast.makeText(requireContext(),
-                        getResources().getString(R.string.scanResultToastMes, areaAdapter.getItem(position)),
-                        Toast.LENGTH_LONG).show();
+                viewModel.saveArea(position - 1, requireContext(), getResources());
             }
 
             @Override
@@ -117,7 +113,10 @@ public class ScanResultFragment extends Fragment {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
-                viewModel.scannedCode(result.getContents(), requireContext());
+                viewModel.scannedCode(result.getContents(),
+                        requireContext(),
+                        binding.spinner.getSelectedItemPosition() - 1,
+                        getResources());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

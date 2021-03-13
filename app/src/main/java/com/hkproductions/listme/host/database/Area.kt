@@ -22,4 +22,8 @@ data class Area(
      */
     @ColumnInfo(name = "area_qualifier")
     var designation: String = ""
-)
+) {
+    override fun toString(): String {
+        return "$designation $name"
+    }
+}
