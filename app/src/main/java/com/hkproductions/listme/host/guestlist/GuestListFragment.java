@@ -32,7 +32,7 @@ public class GuestListFragment extends Fragment {
     private GuestListViewModel viewModel;
     private Calendar c;
     private boolean expandedSearchfield = true;
-
+    private static final String LOG_TAG = GuestListFragment.class.getSimpleName();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -125,7 +125,7 @@ public class GuestListFragment extends Fragment {
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
         @SuppressLint("SetTextI18n") DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
-            binding.editTextDate.setText(dayOfMonth + "." + month + 1 + "." + year);
+            binding.editTextDate.setText(dayOfMonth + "." + (month+1)  + "." + year);
             c.set(year, month, dayOfMonth);
             viewModel.liveDate.setValue(c.getTimeInMillis());
         }, mYear, mMonth, mDay);
