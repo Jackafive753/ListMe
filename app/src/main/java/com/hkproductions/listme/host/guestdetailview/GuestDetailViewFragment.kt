@@ -58,18 +58,20 @@ class GuestDetailViewFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.liveData.observe(viewLifecycleOwner, {
+        viewModel.liveData.observe(viewLifecycleOwner) {
             val df = SimpleDateFormat("dd.MM.yyyy").format(it.startTimeMilli)
             binding.textViewDate.text = df
             val dfStart = SimpleDateFormat("HH:mm").format(it.startTimeMilli)
             val dfEnd = SimpleDateFormat("HH:mm").format(it.endTimeMilli)
             binding.textViewTimeFrame.text = "$dfStart - $dfEnd"
-            binding.textViewArea.text = if (it.areaName.isNullOrBlank()) {
-                resources.getString(R.string.scannedEntrys_noArea)
-            } else {
-                it.areaName
-            }
-        })
+
+        }
+
+        viewModel.area.observe(viewLifecycleOwner) {
+            binding.textViewArea.text =
+                it?.toString() ?: resources.getString(R.string.scannedEntrys_noArea)
+        }
+
     }
 
     private fun initViewModel(): GuestDetailViewViewModel {

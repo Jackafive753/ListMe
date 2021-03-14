@@ -30,7 +30,7 @@ class ScanResultViewModel(val database: HostDataDao, val hostDataIds: LongArray)
                 areaLi.value?.get(pos)!!
             }
             lData.value?.map {
-                it.areaName = area?.name ?: ""
+                it.areaName = area?.areaId ?: -1
                 database.updateHostData(it)
             }
             Toast.makeText(

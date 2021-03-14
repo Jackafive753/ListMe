@@ -61,5 +61,5 @@ data class HostData(
      * area represents an area in a room, e.g. table
      */
     @ColumnInfo(name = "area_name")
-    var areaName: String = ""
+    var areaName: Long = -1
 )
