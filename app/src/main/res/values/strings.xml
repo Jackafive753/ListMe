@@ -58,14 +58,14 @@
     <!--    Strings Settings-->
     <string name="settings">Einstellungen</string>
     <string name="settings_header_host">Gastgeber</string>
-    <string name="SwitchQuestion">Checkbox wenn ausgetragen wird</string>
+    <string name="SwitchQuestion">Dialog beim Austragen</string>
     <string name="switch_yes">Ja</string>
     <string name="switch_no">Nein</string>
 
     <!-- Strings GuestList -->
     <string name="date_display">%1$d.%2$d.%3$d</string>
-    <string name="expand_search_fields_text">Anzeigen</string>
-    <string name="collapse_search_fields_text">Verstecken</string>
+    <string name="expand_search_fields_text">Einblenden</string>
+    <string name="collapse_search_fields_text">Ausblenden</string>
     <string name="firstname_lastname_hint">Vorname Nachname</string>
     <string name="no_endtime_text">Keine Endzeit</string>
 
