@@ -42,7 +42,11 @@ class GuestDetailViewFragment : Fragment() {
 
 
         binding.button.setOnClickListener {
-            findNavController().navigate(GuestDetailViewFragmentDirections.actionFromDetailShowDetailList(dataId))
+            findNavController().navigate(
+                GuestDetailViewFragmentDirections.actionFromDetailShowDetailList(
+                    dataId
+                )
+            )
         }
 
 
@@ -61,14 +65,13 @@ class GuestDetailViewFragment : Fragment() {
         viewModel.liveData.observe(viewLifecycleOwner) {
             val dfTimeFrom = SimpleDateFormat("HH:mm   dd.MM.yyyy").format(it.startTimeMilli)
             binding.textViewHostGuestDetailTimeFrom.text = dfTimeFrom
-            if(it.endTimeMilli == -1L){
-                binding.textViewHostGuestDetailTimeTo.text = resources.getText(R.string.no_endtime_text)
-            }
-            else{
+            if (it.endTimeMilli == -1L) {
+                binding.textViewHostGuestDetailTimeTo.text =
+                    resources.getText(R.string.no_endtime_text)
+            } else {
                 val dfTimeEnd = SimpleDateFormat("HH:mm   dd.MM.yyyy").format(it.endTimeMilli)
                 binding.textViewHostGuestDetailTimeTo.text = dfTimeEnd
             }
-
 
 
         }
