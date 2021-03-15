@@ -47,6 +47,7 @@
 
     <!-- Strings HostStartView -->
     <string name="alertDialog_title">Wirklich austragen?</string>
+    <string name="alertDialogAll_title">Wirklich alle austragen?</string>
     <string name="cancelled_check_out_toast">Austragen abgebrochen</string>
     <string name="cancel_alertDialog">Abbrechen</string>
     <string name="confirm_alertDialog">Austragen</string>

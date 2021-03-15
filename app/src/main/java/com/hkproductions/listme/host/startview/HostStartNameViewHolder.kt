@@ -11,10 +11,10 @@ class HostStartNameViewHolder(private val binding: HostItemStartNameBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     @SuppressLint("SetTextI18n")
-    public fun bind(item: HostData, clickListener: CheckoutListener) {
+    fun bind(item: HostData, clickListener: CheckoutListener) {
         binding.textViewStartNameItemName.text = "${item.firstName} ${item.lastName}"
         binding.buttonStartNameItemCheckout.setOnClickListener {
-            clickListener.onClick(listOf(item))
+            clickListener.onClick(listOf(item), false)
         }
     }
 

@@ -25,7 +25,12 @@ class HostStartAreaViewHolder(private val binding: HostItemStartAreaBinding) :
         binding.recyclerViewStartAreaItem.adapter = adapter
 
         //Set ClickListener to Check all guest in this area out
-        binding.buttonStartAreaItemCheckAllOut.setOnClickListener { clickListener.onClick(list) }
+        binding.buttonStartAreaItemCheckAllOut.setOnClickListener {
+            clickListener.onClick(
+                list,
+                true
+            )
+        }
 
         binding.root.setOnClickListener {
             if (isExpanded) {
