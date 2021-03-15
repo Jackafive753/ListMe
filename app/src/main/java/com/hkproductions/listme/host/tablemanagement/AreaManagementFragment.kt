@@ -1,17 +1,20 @@
 package com.hkproductions.listme.host.tablemanagement
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.HostFragmentAreaManagementBinding
+import com.hkproductions.listme.host.database.Area
 import com.hkproductions.listme.host.database.HostDatabase
 
 class AreaManagementFragment : Fragment() {
@@ -47,17 +50,40 @@ class AreaManagementFragment : Fragment() {
         ).get(AreaManagementViewModel::class.java)
 
         //initialize adapter and load recyclerview
-        val adapter = AreaManagementAdapter(database, AreaDeleteClickListener { areaId ->
-            viewModel.onAreaDeleteClicked(areaId)
-        }, AreaUpdateListener { areaId: Long, name: String ->
-            viewModel.updateAreaName(areaId, name)
+        val adapter = AreaManagementAdapter(database, AreaDeleteClickListener { area ->
+            //ask if the user really want to delete
+            AlertDialog.Builder(requireActivity())
+                .setTitle(
+                    resources.getString(
+                        R.string.delete_area_message_text,
+                        "${area.designation} ${area.name}"
+                    )
+                )
+                .setPositiveButton(R.string.delete) { _, _ ->
+                    viewModel.onAreaDeleteClicked(area.areaId)
+                }
+                .setNegativeButton(R.string.cancel) { _, _ -> }
+                .create().show()
+
+        }, AreaUpdateListener { area: Area, name: String ->
+            viewModel.updateAreaName(area.areaId, name)
+            //Feedback of the save operation
+            Toast.makeText(
+                requireContext(),
+                resources.getString(
+                    R.string.update_area_message_text,
+                    "${area.designation} ${area.name}",
+                    "${area.designation} $name"
+                ),
+                Toast.LENGTH_LONG
+            ).show()
         })
         binding.recyclerviewAreaManagement.adapter = adapter
 
         //update list live
-        viewModel.areas.observe(viewLifecycleOwner, {
+        viewModel.areas.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        })
+        }
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

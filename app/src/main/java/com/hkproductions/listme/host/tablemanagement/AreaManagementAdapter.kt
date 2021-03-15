@@ -63,10 +63,10 @@ class AreaManagementAdapter(
 
 }
 
-class AreaDeleteClickListener(val clickListener: (areaId: Long) -> Unit) {
-    fun onClick(area: Area) = clickListener(area.areaId)
+class AreaDeleteClickListener(val clickListener: (area: Area) -> Unit) {
+    fun onClick(area: Area) = clickListener(area)
 }
 
-class AreaUpdateListener(val updateListener: (areaId: Long, name: String) -> Unit) {
-    fun onUpdate(area: Area, string: String) = updateListener(area.areaId, string)
+class AreaUpdateListener(val updateListener: (area: Area, name: String) -> Unit) {
+    fun onUpdate(area: Area, string: String) = updateListener(area, string)
 }

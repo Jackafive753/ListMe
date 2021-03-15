@@ -28,6 +28,10 @@ class AreaManagementViewModel(val database: HostDataDao) : ViewModel() {
     fun onAreaDeleteClicked(areaId: Long) {
         viewModelScope.launch {
             database.deleteAreaById(areaId)
+            database.getHostDataByArea(areaId).map {
+                it.areaName = -1L
+                database.updateHostData(it)
+            }
         }
     }
 
