@@ -2,7 +2,6 @@ package com.hkproductions.listme.host.guestlist;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -69,24 +68,19 @@ public class GuestAdapter extends ListAdapter<HostData, GuestAdapter.GuestListVi
          *
          * @param data Method to set the Text of the Button Item according to the data of the Guests
          */
-        @SuppressLint("SetTextI18n")
+        @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
         public void bind(HostData data) {
             DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             String checkInString = df.format(data.getStartTimeMilli());
             DateFormat dfEnd = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-            String checkOutString = "";
+            String checkOutString;
             if (data.getEndTimeMilli() == -1) {
                 checkOutString = parent.getResources().getString(R.string.no_endtime_text);
             } else {
                 checkOutString = dfEnd.format(data.getEndTimeMilli());
             }
             binding.buttonGuest.setText(data.getFirstName() + "" + data.getLastName() + "\n" + checkInString + " -\n" + checkOutString);
-            binding.buttonGuest.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Navigation.findNavController(view).navigate(GuestListFragmentDirections.actionShowGuestDetails(data.getHostDataId()));
-                }
-            });
+            binding.buttonGuest.setOnClickListener(view -> Navigation.findNavController(view).navigate(GuestListFragmentDirections.actionShowGuestDetails(data.getHostDataId())));
         }
     }
 }

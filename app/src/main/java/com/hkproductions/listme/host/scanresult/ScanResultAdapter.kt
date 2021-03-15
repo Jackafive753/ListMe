@@ -39,7 +39,7 @@ class ScanResultAdapter : RecyclerView.Adapter<ScanResultAdapter.ScanResultViewH
             }
         }
 
-        @SuppressLint("SetTextI18n")
+        @SuppressLint("SetTextI18n", "ResourceAsColor")
         fun bind(item: HostData) {
             binding.textViewHostScanresultName.text = item.firstName + " " + item.lastName
             binding.textViewHostScanresultCityPostalCode.text = "${item.postalCode}, ${item.city}"
@@ -49,7 +49,6 @@ class ScanResultAdapter : RecyclerView.Adapter<ScanResultAdapter.ScanResultViewH
             binding.textViewHostScanresultStatus.text = when (item.endTimeMilli) {
                 -1L -> resource.getString(R.string.checked_in)
                 else -> resource.getString(R.string.checked_out)
-
             }
         }
     }

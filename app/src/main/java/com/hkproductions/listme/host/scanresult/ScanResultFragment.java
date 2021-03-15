@@ -48,19 +48,26 @@ public class ScanResultFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // get Arguments
-        long[] hostDataIds = ScanResultFragmentArgs.fromBundle(requireArguments()).getHostDataIds();
+        String hostDatasAsString = ScanResultFragmentArgs.fromBundle(requireArguments()).getHostDatasAsString();
+        long areaId = ScanResultFragmentArgs.fromBundle(requireArguments()).getAreaId();
+
         // View Model intialize
         HostDataDao dataSource =
                 HostDatabase.Companion.getInstance(requireActivity().getApplication()).getHostDataDao();
-        ScanResultViewModelFactory viewModelFactory = new ScanResultViewModelFactory(dataSource, hostDataIds);
+        ScanResultViewModelFactory viewModelFactory =
+                new ScanResultViewModelFactory(dataSource, requireContext(), hostDatasAsString, areaId);
         viewModel = new ViewModelProvider(this, viewModelFactory).get(ScanResultViewModel.class);
 
         //set Header
-        if (hostDataIds.length == 1) {
-            binding.textviewHostScanresultLabel.setText(getResources().getString(R.string.scannedEntrys_single_text));
-        } else {
-            binding.textviewHostScanresultLabel.setText(getResources().getString(R.string.scannedEntrys_multi_text));
-        }
+        viewModel.getLData().observe(getViewLifecycleOwner(), list -> {
+            if (list.isEmpty()) {
+                binding.textviewHostScanresultLabel.setVisibility(View.GONE);
+            } else if (list.size() == 1) {
+                binding.textviewHostScanresultLabel.setText(getResources().getString(R.string.scannedEntrys_single_text));
+            } else {
+                binding.textviewHostScanresultLabel.setText(getResources().getString(R.string.scannedEntrys_multi_text));
+            }
+        });
 
         //fill Recyclerview
         ScanResultAdapter adap = new ScanResultAdapter();
@@ -68,37 +75,53 @@ public class ScanResultFragment extends Fragment {
         binding.recyclerviewHost.setAdapter(adap);
 
         //fill Spinner
-        ArrayAdapter<String> areaAdapter = new ArrayAdapter<String>(requireContext(),
-                R.layout.host_item_spinner);
-        binding.spinner.setAdapter(areaAdapter);
+        viewModel.getGivenArea().observe(getViewLifecycleOwner(), area -> {
+            if (area == null) {
+                ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(requireContext(),
+                        R.layout.host_item_spinner);
+                binding.spinner.setAdapter(areaAdapter);
 
-        viewModel.getAreaLi().observe(getViewLifecycleOwner(), list -> {
-            areaAdapter.clear();
-            areaAdapter.add(getResources().getString(R.string.scannedEntrys_noArea));
-            for (Area area : list) {
-                String nArea = area.getDesignation() + " " + area.getName();
-                areaAdapter.add(nArea);
-            }
-        });
+                viewModel.getAreaLi().observe(getViewLifecycleOwner(), list -> {
+                    areaAdapter.clear();
+                    areaAdapter.add(getResources().getString(R.string.scannedEntrys_noArea));
+                    for (Area areas : list) {
+                        String nArea = areas.getDesignation() + " " + areas.getName();
+                        areaAdapter.add(nArea);
+                    }
+                });
 
-        // SpinnerListener
-        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                viewModel.saveArea(position - 1, requireContext(), getResources());
-            }
+                binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if (viewModel.getAreaLi().getValue().size() != 0 && position > 0) {
+                            viewModel.getSelectedArea().setValue(viewModel.getAreaLi().getValue().get(position - 1));
+                        }
+                    }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+                binding.textViewArea.setVisibility(View.GONE);
+            } else {
+                binding.spinner.setVisibility(View.INVISIBLE);
+                binding.textViewArea.setText(area.toString());
+                viewModel.getSelectedArea().setValue(area);
             }
         });
 
         // Buttons ClickListener
         binding.buttonHostScanResultContinue.setOnClickListener(
-                event -> Navigation.findNavController(requireView())
-                        .navigate(ScanResultFragmentDirections.actionScanResultToHostStartView()));
+                event -> {
+                    viewModel.save();
+                    Navigation.findNavController(requireView())
+                            .navigate(ScanResultFragmentDirections.actionScanResultToHostStartView());
+                });
 
         binding.buttonHostScanResultNewScan.setOnClickListener(event -> {
+            viewModel.save();
+            //open Camer for next scan
             IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
             integrator.setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE);
             integrator.setPrompt(getResources().getString(R.string.host_scan_header));
@@ -113,10 +136,7 @@ public class ScanResultFragment extends Fragment {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
-                viewModel.scannedCode(result.getContents(),
-                        requireContext(),
-                        binding.spinner.getSelectedItemPosition() - 1,
-                        getResources());
+                viewModel.scannedCode(result.getContents());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

@@ -193,8 +193,8 @@
             android:label="@string/host_scanResult_view_title"
             tools:layout="@layout/host_fragment_scanresult">
             <argument
-                android:name="hostDataIds"
-                app:argType="long[]" />
+                android:name="hostDatasAsString"
+                app:argType="string" />
             <action
                 android:id="@+id/action_scanResult_to_hostStartView"
                 app:destination="@id/hostStartViewFragment"
@@ -202,6 +202,10 @@
                 app:exitAnim="@anim/fragment_open_exit"
                 app:popEnterAnim="@anim/fragment_open_enter"
                 app:popExitAnim="@anim/fragment_open_exit" />
+            <argument
+                android:name="areaId"
+                android:defaultValue="-1L"
+                app:argType="long" />
         </fragment>
         <fragment
             android:id="@+id/guestDetailViewFragment"

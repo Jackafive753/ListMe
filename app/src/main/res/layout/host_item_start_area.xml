@@ -19,8 +19,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/button_startAreaItem_checkAllOut"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/button_startAreaItem_checkAllOut"
-            app:srcCompat="@drawable/arrow_up"
-            tools:srcCompat="@drawable/arrow_up" />
+            app:srcCompat="@drawable/arrow_down" />
 
         <TextView
             android:id="@+id/textView_startAreaItem_areaName"
@@ -49,7 +48,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/content_line_spacing"
-            android:layout_marginTop="@dimen/content_line_spacing"
             android:layout_marginEnd="@dimen/content_line_spacing"
             android:layout_marginBottom="@dimen/content_line_spacing"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -65,7 +63,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView_startAreaItem"
             app:srcCompat="@drawable/image_button_background" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

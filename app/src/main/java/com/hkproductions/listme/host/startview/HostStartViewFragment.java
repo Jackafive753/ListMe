@@ -28,8 +28,6 @@ import com.hkproductions.listme.R;
 import com.hkproductions.listme.databinding.HostFragmentStartviewBinding;
 import com.hkproductions.listme.host.database.HostDatabase;
 
-import java.util.Objects;
-
 public class HostStartViewFragment extends Fragment {
     private static final String PREFS_LISTME = "com.hkproductions.listme";
     private boolean decisionRememberDecision = false;
@@ -57,7 +55,7 @@ public class HostStartViewFragment extends Fragment {
      * The user gets the option to remember his decision
      * The decision is stored in the shared Preferences File
      *
-     * @param hostDataIds
+     * @param hostDataIds ids that check out
      */
     public void createDialog(long[] hostDataIds, boolean isAreaDialog) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -113,24 +111,18 @@ public class HostStartViewFragment extends Fragment {
 
         viewModel.getCheckedInAreas().observe(getViewLifecycleOwner(), adapter::submitMap);
 
-        binding.buttonHostStartViewEinauschecken.setOnClickListener(event -> {
-            initiateScan();
-        });
+        binding.buttonHostStartViewEinauschecken.setOnClickListener(event -> initiateScan());
 
-        binding.floatingActionButtonCheckInOut.setOnClickListener(event -> {
-            initiateScan();
-        });
+        binding.floatingActionButtonCheckInOut.setOnClickListener(event -> initiateScan());
 
-        binding.buttonHostStartViewGaesteliste.setOnClickListener(event -> {
-            Navigation.findNavController(requireView())
-                    .navigate(HostStartViewFragmentDirections.actionShowGuestList());
-        });
+        binding.buttonHostStartViewGaesteliste.setOnClickListener(event -> Navigation.findNavController(requireView())
+                .navigate(HostStartViewFragmentDirections.actionShowGuestList()));
 
         viewModel.getNavigateToScanResult().observe(getViewLifecycleOwner(), bool -> {
             if (bool) {
                 Navigation.findNavController(requireView())
                         .navigate(HostStartViewFragmentDirections.actionShowScanResult(
-                                Objects.requireNonNull(viewModel.getNavigateToScanResultData().getValue())
+                                viewModel.getNavigateToScanResultData().getValue()
                         ));
                 viewModel.navigatedToScanResult();
             }
@@ -145,9 +137,7 @@ public class HostStartViewFragment extends Fragment {
         if (!Constant.DEVELOPER_MODE) {
             binding.buttonHostStartClearHostData.setVisibility(View.GONE);
         }
-        binding.buttonHostStartClearHostData.setOnClickListener(event -> {
-            viewModel.clearHostData();
-        });
+        binding.buttonHostStartClearHostData.setOnClickListener(event -> viewModel.clearHostData());
     }
 
     @Override
