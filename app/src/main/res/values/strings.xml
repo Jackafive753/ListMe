@@ -57,7 +57,8 @@
 
     <!--    Strings Settings-->
     <string name="settings">Einstellungen</string>
-    <string name="SwitchQuestion">Nachfragen wenn ausgetragen wird</string>
+    <string name="settings_header_host">Gastgeber</string>
+    <string name="SwitchQuestion">Checkbox wenn ausgetragen wird</string>
     <string name="switch_yes">Ja</string>
     <string name="switch_no">Nein</string>
 
