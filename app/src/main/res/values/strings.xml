@@ -73,6 +73,12 @@
     <!-- DetailList Strings-->
     <string name="contact_person_one_text">Kontaktperson Kategorie 1</string>
     <string name="contact_person_two_text">Kontaktperson Kategorie 2</string>
+    <string name="detailList_menu_title">Erklärung</string>
+    <string name="detailList_dialog_title">Kontaktperson Kategorie 1 und 2 Erläuterung:</string>
+    <string name="detailList_dialog_message">In Kontaktpersonen Kategorie 1 werden alle Personen angezeigt,
+        die mit der aufrufenden Person im selben Bereich waren und auch zur selben Zeit dort waren.
+        In Kontaktpersonen Kategorie 2 werden alle Personen angezeigt, die mit der aufrufenden Person,
+        zur selben Zeit anwesend waren aber nicht im selben Bereich eingetragen wurden.</string>
 
     <!-- String AreaManagement-->
     <string name="update_area_message_text">%s wurde in %s umbenannt</string>

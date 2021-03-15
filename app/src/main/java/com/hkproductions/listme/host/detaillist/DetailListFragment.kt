@@ -1,9 +1,8 @@
 package com.hkproductions.listme.host.detaillist
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -46,5 +45,20 @@ class DetailListFragment : Fragment() {
         viewModel.IIData.observe(viewLifecycleOwner) {
             adapter.createList(viewModel.IData.value, it)
         }
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.host_detaillist_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.detailListInfo) {
+            AlertDialog.Builder(requireContext()).setTitle(R.string.detailList_dialog_title)
+                .setMessage(R.string.detailList_dialog_message)
+                .create().show()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
