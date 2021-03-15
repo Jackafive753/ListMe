@@ -61,8 +61,14 @@ class GuestDetailViewFragment : Fragment() {
         viewModel.liveData.observe(viewLifecycleOwner) {
             val dfTimeFrom = SimpleDateFormat("HH:mm   dd.MM.yyyy").format(it.startTimeMilli)
             binding.textViewHostGuestDetailTimeFrom.text = dfTimeFrom
-            val dfTimeEnd = SimpleDateFormat("HH:mm   dd.MM.yyyy").format(it.endTimeMilli)
-            binding.textViewHostGuestDetailTimeTo.text = dfTimeEnd
+            if(it.endTimeMilli == -1L){
+                binding.textViewHostGuestDetailTimeTo.text = resources.getText(R.string.no_endtime_text)
+            }
+            else{
+                val dfTimeEnd = SimpleDateFormat("HH:mm   dd.MM.yyyy").format(it.endTimeMilli)
+                binding.textViewHostGuestDetailTimeTo.text = dfTimeEnd
+            }
+
 
 
         }

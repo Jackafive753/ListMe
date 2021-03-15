@@ -10,10 +10,12 @@
         <TextView
             android:id="@+id/textView_startNameItem_name"
             style="@style/ListMe_Text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginEnd="@dimen/content_line_spacing"
             app:layout_constraintBaseline_toBaselineOf="@+id/button_startNameItem_checkout"
+            app:layout_constraintEnd_toStartOf="@+id/button_startNameItem_checkout"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="name" />
 
