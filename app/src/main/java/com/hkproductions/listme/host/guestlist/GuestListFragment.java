@@ -83,7 +83,7 @@ public class GuestListFragment extends Fragment {
      * Updates the liveData liveStartTime or liveEndTime depending on which textView was given as param
      * with the chosen Time
      *
-     * @param textView
+     * @param textView Textview
      */
     @SuppressLint("SetTextI18n")
     private void alterTime(TextView textView) {
@@ -91,8 +91,8 @@ public class GuestListFragment extends Fragment {
         int mHour = c.get(Calendar.HOUR_OF_DAY);
         int mMinute = c.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), android.R.style.Theme_Holo_Light_Dialog_NoActionBar, (view, hourOfDay, minute) -> {
-            String hourString = "";
-            String minString = "";
+            String hourString;
+            String minString;
             if (hourOfDay < 10) {
                 hourString = "0" + hourOfDay;
             } else {
@@ -120,15 +120,20 @@ public class GuestListFragment extends Fragment {
      * Displays the picked date in the DatePickerDialog on the editTextDate textView
      * Updates the liveData liveDate with chosen date
      */
+
     private void setDate() {
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
         @SuppressLint("SetTextI18n") DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
-            binding.editTextDate.setText(dayOfMonth + "." + (month+1)  + "." + year);
+            String strDayOfMonth = dayOfMonth > 10 ? String.valueOf(dayOfMonth) : "0" + dayOfMonth;
+            month+=1;
+            String strMonth = month > 10 ? String.valueOf(month) : "0" + month;
+            binding.editTextDate.setText(strDayOfMonth + "." + strMonth  + "." + year);
             c.set(year, month, dayOfMonth);
             viewModel.liveDate.setValue(c.getTimeInMillis());
         }, mYear, mMonth, mDay);
+
         datePickerDialog.show();
     }
 
@@ -146,7 +151,9 @@ public class GuestListFragment extends Fragment {
         c.set(Calendar.HOUR, 0);
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
-        binding.editTextDate.setText(c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + (c.get(Calendar.YEAR)));
+        String strDayOfMonth = c.get(Calendar.DAY_OF_MONTH) > 10 ? String.valueOf(c.get(Calendar.DAY_OF_MONTH)) : "0" + c.get(Calendar.DAY_OF_MONTH);
+        String strMonth = c.get(Calendar.MONTH)+1 > 10 ? String.valueOf(c.get(Calendar.MONTH)+1) : "0" + (c.get(Calendar.MONTH)+1);
+        binding.editTextDate.setText(strDayOfMonth + "." + strMonth + "." + (c.get(Calendar.YEAR)));
         viewModel.liveDate.setValue(c.getTimeInMillis());
 
         //initialize timepicker startTime
@@ -206,37 +213,25 @@ public class GuestListFragment extends Fragment {
             setDate();
         });
         //set OnClickListener on left clock icon (startTime)
-        binding.imageButtonClockStart.setOnClickListener(l -> {
-            alterTime(binding.TextInputEditTextStartTime);
-        });
+        binding.imageButtonClockStart.setOnClickListener(l -> alterTime(binding.TextInputEditTextStartTime));
 
         //set OnClickListener on left textfield displaying time
-        binding.TextInputEditTextStartTime.setOnClickListener(l -> {
-            alterTime(binding.TextInputEditTextStartTime);
-        });
+        binding.TextInputEditTextStartTime.setOnClickListener(l -> alterTime(binding.TextInputEditTextStartTime));
         //set OnClickListener on right clock icon (endtime)
         binding.imageButtonClockEnd.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextEndTime);
             viewModel.alterList();
         });
         //set OnClickListener on right textfield displaying time
-        binding.TextInputEditTextEndTime.setOnClickListener(l -> {
-            alterTime(binding.TextInputEditTextEndTime);
-        });
+        binding.TextInputEditTextEndTime.setOnClickListener(l -> alterTime(binding.TextInputEditTextEndTime));
 
         //set OnClickListener on imageViewArrowStart
-        binding.imageViewArrowStart.setOnClickListener(l -> {
-            expandCollapseSearch(expandedSearchfield);
-        });
+        binding.imageViewArrowStart.setOnClickListener(l -> expandCollapseSearch(expandedSearchfield));
         //set OnClickListener on imageViewArrowEnd
-        binding.imageViewArrowEnd.setOnClickListener(l -> {
-            expandCollapseSearch(expandedSearchfield);
-        });
+        binding.imageViewArrowEnd.setOnClickListener(l -> expandCollapseSearch(expandedSearchfield));
 
         //set OnClickListener on textViewExpandCollapseSearch
-        binding.textViewExpandCollapseSearch.setOnClickListener(l -> {
-            expandCollapseSearch(expandedSearchfield);
-        });
+        binding.textViewExpandCollapseSearch.setOnClickListener(l -> expandCollapseSearch(expandedSearchfield));
     }
 
     /**
