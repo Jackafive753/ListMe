@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -86,44 +87,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageButton
-                    android:id="@+id/imageButtonClockEnd"
-                    style="@style/ListMe_ImageButton"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="@dimen/content_line_spacing"
-                    android:contentDescription="@string/ContentDescriptionClockIcon"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/TextInputLayoutEndTime"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/TextInputLayoutEndTime"
-                    app:srcCompat="@drawable/ic_baseline_access_time_24" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutStartTime"
-                    style="@style/ListMe_InputLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/content_line_spacing"
-                    android:layout_marginTop="@dimen/content_line_spacing"
-                    android:layout_marginEnd="@dimen/content_line_spacing"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButtonClockStart"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCurrentDate">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/TextInputEditTextStartTime"
-                        style="@style/ListMe_InputText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:enabled="false"
-                        android:hint="@string/startzeit"
-                        android:inputType="none" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageButton
                     android:id="@+id/imageButtonDatePicker"
                     style="@style/ListMe_ImageButton"
                     android:layout_width="0dp"
@@ -138,46 +101,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textInputLayoutCurrentDate"
                     app:srcCompat="@drawable/ic_baseline_today_24" />
-
-                <ImageButton
-                    android:id="@+id/imageButtonClockStart"
-                    style="@style/ListMe_ImageButton"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="@dimen/content_line_spacing"
-                    android:adjustViewBounds="false"
-                    android:contentDescription="@string/ContentDescriptionClockIcon"
-                    android:cropToPadding="true"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutStartTime"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline7"
-                    app:layout_constraintTop_toTopOf="@+id/textInputLayoutStartTime"
-                    app:srcCompat="@drawable/ic_baseline_access_time_24" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/TextInputLayoutEndTime"
-                    style="@style/ListMe_InputLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/content_line_spacing"
-                    android:layout_marginTop="@dimen/content_line_spacing"
-                    android:layout_marginEnd="@dimen/content_line_spacing"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButtonClockEnd"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/guideline7"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCurrentDate">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/TextInputEditTextEndTime"
-                        style="@style/ListMe_InputText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:enabled="false"
-                        android:hint="@string/endzeit"
-                        android:inputType="none" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline7"
@@ -208,24 +131,24 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/expandcollapse_arrow_image_description"
-            android:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/textViewExpandCollapseSearch"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/textViewExpandCollapseSearch"
             app:layout_constraintTop_toTopOf="@+id/textViewExpandCollapseSearch"
-            app:srcCompat="@drawable/arrow_up" />
+            app:srcCompat="@drawable/arrow_up"
+            app:tint="@color/black" />
 
         <ImageView
             android:id="@+id/imageViewArrowEnd"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/expandcollapse_arrow_image_description"
-            android:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/textViewExpandCollapseSearch"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toEndOf="@+id/textViewExpandCollapseSearch"
             app:layout_constraintTop_toTopOf="@+id/textViewExpandCollapseSearch"
-            app:srcCompat="@drawable/arrow_up" />
+            app:srcCompat="@drawable/arrow_up"
+            app:tint="@color/black" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
