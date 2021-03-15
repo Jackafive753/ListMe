@@ -12,7 +12,8 @@ class HostStartNameViewHolder(private val binding: HostItemStartNameBinding) :
 
     @SuppressLint("SetTextI18n")
     fun bind(item: HostData, clickListener: CheckoutListener) {
-        binding.textViewStartNameItemName.text = "${item.firstName} ${item.lastName}"
+        binding.textViewStartNameItemName.text = "${item.firstName}"
+        binding.textViewStartNameLastName.text = "${item.lastName}"
         binding.buttonStartNameItemCheckout.setOnClickListener {
             clickListener.onClick(listOf(item), false)
         }
