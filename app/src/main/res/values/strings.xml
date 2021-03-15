@@ -71,8 +71,8 @@
 
 
     <!-- DetailList Strings-->
-    <string name="contact_person_one_text">Kontaktperson I</string>
-    <string name="contact_person_two_text">Kontaktperson II</string>
+    <string name="contact_person_one_text">Kontaktperson Kategorie 1</string>
+    <string name="contact_person_two_text">Kontaktperson Kategorie 2</string>
 
     <!-- String AreaManagement-->
     <string name="update_area_message_text">%s wurde in %s umbenannt</string>
@@ -144,8 +144,8 @@
     <string name="host_scanResult_view_title">Scanergebnis</string>
     <string name="host_areaManag_view_title">Bereichsverwaltung</string>
     <string name="host_guestList_view_title">Gästeliste</string>
-    <string name="host_guestDetail_view_title">Gast-Details</string>
-    <string name="host_detailList_view_title">Detailliste</string>
+    <string name="host_guestDetail_view_title">Gastdetails</string>
+    <string name="host_detailList_view_title">Kontakpersonen</string>
 
     <!-- Image descriptions-->
     <string name="simple_box_image_description">simpleBox</string>

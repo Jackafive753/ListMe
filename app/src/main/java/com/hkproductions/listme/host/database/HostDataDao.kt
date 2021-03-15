@@ -75,9 +75,14 @@ interface HostDataDao {
     ): List<HostData>
 
     @Query(
-        "SELECT * FROM host_data_table WHERE(((:starttime <= start_time_milli AND start_time_milli <= :endtime) OR (:starttime <= end_time_milli AND end_time_milli <= :endtime) OR (start_time_milli <= :starttime AND :endtime <= end_time_milli))AND area_name= :area AND area_name!= '')"
+        "SELECT * FROM host_data_table WHERE(((:starttime <= start_time_milli AND start_time_milli <= :endtime) OR (:starttime <= end_time_milli AND end_time_milli <= :endtime) OR (start_time_milli <= :starttime AND :endtime <= end_time_milli))AND area_name= :area AND area_name!= '' AND hostDataId !=:id)"
     )
-    suspend fun getContactPersonOne(starttime: Long, endtime: Long, area: Long): List<HostData>
+    suspend fun getContactPersonOne(
+        starttime: Long,
+        endtime: Long,
+        area: Long,
+        id: Long
+    ): List<HostData>
 
     @Query(
         "SELECT * FROM host_data_table WHERE(((:starttime <= start_time_milli AND start_time_milli <= :endtime) OR (:starttime <= end_time_milli AND end_time_milli <= :endtime) OR (start_time_milli <= :starttime AND :endtime <= end_time_milli))AND (area_name != :area OR area_name= ''))"

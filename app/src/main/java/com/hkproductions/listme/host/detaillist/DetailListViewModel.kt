@@ -16,7 +16,12 @@ class DetailListViewModel(val database: HostDataDao, val hostDataId: Long) : Vie
         viewModelScope.launch {
             val user = database.getHostDataById(hostDataId)
             IData.value =
-                database.getContactPersonOne(user.startTimeMilli, user.endTimeMilli, user.areaName)
+                database.getContactPersonOne(
+                    user.startTimeMilli,
+                    user.endTimeMilli,
+                    user.areaName,
+                    user.hostDataId
+                )
             IIData.value =
                 database.getContactPersonTwo(user.startTimeMilli, user.endTimeMilli, user.areaName)
 
