@@ -97,6 +97,12 @@
     <string name="city_postal_text">Ort, PLZ</string>
     <string name="timeframelabel">Zeitraum</string>
 
+
+    <!-- Strings HostGuestDetailView-->
+    <string name="host_guest_detail_area_text">Bereich</string>
+    <string name="host_guest_detail_area_timeFrom">Von</string>
+    <string name="host_guest_detail_are_timeTo">Bis</string>
+
     <!-- Error Text-->
     <string name="blank_error_text">Bitte ausfüllen</string>
     <string name="postal_error_text">Ungültige PLZ</string>

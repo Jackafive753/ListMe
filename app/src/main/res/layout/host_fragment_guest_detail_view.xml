@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -17,62 +18,74 @@
             android:id="@+id/cardView"
             style="@style/ListMe_Card"
             android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/side_margin"
-        android:layout_marginTop="@dimen/side_margin"
-        android:layout_marginEnd="@dimen/side_margin"
-        android:layout_marginBottom="@dimen/side_margin"
-        app:layout_constraintBottom_toBottomOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/side_margin"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:layout_marginBottom="@dimen/side_margin"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textViewGuestName"
-                style="@style/ListMe_Text_Item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.liveData.firstName + ' ' + viewModel.liveData.lastName}"
-                app:layout_constraintBottom_toTopOf="@+id/textViewStreet"
-                app:layout_constraintStart_toStartOf="@+id/textViewStreet"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textViewGuestName"
+                    style="@style/ListMe_Text_Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.liveData.firstName + ' ' + viewModel.liveData.lastName}"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewStreet"
+                    app:layout_constraintStart_toStartOf="@+id/textViewStreet"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textViewStreet"
-                style="@style/ListMe_Text_Item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.liveData.street + ' ' + viewModel.liveData.houseNumber}"
-                app:layout_constraintBottom_toTopOf="@+id/textViewPostalCode"
-                app:layout_constraintStart_toStartOf="@+id/textViewPostalCode"
-                app:layout_constraintTop_toBottomOf="@+id/textViewGuestName" />
+                <TextView
+                    android:id="@+id/textViewStreet"
+                    style="@style/ListMe_Text_Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.liveData.street + ' ' + viewModel.liveData.houseNumber}"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewPostalCode"
+                    app:layout_constraintStart_toStartOf="@+id/textViewPostalCode"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGuestName" />
 
-            <TextView
-                android:id="@+id/textViewPostalCode"
-                style="@style/ListMe_Text_Item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.liveData.postalCode}"
-                app:layout_constraintBottom_toTopOf="@+id/textViewPhoneNumber"
-                app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber"
-                app:layout_constraintTop_toBottomOf="@+id/textViewStreet" />
+                <TextView
+                    android:id="@+id/textViewPostalCode"
+                    style="@style/ListMe_Text_Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.liveData.postalCode}"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewPhoneNumber"
+                    app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewStreet" />
+                <TextView
+                    android:id="@+id/textViewCity"
+                    style="@style/ListMe_Text_Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.liveData.city}"
+                    android:layout_marginStart="@dimen/line_spacing"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textViewPostalCode"
+                    app:layout_constraintStart_toEndOf="@+id/textViewPostalCode" />
 
-            <TextView
-                android:id="@+id/textViewPhoneNumber"
-                style="@style/ListMe_Text_Item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/side_margin"
-                android:text="@{viewModel.liveData.phoneNumber}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewPostalCode" />
+                <TextView
+                    android:id="@+id/textViewPhoneNumber"
+                    style="@style/ListMe_Text_Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/side_margin"
+                    android:text="@{viewModel.liveData.phoneNumber}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewPostalCode" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.Guideline
@@ -83,75 +96,78 @@
             app:layout_constraintGuide_percent="0.40218878" />
 
         <TextView
-            android:id="@+id/textViewLabelDate"
+            android:id="@+id/textViewLabelTimeFrom"
             style="@style/ListMe_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/date_label"
-            app:layout_constraintBottom_toTopOf="@+id/textViewTimeFrameLabel"
-            app:layout_constraintStart_toStartOf="@+id/textViewTimeFrameLabel"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/double_line_spacing"
+            android:text="@string/host_guest_detail_area_timeFrom"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         <TextView
-            android:id="@+id/textViewDate"
+            android:id="@+id/textViewHostGuestDetailTimeFrom"
             style="@style/ListMe_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelDate"
-            app:layout_constraintStart_toEndOf="@+id/textViewTimeFrameLabel" />
+            android:layout_marginStart="@dimen/double_line_spacing"
+            android:text="@string/timeframelabel"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelTimeFrom"
+            app:layout_constraintStart_toEndOf="@+id/textViewLabelTimeFrom" />
 
         <TextView
-        android:id="@+id/textViewTimeFrame"
-        style="@style/ListMe_Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/double_line_spacing"
-        android:text="@string/timeframelabel"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textViewTimeFrameLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewTimeFrameLabel" />
+            android:id="@+id/textViewHostGuestDetailTimeTo"
+            style="@style/ListMe_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/double_line_spacing"
+            android:text="@string/timeframelabel"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelTo"
+            app:layout_constraintStart_toEndOf="@+id/textViewLabelTo" />
 
-    <TextView
-        android:id="@+id/textViewTimeFrameLabel"
-        style="@style/ListMe_Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/timeframelabel"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAreaLabel"
-        app:layout_constraintStart_toStartOf="@+id/textViewAreaLabel"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLabelDate" />
+        <TextView
+            android:id="@+id/textViewLabelTo"
+            style="@style/ListMe_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/double_line_spacing"
+            android:text="@string/host_guest_detail_are_timeTo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLabelTimeFrom" />
 
-    <TextView
-        android:id="@+id/textViewAreaLabel"
-        style="@style/ListMe_Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/side_margin"
-        android:text="@string/areas_label"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTimeFrameLabel" />
+        <TextView
+            android:id="@+id/textViewAreaLabel"
+            style="@style/ListMe_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/double_line_spacing"
+            android:text="@string/host_guest_detail_area_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLabelTo" />
 
-    <TextView
-        android:id="@+id/textViewArea"
-        style="@style/ListMe_Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/double_line_spacing"
-        android:text="@string/areas_label"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textViewAreaLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewAreaLabel" />
+        <TextView
+            android:id="@+id/textViewArea"
+            style="@style/ListMe_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/double_line_spacing"
+            android:text="@string/areas_label"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textViewAreaLabel"
+            app:layout_constraintStart_toEndOf="@+id/textViewAreaLabel" />
 
-    <Button
-        android:id="@+id/button"
-        style="@style/ListMe_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/side_margin"
-        android:text="@string/overlapping_entries"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/button"
+            style="@style/ListMe_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/side_margin"
+            android:text="@string/overlapping_entries"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
