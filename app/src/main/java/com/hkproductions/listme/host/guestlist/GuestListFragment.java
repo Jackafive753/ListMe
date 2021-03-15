@@ -25,6 +25,7 @@ import com.hkproductions.listme.host.database.HostDataDao;
 import com.hkproductions.listme.host.database.HostDatabase;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class GuestListFragment extends Fragment {
 
@@ -37,8 +38,8 @@ public class GuestListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //Hide Keyboard
-        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+        InputMethodManager inputMethodManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
         // initialize starting values
         initDateAndTime();
         // initialize onClickListeners
@@ -105,9 +106,9 @@ public class GuestListFragment extends Fragment {
             }
             textView.setText(hourString + ":" + minString);
             if (textView.getId() == R.id.TextInputEditTextStartTime) {
-                viewModel.liveStartTime.setValue(convertHourAndMinutesToMilli((long) hourOfDay, (long) minute));
+                viewModel.liveStartTime.setValue(convertHourAndMinutesToMilli(hourOfDay, minute));
             } else {
-                viewModel.liveEndTime.setValue(convertHourAndMinutesToMilli((long) hourOfDay, (long) minute));
+                viewModel.liveEndTime.setValue(convertHourAndMinutesToMilli(hourOfDay, minute));
             }
         }, mHour, mMinute, true);
         timePickerDialog.show();
@@ -127,8 +128,8 @@ public class GuestListFragment extends Fragment {
         int mDay = c.get(Calendar.DAY_OF_MONTH);
         @SuppressLint("SetTextI18n") DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
             String strDayOfMonth = dayOfMonth > 10 ? String.valueOf(dayOfMonth) : "0" + dayOfMonth;
-            month+=1;
-            String strMonth = month > 10 ? String.valueOf(month) : "0" + month;
+            int tmpMonth = month +1;
+            String strMonth = tmpMonth > 10 ? String.valueOf(tmpMonth) : "0" + tmpMonth;
             binding.editTextDate.setText(strDayOfMonth + "." + strMonth  + "." + year);
             c.set(year, month, dayOfMonth);
             viewModel.liveDate.setValue(c.getTimeInMillis());
@@ -207,24 +208,14 @@ public class GuestListFragment extends Fragment {
             // method for picking date
             setDate();
         });
-        // set OnClickListener on Date Textfield
-        binding.editTextDate.setOnClickListener(l -> {
-            // method for picking date
-            setDate();
-        });
         //set OnClickListener on left clock icon (startTime)
         binding.imageButtonClockStart.setOnClickListener(l -> alterTime(binding.TextInputEditTextStartTime));
 
-        //set OnClickListener on left textfield displaying time
-        binding.TextInputEditTextStartTime.setOnClickListener(l -> alterTime(binding.TextInputEditTextStartTime));
         //set OnClickListener on right clock icon (endtime)
         binding.imageButtonClockEnd.setOnClickListener(l -> {
             alterTime(binding.TextInputEditTextEndTime);
             viewModel.alterList();
         });
-        //set OnClickListener on right textfield displaying time
-        binding.TextInputEditTextEndTime.setOnClickListener(l -> alterTime(binding.TextInputEditTextEndTime));
-
         //set OnClickListener on imageViewArrowStart
         binding.imageViewArrowStart.setOnClickListener(l -> expandCollapseSearch(expandedSearchfield));
         //set OnClickListener on imageViewArrowEnd
