@@ -25,8 +25,10 @@
         <TextView
             android:id="@+id/textView_startAreaItem_areaName"
             style="@style/ListMe_Text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/line_spacing"
+            android:layout_marginEnd="@dimen/content_line_spacing"
             app:layout_constraintBaseline_toBaselineOf="@+id/button_startAreaItem_checkAllOut"
             app:layout_constraintEnd_toStartOf="@+id/button_startAreaItem_checkAllOut"
             app:layout_constraintHorizontal_bias="0.25"
