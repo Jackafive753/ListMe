@@ -32,24 +32,26 @@ class HostStartAreaViewHolder(private val binding: HostItemStartAreaBinding) :
             )
         }
 
+        //if list is empty no one can checked out, so this button is disabled
+        if (list.isEmpty()) {
+            binding.buttonStartAreaItemCheckAllOut.isEnabled = false
+            binding.buttonStartAreaItemCheckAllOut.alpha = 0.5F
+        }
+
         binding.root.setOnClickListener {
             if (isExpanded) {
-                binding.imageView3.animate().rotation(180F).setDuration(300)
+                binding.imageView3.animate().rotation(0F).setDuration(300)
                     .withEndAction { binding.recyclerViewStartAreaItem.visibility = View.GONE }
                     .start()
             } else {
-                binding.imageView3.animate().rotation(0F).setDuration(300)
+                binding.imageView3.animate().rotation(180F).setDuration(300)
                     .withEndAction { binding.recyclerViewStartAreaItem.visibility = View.VISIBLE }
                     .start()
             }
             isExpanded = !isExpanded
         }
 
-        //if list is empty no one can checked out, so this button is disabled
-        if (list.isEmpty()) {
-            binding.buttonStartAreaItemCheckAllOut.isEnabled = false
-            binding.buttonStartAreaItemCheckAllOut.alpha = 0.5F
-        }
+        binding.recyclerViewStartAreaItem.visibility = View.GONE
     }
 
     companion object {
