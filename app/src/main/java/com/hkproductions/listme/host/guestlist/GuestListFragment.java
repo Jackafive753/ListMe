@@ -76,43 +76,6 @@ public class GuestListFragment extends Fragment {
         return binding.getRoot();
     }
 
-    /**
-     * Utility Method alter Time
-     * <p>
-     * Uses android.app.TimePickerDialog
-     * Displays the picked time in the TimepickerDialog on the textView given as param
-     * Updates the liveData liveStartTime or liveEndTime depending on which textView was given as param
-     * with the chosen Time
-     *
-     * @param textView Textview
-     */
-    @SuppressLint("SetTextI18n")
-    private void alterTime(TextView textView) {
-        Calendar c = Calendar.getInstance();
-        int mHour = c.get(Calendar.HOUR_OF_DAY);
-        int mMinute = c.get(Calendar.MINUTE);
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), android.R.style.Theme_Holo_Light_Dialog_NoActionBar, (view, hourOfDay, minute) -> {
-            String hourString;
-            String minString;
-            if (hourOfDay < 10) {
-                hourString = "0" + hourOfDay;
-            } else {
-                hourString = String.valueOf(hourOfDay);
-            }
-            if (minute < 10) {
-                minString = "0" + minute;
-            } else {
-                minString = String.valueOf(minute);
-            }
-            textView.setText(hourString + ":" + minString);
-            if (textView.getId() == R.id.TextInputEditTextStartTime) {
-                viewModel.liveStartTime.setValue(convertHourAndMinutesToMilli(hourOfDay, minute));
-            } else {
-                viewModel.liveEndTime.setValue(convertHourAndMinutesToMilli(hourOfDay, minute));
-            }
-        }, mHour, mMinute, true);
-        timePickerDialog.show();
-    }
 
     /**
      * Utility Method set Date
@@ -161,14 +124,12 @@ public class GuestListFragment extends Fragment {
         Calendar cT = Calendar.getInstance();
         cT.set(Calendar.HOUR_OF_DAY, 0);
         cT.set(Calendar.MINUTE, 0);
-        binding.TextInputEditTextStartTime.setText(cT.get(Calendar.HOUR_OF_DAY) + "0:0" + cT.get(Calendar.MINUTE));
         viewModel.liveStartTime.setValue(convertHourAndMinutesToMilli(cT.get(Calendar.HOUR_OF_DAY), cT.get(Calendar.MINUTE)));
 
         //initialize timepicker endTime
         Calendar cTEnd = Calendar.getInstance();
         cTEnd.set(Calendar.HOUR_OF_DAY, 23);
         cTEnd.set(Calendar.MINUTE, 59);
-        binding.TextInputEditTextEndTime.setText(cTEnd.get(Calendar.HOUR_OF_DAY) + ":" + cTEnd.get(Calendar.MINUTE));
         viewModel.liveEndTime.setValue(convertHourAndMinutesToMilli(cTEnd.get(Calendar.HOUR_OF_DAY), cTEnd.get(Calendar.MINUTE)));
     }
 
@@ -207,14 +168,6 @@ public class GuestListFragment extends Fragment {
         binding.imageButtonDatePicker.setOnClickListener(l -> {
             // method for picking date
             setDate();
-        });
-        //set OnClickListener on left clock icon (startTime)
-        binding.imageButtonClockStart.setOnClickListener(l -> alterTime(binding.TextInputEditTextStartTime));
-
-        //set OnClickListener on right clock icon (endtime)
-        binding.imageButtonClockEnd.setOnClickListener(l -> {
-            alterTime(binding.TextInputEditTextEndTime);
-            viewModel.alterList();
         });
         //set OnClickListener on imageViewArrowStart
         binding.imageViewArrowStart.setOnClickListener(l -> expandCollapseSearch(expandedSearchfield));
