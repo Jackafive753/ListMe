@@ -161,6 +161,7 @@
     <string name="startzeit">Von</string>
     <string name="ContentDescriptionClockIcon">simpleClock</string>
     <string name="endzeit">Bis</string>
+    <string name="suchergebnisse">Suchergebnisse</string>
 
 
 </resources>
