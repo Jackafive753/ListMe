@@ -24,12 +24,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/side_margin"
-                android:layout_marginTop="@dimen/content_line_spacing"
+                android:layout_marginTop="@dimen/line_spacing"
                 android:layout_marginEnd="@dimen/side_margin"
                 app:cardCornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -172,6 +172,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewArea" />
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/ListMe_Text_Header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:layout_marginTop="@dimen/line_spacing"
+                android:text="@string/guest"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
