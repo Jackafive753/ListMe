@@ -84,6 +84,8 @@ interface HostDataDao {
     )
     suspend fun getContactPersonTwo(starttime: Long, endtime: Long, area: Long): List<HostData>
 
+    @Query("SELECT * FROM host_data_table WHERE area_name = :areaId")
+    suspend fun getHostDataByArea(areaId: Long): List<HostData>
 
     //AREA - GET
     @Query("SELECT area_qualifier FROM area_data_table LIMIT 1")

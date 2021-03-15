@@ -59,9 +59,9 @@ public class HostStartViewFragment extends Fragment {
      *
      * @param hostDataIds
      */
-    public void createDialog(long[] hostDataIds) {
+    public void createDialog(long[] hostDataIds, boolean isAreaDialog) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.alertDialog_title);
+        builder.setTitle(isAreaDialog ? R.string.alertDialogAll_title : R.string.alertDialog_title);
         builder.setMultiChoiceItems(R.array.remember_my_decision, null, (dialogInterface, i, b) -> {
             if (b) {
                 decisionRememberDecision = true;
@@ -98,11 +98,11 @@ public class HostStartViewFragment extends Fragment {
         );
 
         HostStartAdapter adapter = new HostStartAdapter(new CheckoutListener(
-                (hostDataIds) -> {
+                (hostDataIds, isAreaDialog) -> {
                     if (sp.getBoolean("decisionRememberDecision", false)) {
                         viewModel.checkout(hostDataIds);
                     } else {
-                        createDialog(hostDataIds);
+                        createDialog(hostDataIds, isAreaDialog);
                     }
                     return null;
                 }));

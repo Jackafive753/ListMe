@@ -29,7 +29,6 @@
     <string name="checkout_text">Austragen</string>
     <string name="host_scan_header">Scannen Sie den Code des Gastes</string>
     <string name="area_designation_text">Bereichsbeschreibung</string>
-    <string name="areas_label">Bereiche</string>
     <string name="cancel">Abbrechen</string>
     <string name="overlapping_entries">Überschneidende Einträge</string>
     <string name="scan_data_button">Daten scannen</string>
@@ -47,6 +46,7 @@
 
     <!-- Strings HostStartView -->
     <string name="alertDialog_title">Wirklich austragen?</string>
+    <string name="alertDialogAll_title">Wirklich alle austragen?</string>
     <string name="cancelled_check_out_toast">Austragen abgebrochen</string>
     <string name="cancel_alertDialog">Abbrechen</string>
     <string name="confirm_alertDialog">Austragen</string>
@@ -73,6 +73,12 @@
     <!-- DetailList Strings-->
     <string name="contact_person_one_text">Kontaktperson I</string>
     <string name="contact_person_two_text">Kontaktperson II</string>
+
+    <!-- String AreaManagement-->
+    <string name="update_area_message_text">%s wurde in %s umbenannt</string>
+    <string name="areas_label">Bereiche</string>
+    <string name="delete_area_message_text">%s unwiderruflich löschen?</string>
+
     <!-- Alert Dialog Strings delete GuestData-->
     <string name="alert_deleteguestdata_message">Datensatz unwiderruflich löschen?</string>
     <string name="alert_deleteguestdata_title">Daten löschen</string>
