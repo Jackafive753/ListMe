@@ -20,7 +20,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/black</item>
         <item name="iconTint">@color/black</item>
-        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto</item>
         <item name="elevation">5dp</item>
         <item name="android:textSize">@dimen/text_size</item>
     </style>
@@ -64,7 +64,7 @@
 
     <style name="ListMe_Text">
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/text_size</item>
     </style>
 
@@ -85,11 +85,11 @@
     </style>
 
     <style name="ListMe_TextAppearance" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto</item>
     </style>
 
     <style name="ListMe_InputText">
-        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

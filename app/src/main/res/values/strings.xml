@@ -33,16 +33,16 @@
     <string name="overlapping_entries">Überschneidende Einträge</string>
     <string name="scan_data_button">Daten scannen</string>
     <string name="create_phone_owner">Daten erstellen</string>
-    <string name="checked_in">eingetragen</string>
-    <string name="checked_out">ausgetragen</string>
     <string name="area_management_text">Bereichsverwaltung</string>
 
     <!-- String HostScanResult -->
     <string name="scannedEntrys_noArea">Kein Bereich</string>
     <string name="scannedEntrys_single_text">Gescannter Eintrag:</string>
     <string name="scannedEntrys_multi_text">Gescannte Einträge:</string>
-    <string name="newScan_text">Erneut Scannen</string>
+    <string name="newScan_text">Nächster Scan</string>
     <string name="scanResultToastMes">Gäste wurden %s zugewiesen</string>
+    <string name="checked_in">eintragen</string>
+    <string name="checked_out">austragen</string>
 
     <!-- Strings HostStartView -->
     <string name="alertDialog_title">Wirklich austragen?</string>
