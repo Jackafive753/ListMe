@@ -4,22 +4,16 @@
     <item
         android:id="@+id/host_navigation"
         android:title="@string/host" />
+
     <item
         android:id="@+id/guest_navigation"
         android:title="@string/guest" />
+
     <item
         android:id="@+id/navigate_instruction"
         android:title="@string/manual" />
-    <item
-        android:id="@+id/navigate_about"
-        android:title="@string/about" />
+
     <item
         android:id="@+id/settingsFragment"
         android:title="@string/settings" />
-    <item
-        android:id="@+id/navigate_data_protection"
-        android:title="@string/data_protection" />
-    <item
-        android:id="@+id/navigate_impressum"
-        android:title="@string/imprint" />
 </menu>
