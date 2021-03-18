@@ -15,12 +15,13 @@
             android:layout_marginStart="@dimen/double_line_spacing"
             android:layout_marginTop="@dimen/double_line_spacing"
             android:layout_marginEnd="@dimen/double_line_spacing"
+            android:layout_marginBottom="@dimen/double_line_spacing"
             android:contentDescription="@string/listmelogo"
             app:layout_constraintBottom_toTopOf="@id/horizontalGuideline50"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/pencilWithText" />
+            app:srcCompat="@drawable/pencil_with_text" />
 
         <Button
             android:id="@+id/home_host_button"
