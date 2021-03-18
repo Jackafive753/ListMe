@@ -21,8 +21,7 @@ class AreaManagementAdapter(
         }
 
         override fun areContentsTheSame(oldItem: Area, newItem: Area): Boolean {
-            return oldItem.designation == newItem.designation &&
-                    oldItem.name == newItem.name &&
+            return oldItem.name == newItem.name &&
                     oldItem.areaId == newItem.areaId
         }
 

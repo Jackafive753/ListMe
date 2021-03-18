@@ -14,16 +14,9 @@ data class Area(
      * default: numerized
      */
     @ColumnInfo(name = "area_name")
-    var name: String = "",
-
-    /**
-     * designation of the area
-     * e.g. table
-     */
-    @ColumnInfo(name = "area_qualifier")
-    var designation: String = ""
+    var name: String = ""
 ) {
     override fun toString(): String {
-        return "$designation $name"
+        return name
     }
 }

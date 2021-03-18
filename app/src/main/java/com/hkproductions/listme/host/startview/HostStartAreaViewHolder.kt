@@ -17,7 +17,7 @@ class HostStartAreaViewHolder(private val binding: HostItemStartAreaBinding) :
     @SuppressLint("SetTextI18n", "ResourceAsColor")
     fun bind(area: Area, list: List<HostData>, clickListener: CheckoutListener) {
         //Set Label with name of the area
-        binding.textViewStartAreaItemAreaName.text = "${area.designation} ${area.name}"
+        binding.textViewStartAreaItemAreaName.text = area.name
 
         //Set List with guest in this area
         val adapter = HostStartNameAdapter(clickListener)

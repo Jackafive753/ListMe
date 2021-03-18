@@ -93,9 +93,6 @@ interface HostDataDao {
     suspend fun getHostDataByArea(areaId: Long): List<HostData>
 
     //AREA - GET
-    @Query("SELECT area_qualifier FROM area_data_table LIMIT 1")
-    suspend fun getAreaDesignation(): String
-
     @Query("SELECT * FROM area_data_table WHERE areaId = :id LIMIT 1")
     fun getLiveAreaById(id: Long): LiveData<Area?>
 

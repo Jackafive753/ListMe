@@ -85,7 +85,7 @@ public class ScanResultFragment extends Fragment {
                     areaAdapter.clear();
                     areaAdapter.add(getResources().getString(R.string.scannedEntrys_noArea));
                     for (Area areas : list) {
-                        String nArea = areas.getDesignation() + " " + areas.getName();
+                        String nArea = areas.getName();
                         areaAdapter.add(nArea);
                     }
                 });

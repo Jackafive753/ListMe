@@ -56,7 +56,7 @@ class AreaManagementFragment : Fragment() {
                 .setTitle(
                     resources.getString(
                         R.string.delete_area_message_text,
-                        "${area.designation} ${area.name}"
+                        area.name
                     )
                 )
                 .setPositiveButton(R.string.delete) { _, _ ->
@@ -69,11 +69,10 @@ class AreaManagementFragment : Fragment() {
             viewModel.updateAreaName(area.areaId, name)
             //Feedback of the save operation
             Toast.makeText(
-                requireContext(),
-                resources.getString(
+                requireContext(), resources.getString(
                     R.string.update_area_message_text,
-                    "${area.designation} ${area.name}",
-                    "${area.designation} $name"
+                    area.name,
+                    name
                 ),
                 Toast.LENGTH_LONG
             ).show()
@@ -93,14 +92,14 @@ class AreaManagementFragment : Fragment() {
             viewModel.addArea()
         }
 
-        //Ok Button Clicked
-        binding.buttonAreaManagementOkDesignation.setOnClickListener {
-            //Hide Keyboard
-            (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-                .hideSoftInputFromWindow(view?.windowToken, 0)
-
-            viewModel.setNewDesignation()
-        }
+//        //Ok Button Clicked
+//        binding.buttonAreaManagementOkDesignation.setOnClickListener {
+//            //Hide Keyboard
+//            (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+//                .hideSoftInputFromWindow(view?.windowToken, 0)
+//
+//            viewModel.setNewDesignation()
+//        }
 
         return binding.root
     }

@@ -69,19 +69,9 @@ private fun contactToShorterText(contact: GuestData): String {
  */
 fun contactListToText(contacts: List<GuestData>): String {
     val stringBuilder = StringBuilder()
-    var previousContact: GuestData? = null
+
     for (contact in contacts) {
-        if (previousContact != null &&
-            contact.city == previousContact.city &&
-            contact.postalCode == previousContact.postalCode &&
-            contact.houseNumber == previousContact.houseNumber &&
-            contact.street == previousContact.street
-        ) {
-            stringBuilder.append(contactToShorterText(contact))
-        } else {
-            stringBuilder.append(contactToText(contact))
-        }
-        previousContact = contact
+        stringBuilder.append(contactToText(contact))
     }
     return stringBuilder.toString()
 }
