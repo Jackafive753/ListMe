@@ -8,21 +8,21 @@ import com.hkproductions.listme.host.database.HostDataDao
 import kotlinx.coroutines.launch
 
 class DetailListViewModel(val database: HostDataDao, val hostDataId: Long) : ViewModel() {
-    val IData = MutableLiveData<List<HostData>?>()
-    val IIData = MutableLiveData<List<HostData>?>()
+    val dataOne = MutableLiveData<List<HostData>?>()
+    val dataTwo = MutableLiveData<List<HostData>?>()
 
 
     init {
         viewModelScope.launch {
             val user = database.getHostDataById(hostDataId)
-            IData.value =
+            dataOne.value =
                 database.getContactPersonOne(
                     user.startTimeMilli,
                     user.endTimeMilli,
                     user.areaName,
                     user.hostDataId
                 )
-            IIData.value =
+            dataTwo.value =
                 database.getContactPersonTwo(user.startTimeMilli, user.endTimeMilli, user.areaName)
 
         }

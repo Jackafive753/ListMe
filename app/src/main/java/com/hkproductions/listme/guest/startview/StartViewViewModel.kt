@@ -49,14 +49,6 @@ class StartViewViewModel(private val database: GuestDataDao) : ViewModel() {
     }
 
     /**
-     * Trigger if addMember Button is clicked
-     * switch LiveData to navigate to EditFragment as CreateFragment
-     */
-    fun onCreateMemberClicked() {
-        _navigateToCreateContact.value = true
-    }
-
-    /**
      * Called if Navigation is finished
      */
     fun onMemberCreateNavigated() {

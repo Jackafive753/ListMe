@@ -85,10 +85,10 @@ class DetailListAdapter(val resource: Resources) :
             }
         }
 
-        @SuppressLint("SetTextI18n")
+        @SuppressLint("SetTextI18n", "SimpleDateFormat")
         fun bind(item: HostData) {
             binding.textViewHostDetailListName.text = item.firstName + " " + item.lastName
-            binding.textViewHostDetailListCityPostalCode.text = "${item.postalCode}, ${item.city}"
+            binding.textViewHostDetailListCityPostalCode.text = "${item.postalCode} ${item.city}"
             binding.textViewHostDetailListStreetHousenumber.text =
                 item.street + " " + item.houseNumber
             binding.textViewHostDetailListPhoneNumber.text = item.phoneNumber

@@ -42,7 +42,7 @@ class ScanResultAdapter : RecyclerView.Adapter<ScanResultAdapter.ScanResultViewH
         @SuppressLint("SetTextI18n", "ResourceAsColor")
         fun bind(item: HostData) {
             binding.textViewHostScanresultName.text = item.firstName + " " + item.lastName
-            binding.textViewHostScanresultCityPostalCode.text = "${item.postalCode}, ${item.city}"
+            binding.textViewHostScanresultCityPostalCode.text = "${item.postalCode} ${item.city}"
             binding.textViewHostScanresultStreetHousenumber.text =
                 item.street + " " + item.houseNumber
             binding.textViewPhoneNumber.text = item.phoneNumber

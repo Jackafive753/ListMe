@@ -9,10 +9,10 @@ import com.google.zxing.qrcode.QRCodeWriter
 import com.hkproductions.listme.guest.database.GuestData
 import com.hkproductions.listme.host.database.HostData
 
-suspend fun createBitmap(text: String): Bitmap {
+fun createBitmap(text: String): Bitmap {
     val width = 400
 
-    val writer: QRCodeWriter = QRCodeWriter()
+    val writer = QRCodeWriter()
     var bitmap: Bitmap? = null
     val bitMatrix: BitMatrix?
 
@@ -34,7 +34,7 @@ suspend fun createBitmap(text: String): Bitmap {
  * make an Contact (GuestData) into CSV
  * @param contact GuestData that convert
  */
-suspend fun contactToText(contact: GuestData): String {
+fun contactToText(contact: GuestData): String {
     val stringBuilder = StringBuilder()
     stringBuilder.append(contact.firstName + ";")
     stringBuilder.append(contact.lastName + ";")
@@ -51,7 +51,7 @@ suspend fun contactToText(contact: GuestData): String {
  * Shorter Version to safe place
  *
  */
-private suspend fun contactToShorterText(contact: GuestData): String {
+private fun contactToShorterText(contact: GuestData): String {
     val stringBuilder = StringBuilder()
     stringBuilder.append(contact.firstName + ";")
     stringBuilder.append(contact.lastName + ";")
@@ -67,10 +67,21 @@ private suspend fun contactToShorterText(contact: GuestData): String {
  * make an List of Contacts into CSV
  * @param contacts Lsit of GuestData that convert
  */
-suspend fun contactListToText(contacts: List<GuestData>): String {
+fun contactListToText(contacts: List<GuestData>): String {
     val stringBuilder = StringBuilder()
+    var previousContact: GuestData? = null
     for (contact in contacts) {
-        stringBuilder.append(contactToText(contact))
+        if (previousContact != null &&
+            contact.city == previousContact.city &&
+            contact.postalCode == previousContact.postalCode &&
+            contact.houseNumber == previousContact.houseNumber &&
+            contact.street == previousContact.street
+        ) {
+            stringBuilder.append(contactToShorterText(contact))
+        } else {
+            stringBuilder.append(contactToText(contact))
+        }
+        previousContact = contact
     }
     return stringBuilder.toString()
 }
@@ -79,10 +90,10 @@ suspend fun contactListToText(contacts: List<GuestData>): String {
  * get an string and convert into GuestData
  * @param text CSV String convert into GuestData
  */
-suspend fun textToContact(text: String): GuestData {
+fun textToContact(text: String): GuestData {
     val stringList: List<String> = text.split(";").dropLast(1)
     val data = GuestData()
-    Log.i("Listme", "${stringList.size} ${stringList.toString()}")
+    Log.i("Listme", "${stringList.size} $stringList")
     data.apply {
         firstName = stringList[0]
         lastName = stringList[1]
@@ -99,7 +110,7 @@ suspend fun textToContact(text: String): GuestData {
  * get an string and convert into HostData
  * @param text CSV String convert into HostData
  */
-suspend fun textToGuestList(text: String): List<HostData> {
+fun textToGuestList(text: String): List<HostData> {
     /*
     make an iterator over stringlist
     make stringlist out of the result string

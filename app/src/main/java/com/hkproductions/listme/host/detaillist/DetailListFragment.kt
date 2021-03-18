@@ -6,6 +6,7 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.hkproductions.listme.R
 import com.hkproductions.listme.databinding.HostFragmentDetailListBinding
 import com.hkproductions.listme.host.database.HostDatabase
@@ -28,7 +29,7 @@ class DetailListFragment : Fragment() {
         viewModel = ViewModelProvider(
             this, DetailListViewModelFactory(
                 database = HostDatabase.getInstance(requireActivity().application).hostDataDao,
-                DetailListFragmentArgs.fromBundle(requireArguments()).hostDataId
+                hostDataId = DetailListFragmentArgs.fromBundle(requireArguments()).hostDataId
             )
         ).get(DetailListViewModel::class.java)
 
@@ -39,11 +40,11 @@ class DetailListFragment : Fragment() {
         val adapter = DetailListAdapter(resources)
         binding.recyclerviewContactPersonOne.adapter = adapter
 
-        viewModel.IData.observe(viewLifecycleOwner) {
-            adapter.createList(it, viewModel.IIData.value)
+        viewModel.dataOne.observe(viewLifecycleOwner) {
+            adapter.createList(it, viewModel.dataTwo.value)
         }
-        viewModel.IIData.observe(viewLifecycleOwner) {
-            adapter.createList(viewModel.IData.value, it)
+        viewModel.dataTwo.observe(viewLifecycleOwner) {
+            adapter.createList(viewModel.dataOne.value, it)
         }
         setHasOptionsMenu(true)
     }

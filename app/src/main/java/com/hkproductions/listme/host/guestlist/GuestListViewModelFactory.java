@@ -16,9 +16,8 @@ public class GuestListViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(GuestListViewModel.class)) {
+        if (modelClass.isAssignableFrom(GuestListViewModel.class))
             return (T) new GuestListViewModel(database);
-        }
         throw new IllegalArgumentException("Unkown ViewModel class");
     }
 }
