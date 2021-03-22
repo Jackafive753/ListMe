@@ -24,6 +24,8 @@ import com.hkproductions.listme.host.database.Area;
 import com.hkproductions.listme.host.database.HostDataDao;
 import com.hkproductions.listme.host.database.HostDatabase;
 
+import java.util.Objects;
+
 public class ScanResultFragment extends Fragment {
 
     private HostFragmentScanresultBinding binding;
@@ -93,7 +95,7 @@ public class ScanResultFragment extends Fragment {
                 binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if (viewModel.getAreaLi().getValue().size() != 0 && position > 0) {
+                        if (Objects.requireNonNull(viewModel.getAreaLi().getValue()).size() != 0 && position > 0) {
                             viewModel.getSelectedArea().setValue(viewModel.getAreaLi().getValue().get(position - 1));
                         }
                     }
@@ -126,6 +128,7 @@ public class ScanResultFragment extends Fragment {
             integrator.setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE);
             integrator.setPrompt(getResources().getString(R.string.host_scan_header));
             integrator.setOrientationLocked(true);
+            integrator.setBeepEnabled(false);
             integrator.initiateScan();
         });
 

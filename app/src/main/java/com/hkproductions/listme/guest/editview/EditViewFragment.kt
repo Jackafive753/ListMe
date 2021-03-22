@@ -61,6 +61,7 @@ class EditViewFragment : Fragment() {
             integrator.apply {
                 setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE)
                 setPrompt(resources.getString(R.string.scan_guest_header))
+                setBeepEnabled(false)
                 setOrientationLocked(true)
                 initiateScan()
             }

@@ -28,6 +28,8 @@ import com.hkproductions.listme.R;
 import com.hkproductions.listme.databinding.HostFragmentStartviewBinding;
 import com.hkproductions.listme.host.database.HostDatabase;
 
+import java.util.Objects;
+
 public class HostStartViewFragment extends Fragment {
     private static final String PREFS_LISTME = "com.hkproductions.listme";
     private boolean decisionRememberDecision = false;
@@ -82,7 +84,7 @@ public class HostStartViewFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        sp = getContext().getSharedPreferences(PREFS_LISTME, Context.MODE_PRIVATE);
+        sp = requireContext().getSharedPreferences(PREFS_LISTME, Context.MODE_PRIVATE);
         //Hide Keyboard
         InputMethodManager inputMethodManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
@@ -122,7 +124,7 @@ public class HostStartViewFragment extends Fragment {
             if (bool) {
                 Navigation.findNavController(requireView())
                         .navigate(HostStartViewFragmentDirections.actionShowScanResult(
-                                viewModel.getNavigateToScanResultData().getValue()
+                                Objects.requireNonNull(viewModel.getNavigateToScanResultData().getValue())
                         ));
                 viewModel.navigatedToScanResult();
             }
@@ -175,6 +177,7 @@ public class HostStartViewFragment extends Fragment {
         integrator.setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX, IntentIntegrator.QR_CODE);
         integrator.setPrompt(getResources().getString(R.string.host_scan_header));
         integrator.setOrientationLocked(true);
+        integrator.setBeepEnabled(false);
         integrator.initiateScan();
     }
 }
