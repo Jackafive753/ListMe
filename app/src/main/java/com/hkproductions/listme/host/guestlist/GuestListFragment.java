@@ -48,7 +48,7 @@ public class GuestListFragment extends Fragment {
         Observer<Long> observer = aLong -> viewModel.alterList();
         GuestAdapter guestAdapter = new GuestAdapter();
         binding.recyclerViewGuests.setAdapter(guestAdapter);
-        viewModel.liveName.observe(getViewLifecycleOwner(), s -> viewModel.alterList());
+        viewModel.liveName.observe(getViewLifecycleOwner(), s -> viewModel.alterListByName());
         viewModel.liveDate.observe(getViewLifecycleOwner(), observer);
         viewModel.liveStartTime.observe(getViewLifecycleOwner(), observer);
         viewModel.liveEndTime.observe(getViewLifecycleOwner(), observer);
