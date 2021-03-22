@@ -79,7 +79,7 @@ public class GuestAdapter extends ListAdapter<HostData, GuestAdapter.GuestListVi
             } else {
                 checkOutString = dfEnd.format(data.getEndTimeMilli());
             }
-            binding.buttonGuest.setText(data.getFirstName() + "" + data.getLastName() + "\n" + checkInString + " -\n" + checkOutString);
+            binding.buttonGuest.setText(data.getFirstName() + " " + data.getLastName() + "\n" + checkInString + " -\n" + checkOutString);
             binding.buttonGuest.setOnClickListener(view -> Navigation.findNavController(view).navigate(GuestListFragmentDirections.actionShowGuestDetails(data.getHostDataId())));
         }
     }
