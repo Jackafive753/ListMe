@@ -57,8 +57,8 @@ interface HostDataDao {
     @Query("SELECT * FROM host_data_table")
     suspend fun getAllEntriesAsList(): List<HostData>
 
-    @Query("SELECT DISTINCT * FROM host_data_table WHERE LOWER(first_name || ' ' || last_name) LIKE '%'||TRIM(:name)||'%'")
-    fun getEntriesByName(name: String): List<HostData>
+    @Query("SELECT * FROM host_data_table WHERE LOWER(first_name || ' ' || last_name) LIKE '%'||TRIM(:name)||'%'")
+    suspend fun getEntriesByName(name: String): List<HostData>
 
     @Query(
         "SELECT * FROM host_data_table WHERE((:starttime <= start_time_milli AND start_time_milli <= :endtime) OR (:starttime <= end_time_milli AND end_time_milli <= :endtime) OR (start_time_milli <= :starttime AND :endtime <= end_time_milli))"
