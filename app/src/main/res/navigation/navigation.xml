@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainScreenFragment">
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.hkproductions.listme.main.HomeFragment"
+        android:label="@string/home_title"
+        tools:layout="@layout/main_fragment_home">
+        <action
+            android:id="@+id/action_start_guest"
+            app:destination="@id/guest_navigation"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
+        <action
+            android:id="@+id/action_start_host"
+            app:destination="@id/host_navigation"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
+    </fragment>
+    <navigation
+        android:id="@+id/guest_navigation"
+        android:label="Guest"
+        app:startDestination="@id/guestStartViewFragment">
+        <fragment
+            android:id="@+id/guestStartViewFragment"
+            android:name="com.hkproductions.listme.guest.startview.StartViewFragment"
+            android:label="@string/guest_start_view_title"
+            tools:layout="@layout/guest_fragment_startview">
+            <action
+                android:id="@+id/action_data_create"
+                app:destination="@id/editViewFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+            <action
+                android:id="@+id/action_to_detail"
+                app:destination="@id/guestDetailFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+            <action
+                android:id="@+id/action_to_create_group"
+                app:destination="@id/createGroupFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+            <action
+                android:id="@+id/action_show_phone_owner_code"
+                app:destination="@id/codeFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+        </fragment>
+        <fragment
+            android:id="@+id/createGroupFragment"
+            android:name="com.hkproductions.listme.guest.creategroupview.CreateGroupFragment"
+            android:label="@string/guest_group_view_title"
+            tools:layout="@layout/guest_fragment_create_group_view">
+            <action
+                android:id="@+id/action_show_group_code"
+                app:destination="@id/codeGroupFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+        </fragment>
+        <fragment
+            android:id="@+id/editViewFragment"
+            android:name="com.hkproductions.listme.guest.editview.EditViewFragment"
+            android:label="@string/guest_edit_view_title"
+            tools:layout="@layout/guest_fragment_edit_view">
+            <argument
+                android:name="dataId"
+                app:argType="long" />
+            <action
+                android:id="@+id/action_editViewFragment_to_startViewFragment"
+                app:destination="@id/guestStartViewFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:launchSingleTop="false"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit"
+                app:popUpTo="@id/guestStartViewFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/guestDetailFragment"
+            android:name="com.hkproductions.listme.guest.detailview.GuestDetailFragment"
+            android:label="@string/guest_detail_view_title"
+            tools:layout="@layout/guest_fragment_detail_view">
+            <action
+                android:id="@+id/action_guestDetailFragment_to_editViewFragment"
+                app:destination="@id/editViewFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+            <argument
+                android:name="dataId"
+                app:argType="long" />
+            <action
+                android:id="@+id/action_after_delete"
+                app:destination="@id/guestStartViewFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:launchSingleTop="false"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit"
+                app:popUpTo="@id/guestStartViewFragment"
+                app:popUpToInclusive="true" />
+            <action
+                android:id="@+id/action_show_code"
+                app:destination="@id/codeFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+        </fragment>
+        <fragment
+            android:id="@+id/codeFragment"
+            android:name="com.hkproductions.listme.guest.code.CodeFragment"
+            android:label="@string/guest_code_view_title"
+            tools:layout="@layout/guest_fragment_code_view">
+            <argument
+                android:name="dataId"
+                app:argType="long" />
+        </fragment>
+        <fragment
+            android:id="@+id/codeGroupFragment"
+            android:name="com.hkproductions.listme.guest.codegroup.CodeGroupFragment"
+            android:label="@string/guest_groupCode_view_title"
+            tools:layout="@layout/guest_fragment_group_code_view">
+            <argument
+                android:name="dataIds"
+                app:argType="long[]" />
+        </fragment>
+    </navigation>
+    <navigation
+        android:id="@+id/host_navigation"
+        android:label="@string/host"
+        app:startDestination="@id/hostStartViewFragment">
+        <fragment
+            android:id="@+id/hostStartViewFragment"
+            android:name="com.hkproductions.listme.host.startview.HostStartViewFragment"
+            android:label="@string/host_start_view_title"
+            tools:layout="@layout/host_fragment_startview">
+            <action
+                android:id="@+id/action_show_guest_list"
+                app:destination="@id/guestListFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+            <action
+                android:id="@+id/action_show_scan_result"
+                app:destination="@id/scanResultFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+            <action
+                android:id="@+id/action_open_area_management"
+                app:destination="@id/areaManagementFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+        </fragment>
+        <fragment
+            android:id="@+id/guestListFragment"
+            android:name="com.hkproductions.listme.host.guestlist.GuestListFragment"
+            android:label="@string/host_guestList_view_title"
+            tools:layout="@layout/host_fragment_guest_list">
+            <action
+                android:id="@+id/action_show_guest_details"
+                app:destination="@id/guestDetailViewFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+        </fragment>
+        <fragment
+            android:id="@+id/scanResultFragment"
+            android:name="com.hkproductions.listme.host.scanresult.ScanResultFragment"
+            android:label="@string/host_scanResult_view_title"
+            tools:layout="@layout/host_fragment_scanresult">
+            <argument
+                android:name="hostDatasAsString"
+                app:argType="string" />
+            <action
+                android:id="@+id/action_scanResult_to_hostStartView"
+                app:destination="@id/hostStartViewFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit"
+                app:popUpTo="@id/hostStartViewFragment"
+                app:popUpToInclusive="true" />
+            <argument
+                android:name="areaId"
+                android:defaultValue="-1L"
+                app:argType="long" />
+        </fragment>
+        <fragment
+            android:id="@+id/guestDetailViewFragment"
+            android:name="com.hkproductions.listme.host.guestdetailview.GuestDetailViewFragment"
+            tools:layout="@layout/host_fragment_guest_detail_view"
+            android:label="@string/host_guestDetail_view_title">
+            <action
+                android:id="@+id/action_from_detail_show_detail_list"
+                app:destination="@id/detailListFragment"
+                app:enterAnim="@anim/fragment_open_enter"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:popEnterAnim="@anim/fragment_open_enter"
+                app:popExitAnim="@anim/fragment_open_exit" />
+            <argument
+                android:name="dataId"
+                app:argType="long" />
+        </fragment>
+        <fragment
+            android:id="@+id/detailListFragment"
+            android:name="com.hkproductions.listme.host.detaillist.DetailListFragment"
+            android:label="@string/host_detailList_view_title"
+            tools:layout="@layout/host_fragment_detail_list">
+            <argument
+                android:name="hostDataId"
+                app:argType="long" />
+        </fragment>
+        <fragment
+            android:id="@+id/areaManagementFragment"
+            android:name="com.hkproductions.listme.host.tablemanagement.AreaManagementFragment"
+            android:label="@string/host_areaManag_view_title"
+            tools:layout="@layout/host_fragment_area_management" />
+    </navigation>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.hkproductions.listme.settings.SettingsFragment"
+        android:label="@string/setting_title"
+        tools:layout="@layout/settings_fragment" />
+</navigation>

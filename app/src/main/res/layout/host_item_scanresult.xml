@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_host_scanresult_item"
+        style="@style/ListMe_Card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/side_margin"
+        android:layout_marginTop="@dimen/side_margin"
+        android:layout_marginEnd="@dimen/side_margin"
+        android:layout_marginBottom="@dimen/side_margin"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_hostScanresult_name"
+                style="@style/ListMe_Text_Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/line_spacing"
+                android:layout_marginTop="@dimen/side_margin"
+                android:layout_marginEnd="@dimen/side_margin"
+                app:layout_constraintEnd_toStartOf="@+id/textView_hostScanresult_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Name" />
+
+            <TextView
+                android:id="@+id/textView_hostScanresult_status"
+                style="@style/ListMe_Text_Item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/side_margin"
+                android:layout_marginEnd="@dimen/side_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Status" />
+
+            <TextView
+                android:id="@+id/textView_hostScanresult_street_housenumber"
+                style="@style/ListMe_Text_Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:layout_marginTop="@dimen/content_line_spacing"
+                app:layout_constraintEnd_toEndOf="@+id/textView_hostScanresult_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_hostScanresult_name"
+                tools:text="StreetAndHousenumber" />
+
+            <TextView
+                android:id="@+id/textView_hostScanresult_city_postalCode"
+                style="@style/ListMe_Text_Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:layout_marginTop="@dimen/content_line_spacing"
+                app:layout_constraintEnd_toEndOf="@+id/textView_hostScanresult_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_hostScanresult_street_housenumber"
+                tools:text="CityAndPostalCode" />
+
+
+            <TextView
+                android:id="@+id/textViewPhoneNumber"
+                style="@style/ListMe_Text_Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:layout_marginTop="@dimen/content_line_spacing"
+                android:layout_marginBottom="@dimen/side_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView_hostScanresult_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_hostScanresult_city_postalCode"
+                tools:text="@string/phone_number_text" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

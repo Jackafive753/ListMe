@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hkproductions.listme.host.tablemanagement.AreaManagementViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout_areaManagement"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/side_margin"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:hint="@string/area_designation_text"
+            android:inputType="textPersonName"
+            app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_areaManagement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@={viewModel.nArea}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_areaManagement_add_area"
+            style="@style/ListMe_Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:layout_weight="1"
+            android:text="@string/add"
+            app:icon="@drawable/ic_baseline_add_24"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayout_areaManagement" />
+
+        <TextView
+            android:id="@+id/textView13"
+            style="@style/ListMe_Text_Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            android:text="@string/areas_label"
+            app:layout_constraintStart_toStartOf="@+id/inputLayout_areaManagement"
+            app:layout_constraintTop_toBottomOf="@+id/button_areaManagement_add_area" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_areaManagement"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            android:layout_marginEnd="@dimen/side_margin"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:spanCount="1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

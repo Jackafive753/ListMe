@@ -1,3 +1,173 @@
 <resources>
+
     <string name="app_name">ListMe</string>
+
+    <string name="manual">Kurzanleitung</string>
+    <string name="guest">Gast</string>
+    <string name="host">Gastgeber</string>
+    <string name="about">About</string>
+    <string name="data_protection">Datenschutz</string>
+    <string name="imprint">Impressum</string>
+    <string name="listmelogo">ListMeLogo</string>
+    <string name="present_code">Code anzeigen</string>
+    <string name="group_code">Gruppen Code</string>
+    <string name="contact">Kontakte:</string>
+    <string name="add">Hinzufügen</string>
+    <string name="confirm">Bestätigen</string>
+    <string name="ready">Fertig</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="delete">Löschen</string>
+    <string name="group_member_label">Gruppenmitglieder:</string>
+    <string name="code_with_full_name">Code von %s %s</string>
+    <string name="show_code_text">Code anzeigen von:</string>
+    <string name="scan_guest_header">Scanne den Code von deinem Kontakt</string>
+    <string name="checkinout_text">Ein-/Austragen</string>
+    <string name="guestlist_text">Gästeliste</string>
+    <string name="dailyclosing_text">Tagesabschluss</string>
+    <string name="allCheckout_text">Alle Austragen</string>
+    <string name="continue_text">Weiter</string>
+    <string name="checkout_text">Austragen</string>
+    <string name="host_scan_header">Scannen Sie den Code des Gastes</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="overlapping_entries">Überschneidende Einträge</string>
+    <string name="scan_data_button">Daten scannen</string>
+    <string name="create_phone_owner">Daten erstellen</string>
+    <string name="area_management_text">Bereichsverwaltung</string>
+
+    <!-- String HostScanResult -->
+    <string name="scannedEntrys_noArea">Kein Bereich</string>
+    <string name="scannedEntrys_single_text">Gescannter Eintrag:</string>
+    <string name="scannedEntrys_multi_text">Gescannte Einträge:</string>
+    <string name="newScan_text">Nächster Scan</string>
+    <string name="scanResultToastMes">Gäste wurden %s zugewiesen</string>
+    <string name="checked_in">eintragen</string>
+    <string name="checked_out">austragen</string>
+
+    <!-- Strings HostStartView -->
+    <string name="alertDialog_title">Wirklich austragen?</string>
+    <string name="alertDialogAll_title">Wirklich alle austragen?</string>
+    <string name="cancelled_check_out_toast">Austragen abgebrochen</string>
+    <string name="cancel_alertDialog">Abbrechen</string>
+    <string name="confirm_alertDialog">Austragen</string>
+    <string name="remember_my_decision_alertDialog">Nicht noch einmal fragen</string>
+    <array name="remember_my_decision">
+        <item>Nicht mehr fragen</item>
+    </array>
+
+    <!-- Strings Settings-->
+    <string name="settings">Einstellungen</string>
+    <string name="settings_header_host">Gastgeber</string>
+    <string name="SwitchQuestion">Dialog beim Austragen</string>
+    <string name="switch_yes">Ja</string>
+    <string name="switch_no">Nein</string>
+
+    <!-- Strings GuestList -->
+    <string name="date_display">%1$d.%2$d.%3$d</string>
+    <string name="expand_search_fields_text">Einblenden</string>
+    <string name="collapse_search_fields_text">Ausblenden</string>
+    <string name="firstname_lastname_hint">Vorname Nachname</string>
+    <string name="no_endtime_text">Keine Endzeit</string>
+
+
+    <!-- DetailList Strings-->
+    <string name="contact_person_one_text">Kontaktperson Kategorie 1</string>
+    <string name="contact_person_two_text">Kontaktperson Kategorie 2</string>
+    <string name="detailList_menu_title">Erklärung</string>
+    <string name="detailList_dialog_title">Kontaktperson Kategorie 1 und 2 Erläuterung:</string>
+    <string name="detailList_dialog_message">In Kontaktpersonen Kategorie 1 werden alle Personen angezeigt,
+        die mit der aufrufenden Person im selben Bereich waren und auch zur selben Zeit dort waren.
+        In Kontaktpersonen Kategorie 2 werden alle Personen angezeigt, die mit der aufrufenden Person,
+        zur selben Zeit anwesend waren aber nicht im selben Bereich eingetragen wurden.</string>
+
+    <!-- String AreaManagement-->
+    <string name="update_area_message_text">%s wurde in %s umbenannt</string>
+    <string name="areas_label">Bereiche</string>
+    <string name="delete_area_message_text">%s unwiderruflich löschen?</string>
+    <string name="area_designation_text">Bereich</string>
+
+    <!-- Alert Dialog Strings delete GuestData-->
+    <string name="alert_deleteguestdata_message">Datensatz unwiderruflich löschen?</string>
+    <string name="alert_deleteguestdata_title">Daten löschen</string>
+    <string name="alert_deleteguestdata_positive_delete">Löschen</string>
+    <string name="alert_deleteguestdata_negative_cancel">Abbrechen</string>
+    <string name="alert_deleteguestdata_positive_feedback">Datensatz erfolgreich gelöscht</string>
+    <string name="alert_deleteguestdata_negative_feedback">Löschvorgang abgebrochen</string>
+
+    <!-- Strings GuestData and HostData attributes-->
+    <string name="first_name_text">Vorname</string>
+    <string name="last_name_text">Nachname</string>
+    <string name="postal_code_text_short">PLZ</string>
+    <string name="postal_code_text">Postleitzahl</string>
+    <string name="city_text">Ort</string>
+    <string name="street_text">Straße</string>
+    <string name="house_number_text_short">HausNr.</string>
+    <string name="house_number_text">Hausnummer</string>
+    <string name="phone_number_text">Telefonnummer</string>
+    <string name="date_label">Datum</string>
+    <string name="name_text">Name</string>
+    <string name="street_hnr_text">Straße, Hausnr.</string>
+    <string name="city_postal_text">Ort, PLZ</string>
+    <string name="timeframelabel">Zeitraum</string>
+
+
+    <!-- Strings HostGuestDetailView-->
+    <string name="host_guest_detail_area_text">Bereich</string>
+    <string name="host_guest_detail_area_timeFrom">Von</string>
+    <string name="host_guest_detail_are_timeTo">Bis</string>
+
+    <!-- Error Text-->
+    <string name="blank_error_text">Bitte ausfüllen</string>
+    <string name="postal_error_text">Ungültige PLZ</string>
+    <string name="create_group_non_selected_error_text">Bitte wählen Sie mindestens eine Person aus.</string>
+    <string name="scan_failure_error_text">Scan war fehlerhaft! Versuchen sie es erneut.</string>
+
+    <!-- Message Text -->
+    <string name="data_safed">Daten wurden gespeichert</string>
+    <string name="no_phone_owner_message">Sie haben noch keine Daten eingefügt. Erstellen sie jetzt ihr Profil</string>
+
+    <!-- for my data are in startview of the guest
+            (firstname, lastname, street, house_number, postal_code, city, phone_number)-->
+    <string name="my_data"><u>Meine Daten: </u>\n    %s %s\n    %s %s\n    %s %s\n    %s</string>
+
+    <!-- this string stand on startview of the guest in house member cards
+            (firstname, lastname, phone_number)-->
+    <string name="contact_short_info">%s %s\n%s</string>
+    <string name="full_name">%s %s</string>
+
+    <!-- Strings for developer_mode-->
+    <string name="clear_database">Clear all</string>
+
+    <!-- Strings that are headlines of the fragments-->
+    <string name="home_title">Home</string>
+    <string name="setting_title">Einstellungen</string>
+    <string name="guest_detail_view_title">Übersicht</string>
+    <string name="guest_start_view_title">Gast</string>
+    <string name="guest_edit_view_title">Bearbeiten</string>
+    <string name="guest_code_view_title">Code Anzeige</string>
+    <string name="guest_group_view_title">Gruppe erstellen</string>
+    <string name="guest_groupCode_view_title">Gruppencode Anzeige</string>
+    <string name="host_start_view_title">Gastgeber</string>
+    <string name="host_scanResult_view_title">Scanergebnis</string>
+    <string name="host_areaManag_view_title">Bereichsverwaltung</string>
+    <string name="host_guestList_view_title">Gästeliste</string>
+    <string name="host_guestDetail_view_title">Gastdetails</string>
+    <string name="host_detailList_view_title">Kontakpersonen</string>
+
+    <!-- Image descriptions-->
+    <string name="simple_box_image_description">simpleBox</string>
+    <string name="code_image_description">Code</string>
+    <string name="expandcollapse_arrow_image_description">Ein Pfeilicon für expand oder collapse</string>
+    <string name="delete_icon_description">Mülleimer zum löschen</string>
+    <string name="aktuelles_datum">Datum</string>
+    <string name="calendarIconImage">calendarIcon</string>
+    <string name="timePickerStartTimeLabel">Uhrzeit Beginn</string>
+    <string name="timePickerEndTimeLabel">Uhrzeit Ende</string>
+    <string name="search_text">Suchen</string>
+    <string name="detailliste_anzeigen">Detailliste anzeigen</string>
+    <string name="startzeit">Von</string>
+    <string name="ContentDescriptionClockIcon">simpleClock</string>
+    <string name="endzeit">Bis</string>
+    <string name="suchergebnisse">Suchergebnisse</string>
+
+
 </resources>

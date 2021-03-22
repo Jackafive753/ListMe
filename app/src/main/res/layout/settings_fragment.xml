@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    <variable
+            name="viewModel"
+            type="com.hkproductions.listme.settings.SettingsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMaterial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:textOff="@string/switch_no"
+            android:textOn="@string/switch_yes"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textViewSwitchQuestion"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </com.google.android.material.switchmaterial.SwitchMaterial>
+
+        <TextView
+            android:id="@+id/textViewSwitchQuestion"
+            style="@style/ListMe_Text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            android:text="@string/SwitchQuestion"
+            app:layout_constraintEnd_toStartOf="@+id/switchMaterial"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewHeaderHost" />
+
+        <TextView
+            android:id="@+id/textViewHeaderHost"
+            style="@style/ListMe_Text_Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            android:text="@string/settings_header_host"
+            android:textSize="@dimen/text_size_header"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

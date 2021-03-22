@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/host_navigation"
+        android:title="@string/host" />
+
+    <item
+        android:id="@+id/guest_navigation"
+        android:title="@string/guest" />
+
+    <item
+        android:id="@+id/navigate_instruction"
+        android:title="@string/manual" />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="@string/settings" />
+</menu>

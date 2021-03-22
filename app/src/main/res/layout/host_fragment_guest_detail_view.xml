@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hkproductions.listme.host.guestdetailview.GuestDetailViewViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                style="@style/ListMe_Card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:layout_marginTop="@dimen/line_spacing"
+                android:layout_marginEnd="@dimen/side_margin"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/line_spacing">
+
+                    <TextView
+                        android:id="@+id/textViewGuestName"
+                        style="@style/ListMe_Text_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/side_margin"
+                        android:layout_marginTop="@dimen/line_spacing"
+                        android:text="@{viewModel.liveData.firstName + ' ' + viewModel.liveData.lastName}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Vorname Nachname" />
+
+                    <TextView
+                        android:id="@+id/textViewStreet"
+                        style="@style/ListMe_Text_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/side_margin"
+                        android:layout_marginTop="@dimen/line_spacing"
+                        android:text="@{viewModel.liveData.street + ' ' + viewModel.liveData.houseNumber}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewGuestName"
+                        tools:text="Straße" />
+
+                    <TextView
+                        android:id="@+id/textViewPostalCode"
+                        style="@style/ListMe_Text_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/side_margin"
+                        android:layout_marginTop="@dimen/line_spacing"
+                        android:text="@{viewModel.liveData.postalCode}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewStreet"
+                        tools:text="Postleitzahl" />
+
+                    <TextView
+                        android:id="@+id/textViewCity"
+                        style="@style/ListMe_Text_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/line_spacing"
+                        android:text="@{viewModel.liveData.city}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textViewPostalCode"
+                        app:layout_constraintStart_toEndOf="@+id/textViewPostalCode"
+                        tools:text="Ort" />
+
+                    <TextView
+                        android:id="@+id/textViewPhoneNumber"
+                        style="@style/ListMe_Text_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/side_margin"
+                        android:layout_marginTop="@dimen/line_spacing"
+                        android:text="@{viewModel.liveData.phoneNumber}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewPostalCode"
+                        tools:text="Telefonnummer" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textViewLabelTimeFrom"
+                style="@style/ListMe_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:layout_marginTop="@dimen/double_line_spacing"
+                android:text="@string/host_guest_detail_area_timeFrom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+            <TextView
+                android:id="@+id/textViewHostGuestDetailTimeFrom"
+                style="@style/ListMe_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/double_line_spacing"
+                android:text="@string/timeframelabel"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelTimeFrom"
+                app:layout_constraintStart_toEndOf="@+id/textViewAreaLabel" />
+
+            <TextView
+                android:id="@+id/textViewHostGuestDetailTimeTo"
+                style="@style/ListMe_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/double_line_spacing"
+                android:text="@string/timeframelabel"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelTo"
+                app:layout_constraintStart_toEndOf="@+id/textViewAreaLabel" />
+
+            <TextView
+                android:id="@+id/textViewLabelTo"
+                style="@style/ListMe_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:layout_marginTop="@dimen/double_line_spacing"
+                android:text="@string/host_guest_detail_are_timeTo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLabelTimeFrom" />
+
+            <TextView
+                android:id="@+id/textViewAreaLabel"
+                style="@style/ListMe_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:layout_marginTop="@dimen/double_line_spacing"
+                android:text="@string/host_guest_detail_area_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLabelTo" />
+
+            <TextView
+                android:id="@+id/textViewArea"
+                style="@style/ListMe_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/double_line_spacing"
+                android:text="@string/areas_label"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewAreaLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewAreaLabel" />
+
+            <Button
+                android:id="@+id/button"
+                style="@style/ListMe_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/double_line_spacing"
+                android:text="@string/overlapping_entries"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewArea" />
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/ListMe_Text_Header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:layout_marginTop="@dimen/line_spacing"
+                android:text="@string/guest"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

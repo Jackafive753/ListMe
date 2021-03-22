@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="phoneOwner"
+            type="com.hkproductions.listme.guest.database.GuestData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/house_member_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/my_data_area_button"
+            app:layout_constraintStart_toStartOf="@+id/my_data_area_button"
+            app:layout_constraintTop_toBottomOf="@+id/button_guestStart_addContact" />
+
+        <Button
+            android:id="@+id/button_guest_show_code"
+            style="@style/ListMe_Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/side_margin"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:text="@string/present_code"
+            app:icon="@drawable/ic_baseline_qr_code_2_24"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button_guest_code_group"
+            style="@style/ListMe_Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/line_spacing"
+            android:text="@string/group_code"
+            app:icon="@drawable/ic_baseline_qr_code_2_24"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="@+id/button_guest_show_code"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/button_guest_show_code"
+            app:layout_constraintTop_toBottomOf="@+id/button_guest_show_code" />
+
+        <Button
+            android:id="@+id/my_data_area_button"
+            style="@style/ListMe_Button_Item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/line_spacing"
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="@+id/button_guest_code_group"
+            app:layout_constraintStart_toStartOf="@+id/button_guest_code_group"
+            app:layout_constraintTop_toBottomOf="@+id/button_guest_code_group"
+            tools:text="here can stand your data" />
+
+        <TextView
+            android:id="@+id/house_members_label"
+            style="@style/ListMe_Text_Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contact"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/button_guestStart_addContact"
+            app:layout_constraintStart_toStartOf="@+id/my_data_area_button"
+            app:layout_constraintTop_toTopOf="@+id/button_guestStart_addContact"
+            app:layout_constraintVertical_bias="0.7" />
+
+
+        <Button
+            android:id="@+id/button_guestStart_addContact"
+            style="@style/ListMe_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="@dimen/line_spacing"
+            android:layout_marginEnd="32dp"
+            android:text="@string/add"
+            app:icon="@drawable/ic_baseline_add_24"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/house_members_label"
+            app:layout_constraintTop_toBottomOf="@+id/my_data_area_button" />
+
+        <!-- DEVELOPER_MODE-->
+        <Button
+            android:id="@+id/developer_guest_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear_database"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

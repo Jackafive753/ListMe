@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textview_host_scanresult_label"
+            style="@style/ListMe_Text_Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginTop="@dimen/side_margin"
+            android:layout_marginEnd="@dimen/side_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Header" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_host"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/content_line_spacing"
+            android:layout_marginBottom="@dimen/line_spacing"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintEnd_toEndOf="@+id/button_hostScanResult_newScan"
+            app:layout_constraintStart_toStartOf="@+id/button_hostScanResult_newScan"
+            app:layout_constraintTop_toBottomOf="@+id/textview_host_scanresult_label" />
+
+        <Button
+            android:id="@+id/button_hostScanResult_newScan"
+            style="@style/ListMe_Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:layout_marginBottom="@dimen/line_spacing"
+            android:fontFamily="@font/roboto_mono"
+            android:text="@string/newScan_text"
+            android:textColor="@color/black"
+            app:icon="@drawable/ic_baseline_qr_code_2_24"
+            app:iconGravity="textStart"
+            app:iconTint="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/button_hostScanResult_continue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button_hostScanResult_continue"
+            style="@style/ListMe_Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:layout_marginBottom="@dimen/side_margin"
+            android:fontFamily="@font/roboto_mono"
+            android:text="@string/ready"
+            android:textColor="@color/black"
+            app:iconGravity="textStart"
+            app:iconTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/line_spacing"
+            android:spinnerMode="dialog"
+            app:layout_constraintBottom_toTopOf="@+id/button_hostScanResult_newScan"
+            app:layout_constraintEnd_toEndOf="@+id/button_hostScanResult_newScan"
+            app:layout_constraintStart_toStartOf="@+id/button_hostScanResult_newScan"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/textView_area"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/line_spacing"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/button_hostScanResult_newScan"
+            app:layout_constraintEnd_toEndOf="@+id/button_hostScanResult_newScan"
+            app:layout_constraintStart_toStartOf="@+id/button_hostScanResult_newScan" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
