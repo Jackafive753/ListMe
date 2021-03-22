@@ -56,6 +56,21 @@ class GuestListViewModel(private val database: HostDataDao) : ViewModel() {
             "data: " + if (data.value != null) data.value.toString() else ""
         )
     }
+    fun alterListByName(){
+        viewModelScope.launch {
+            data.setValue(
+                when(liveName.value.isNullOrBlank()){
+                    true -> database.getEntriesByTime(
+                        liveStartTime.value!! + liveDate.value!!,
+                        liveEndTime.value!! + liveDate.value!!
+                    )
+                    false -> database.getEntriesByName(
+                        liveName.value!!
+                    )
+                }
+            )
+        }
+    }
 
     init {
         liveDate.value = Calendar.getInstance().timeInMillis
